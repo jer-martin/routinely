@@ -9,6 +9,10 @@ Routinely will be able to automatically prioritize and schedule events for the u
 Built by Bryan Esquivias, Jeremy Martin, Anand Mathi, and Madhav Sagi.
 
 
+## FOR TA
+[User Stories](user_stories.md)
+
+
 ## FOR DEVS 
 
 to start the localhost, open a terminal in source/routinely and run npm start
