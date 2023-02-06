@@ -10,9 +10,10 @@ Built by Bryan Esquivias, Jeremy Martin, Anand Mathi, and Madhav Sagi.
 
 
 ## FOR TA
-[User Stories](user_stories.md)
+[User Stories](docs/user_stories.md)   
+[Sprint 1](docs/Sprint1.md)
 
 
 ## FOR DEVS 
 
-to start the localhost, open a terminal in source/routinely and run npm start
+[Docs](docs/dev_docs.md)
