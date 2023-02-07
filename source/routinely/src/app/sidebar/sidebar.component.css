@@ -1,0 +1,4 @@
+.card-text {
+  padding-top: 20px;
+  padding-bottom: 500px; /* Arbitrary size for show - will need to scale with vw or rem when putting together*/
+}

@@ -1,0 +1,38 @@
+<button (click)="goToHome()" >Home</button>
+
+<div class="clr-row">
+  <div class="clr-col-12">
+    <div class="card">
+      <h4 class="card-header">Event Filter</h4>
+      <div class="card-block">
+        <clr-checkbox-container>
+          <clr-checkbox-wrapper>
+            <input type="checkbox" clrCheckbox value="option1" name="options1" />
+            <label>Classes</label>
+          </clr-checkbox-wrapper>
+          <clr-checkbox-wrapper>
+            <input type="checkbox" clrCheckbox value="option2" name="options2" />
+            <label>Clubs</label>
+          </clr-checkbox-wrapper>
+          <clr-checkbox-wrapper>
+            <input type="checkbox" clrCheckbox value="option3" name="option3" />
+            <label>Social</label>
+          </clr-checkbox-wrapper>
+          <clr-checkbox-wrapper>
+            <input type="checkbox" clrCheckbox value="option4" name="option4" />
+            <label>Exercise</label>
+          </clr-checkbox-wrapper>
+          <clr-checkbox-wrapper>
+            <input type="checkbox" clrCheckbox value="option5" name="option5" />
+            <label>Other</label>
+          </clr-checkbox-wrapper>
+          <br/>
+          <clr-control-helper>Select the categories you wish to filter <b>out.</b></clr-control-helper>
+        </clr-checkbox-container>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-sm btn-link">Edit Event Categories</button>
+      </div>
+    </div>
+  </div>
+</div>

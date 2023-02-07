@@ -11,4 +11,16 @@ export class HomeComponent {
   goToLogin() {
     this.router.navigate(['/login']);
   }
+  goToFilter() {
+    this.router.navigate(['/filter']);
+  }
+  goToSchedule() {
+    this.router.navigate(['/schedule']);
+  }
+  goToSidebar() {
+    this.router.navigate(['/sidebar']);
+  }
+  // goToEventModal() {
+  //   this.router.navigate(['/eventmodal']);
+  // }
 }

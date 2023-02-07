@@ -9,15 +9,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { ScheduleComponent } from './schedule/schedule.component';
+import { FilterComponent } from './filter/filter.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    SidebarComponent,
+    ScheduleComponent,
+    FilterComponent,
   ],
-    
+
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

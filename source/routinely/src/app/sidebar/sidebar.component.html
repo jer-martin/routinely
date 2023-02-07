@@ -1,0 +1,33 @@
+<button (click)="goToHome()" >Home</button>
+
+<div class="clr-row">
+  <div class="clr-col-12">
+    <div class="card">
+      <div class="card-block">
+        <div class="card-text">
+          <div class="tabs-vertical">
+            <ul id="demoTabs" class="nav" role="tablist">
+              <li role="presentation" class="nav-item">
+                <button id="tab1" class="btn btn-link nav-link active" aria-controls="panel1"
+                        aria-selected="true" type="button">Home</button>
+              </li>
+              <li role="presentation" class="nav-item">
+                <button id="tab2" class="btn btn-link nav-link" aria-controls="panel2"
+                        aria-selected="false" type="button">Calendar</button>
+              </li>
+              <li role="presentation" class="nav-item">
+                <button id="tab3" class="btn btn-link nav-link" aria-controls="panel3"
+                        aria-selected="false" type="button">Preferences</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button type="button" class="btn btn-icon btn-primary" aria-label="settings">
+          <cds-icon shape="cog"></cds-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
