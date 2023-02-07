@@ -305,6 +305,8 @@
 
 
 
+
+
 <div class="content" role="main">
 
 
@@ -313,9 +315,13 @@
   <header class="header-6">
     <div class="branding">
         <a href="..." class="nav-link">
-            <cds-icon shape="vm-bug"></cds-icon>
-            <span class="title">Clarity Design</span>
+            <cds-icon shape="clock"></cds-icon>
+            <span class="title">Routinely</span>
         </a>
+    </div>
+    <div class="header-nav">
+        <a href="..." class="nav-link active">Dashboard</a>
+        
     </div>
     <div class="header-actions">
         <clr-dropdown>
@@ -324,9 +330,8 @@
                 <cds-icon shape="angle" direction="down"></cds-icon>
             </button>
             <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-                <a href="..." clrDropdownItem>About</a>
-                <a href="..." clrDropdownItem>Preferences</a>
-                <a href="..." clrDropdownItem>Log out</a>
+                
+                <button clrDropdownItem (click)="goToLogin()">Log in</button>
             </clr-dropdown-menu>
         </clr-dropdown>
     </div>
