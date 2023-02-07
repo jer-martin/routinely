@@ -1,0 +1,36 @@
+<clr-dropdown [clrCloseMenuOnItemClick]="false">
+    <button clrDropdownTrigger aria-label="Dropdown demo button" class="btn btn-outline-primary">
+        Personalize
+        <cds-icon shape="angle" direction="down"></cds-icon>
+    </button>
+    <clr-dropdown-menu *clrIfOpen>
+        <label class="dropdown-header" aria-hidden="true">Dashboard</label>
+        <div aria-label="Dropdown header Action 1" clrDropdownItem>Change Photo</div>
+            <clr-dropdown>
+                <div aria-label="Dropdown header Action 2"  clrDropdownTrigger>Calendar</div>
+                    <clr-dropdown-menu>
+                        <div aria-label="Dropdown header Action 3" clrDropdownItem>Choose Theme</div>
+                    </clr-dropdown-menu>
+                </clr-dropdown>
+        <div class="dropdown-divider" role="separator" aria-hidden="true"></div>
+        <label class="dropdown-header" aria-hidden="true">Site-wide</label>
+        <clr-dropdown>
+            <div aria-label="Dropdown header Action 3" clrDropdownTrigger>Top-Bar Color</div>
+            <clr-dropdown-menu>
+                <div aria-label="Dropdown header Action 4" clrDropdownItem (click)="barThemeRed()">Red</div>
+                <div aria-label="Dropdown header Action 5" clrDropdownItem>Purple</div>
+                <div aria-label="Dropdown header Action 6" clrDropdownItem>Blue</div>
+            </clr-dropdown-menu>
+        </clr-dropdown>
+        <clr-dropdown>
+            <div aria-label="Dropdown header Action 3" clrDropdownTrigger>Background Color</div>
+            <clr-dropdown-menu>
+                <div aria-label="Dropdown header Action 4" clrDropdownItem (click)="themeWhite()">White</div>
+                <div aria-label="Dropdown header Action 4" clrDropdownItem (click)="themeRed()">Red</div>
+                <div aria-label="Dropdown header Action 5" clrDropdownItem (click)="themeGreen()">Green</div>
+                <div aria-label="Dropdown header Action 6" clrDropdownItem (click)="themeBlue()">Blue</div>
+                <div aria-label="Dropdown header Action 7" clrDropdownItem (click)="themeDark()">Grey</div>
+            </clr-dropdown-menu>
+        </clr-dropdown>
+    </clr-dropdown-menu>
+</clr-dropdown>

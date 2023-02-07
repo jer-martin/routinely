@@ -28,6 +28,9 @@ export class AppComponent {
   goToSidebar() {
     this.router.navigate(['/sidebar']);
   }
+  goToSettings() {
+    this.router.navigate(['/settings']);
+  }
   // goToEventModal() {
   //   this.router.navigate(['/eventmodal']);
   // }

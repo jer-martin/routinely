@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { FilterComponent } from "./filter/filter.component";
 import { SidebarComponent } from "./sidebar/sidebar.component";
 import { ScheduleComponent } from "./schedule/schedule.component";
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'filter', component: FilterComponent },
   { path: 'sidebar', component: SidebarComponent },
   { path: 'schedule', component: ScheduleComponent },
+  { path: 'settings', component: SettingsComponent},
 
 
   // otherwise redirect to home

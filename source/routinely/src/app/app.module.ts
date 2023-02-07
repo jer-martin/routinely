@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { FilterComponent } from './filter/filter.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { FilterComponent } from './filter/filter.component';
     SidebarComponent,
     ScheduleComponent,
     FilterComponent,
+    SettingsComponent,
   ],
 
   imports: [
