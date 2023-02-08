@@ -1,5 +1,8 @@
 # Sprint 1
 
+https://youtu.be/2tNwhSCyCc8
+
+
 ## Plans
  - We drew up user stories, available below
  - We plan on finishing the basic Go implementation of a server on the backend
