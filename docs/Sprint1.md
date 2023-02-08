@@ -1,6 +1,7 @@
 # Sprint 1
 
 https://youtu.be/2tNwhSCyCc8
+https://youtu.be/lti2XPHcpks
 
 
 ## Plans
