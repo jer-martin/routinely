@@ -10,10 +10,29 @@ import { Renderer2 } from '@angular/core';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent {
-  
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
-  
+    buttonOpen: boolean = false;
 
+  
+  constructor(private elementRef: ElementRef, private renderer: Renderer2, private router: Router) {}
+ 
+  goToHome() {
+    this.router.navigate(['']);
+  }
+
+  goToAccount() {
+    this.router.navigate(['/accountsettings']);
+  }
+
+  // when button is clicked, open the settings menu and change buttonOpen to true
+  buttonOpenMethod() {
+    if (!this.buttonOpen) {
+    this.buttonOpen = true;
+    
+    }
+    else {
+      this.buttonOpen = false;
+    }
+  }
 
   // here begins theme implementation?:w
 

@@ -1,36 +1,49 @@
-<clr-dropdown [clrCloseMenuOnItemClick]="false">
-    <button clrDropdownTrigger aria-label="Dropdown demo button" class="btn btn-outline-primary">
-        Personalize
-        <cds-icon shape="angle" direction="down"></cds-icon>
-    </button>
-    <clr-dropdown-menu *clrIfOpen>
-        <label class="dropdown-header" aria-hidden="true">Dashboard</label>
-        <div aria-label="Dropdown header Action 1" clrDropdownItem>Change Photo</div>
-            <clr-dropdown>
-                <div aria-label="Dropdown header Action 2"  clrDropdownTrigger>Calendar</div>
-                    <clr-dropdown-menu>
-                        <div aria-label="Dropdown header Action 3" clrDropdownItem>Choose Theme</div>
-                    </clr-dropdown-menu>
-                </clr-dropdown>
-        <div class="dropdown-divider" role="separator" aria-hidden="true"></div>
-        <label class="dropdown-header" aria-hidden="true">Site-wide</label>
-        <clr-dropdown>
-            <div aria-label="Dropdown header Action 3" clrDropdownTrigger>Top-Bar Color</div>
-            <clr-dropdown-menu>
-                <div aria-label="Dropdown header Action 4" clrDropdownItem (click)="barThemeRed()">Red</div>
-                <div aria-label="Dropdown header Action 5" clrDropdownItem>Purple</div>
-                <div aria-label="Dropdown header Action 6" clrDropdownItem>Blue</div>
-            </clr-dropdown-menu>
-        </clr-dropdown>
-        <clr-dropdown>
-            <div aria-label="Dropdown header Action 3" clrDropdownTrigger>Background Color</div>
-            <clr-dropdown-menu>
-                <div aria-label="Dropdown header Action 4" clrDropdownItem (click)="themeWhite()">White</div>
-                <div aria-label="Dropdown header Action 4" clrDropdownItem (click)="themeRed()">Red</div>
-                <div aria-label="Dropdown header Action 5" clrDropdownItem (click)="themeGreen()">Green</div>
-                <div aria-label="Dropdown header Action 6" clrDropdownItem (click)="themeBlue()">Blue</div>
-                <div aria-label="Dropdown header Action 7" clrDropdownItem (click)="themeDark()">Grey</div>
-            </clr-dropdown-menu>
-        </clr-dropdown>
-    </clr-dropdown-menu>
-</clr-dropdown>
+
+<div class="clr-row">
+    <div class="clr-col-4" style="padding-left:10vw">
+      <div class="card">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="tabs-vertical">
+              <ul id="demoTabs" class="nav" role="tablist">
+                <li role="presentation" class="nav-item">
+                  <button id="tab1" class="btn btn-link nav-link active" aria-controls="panel1"
+                          aria-selected="true" type="button" routerLink="/settings" routerLinkActive="true">Account</button>
+                </li>
+                <li role="presentation" class="nav-item">
+                  <button id="tab2" class="btn btn-link nav-link" aria-controls="panel2"
+                          aria-selected="false" type="button" routerLink="/calendarsettings" routerLinkActive="true">Calendar</button>
+                </li>
+                <li role="presentation" class="nav-item">
+                  <button id="tab3" class="btn btn-link nav-link" aria-controls="panel3"
+                          aria-selected="false" type="button" routerLink="/preferences" routerLinkActive="true">Preferences</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button type="button" class="btn btn-icon btn-outline bug" aria-label="settings" routerLink="/bugreport" routerLinkActive="true">
+            <cds-icon shape="exclamation-triangle"></cds-icon>
+            Report A Bug
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="clr-col-8" style="padding-right:10vw">
+        <div class="card">
+            <div class="card-block">
+            <div class="card-text">
+                <h2 style="padding-left: 3vw;padding-bottom:12vh;">Account</h2>
+            </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+
+
+

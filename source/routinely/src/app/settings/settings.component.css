@@ -1,4 +1,8 @@
-.dark {
-    background-color: #333;
-    color: #fff;
-}
+.card-text {
+    padding-top: 2vh;
+    padding-bottom: 50vh; /* Arbitrary size for show - will need to scale with vw or rem when putting together*/
+  }
+
+  .nav {
+    width: 107%;
+  }

@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'Metropolis';
+    src: url(fonts/metropolis.regular.otf);
+}
+
+button:focus, button:active:focus, button.active:focus {
+    outline: none !important;
+    outline-style: none !important;
+}
+
+.bug {
+    width:100%;
+}
+
+.settings-option {
+    padding-top: 2vh;
+    padding-bottom: 50vh;
+}
+
+.error-text {
+    font-size: 12pt;
+    font-family: Metropolis;
+}

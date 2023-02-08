@@ -2,3 +2,8 @@ header {
     width: 100%;
     padding-bottom: 20px;
 }
+
+.settings-option {
+    padding-bottom: 1vh;
+    padding-top: 1vh;
+}
