@@ -1,0 +1,31 @@
+<button type="button" class="btn btn-icon btn-primary" (click)="basic = true">
+  <cds-icon shape="plus-circle"></cds-icon>
+</button>
+<clr-modal [(clrModalOpen)]="basic" [clrModalSize]="'sm'" [clrModalStaticBackdrop]="false">
+  <h3 class="modal-title">Add Event</h3>
+  <div class="modal-body">
+    <form clrForm clrLayout="vertical">
+      <clr-input-container>
+        <label>Event Name</label>
+        <input clrInput placeholder="Enter event name" name="name" [(ngModel)]="eventName"/>
+      </clr-input-container>
+      <clr-combobox-container>
+        <label>Event Category</label>
+        <clr-combobox name="category" required placeholder="Choose event category" [(ngModel)]="eventCategory">
+          <clr-options>
+            <clr-option clrValue="Classes">Classes</clr-option>
+            <clr-option clrValue="Social">Social</clr-option>
+            <clr-option clrValue="Exercise">Exercise</clr-option>
+            <clr-option clrValue="Clubs">Clubs</clr-option>
+            <clr-option clrValue="Other">Other</clr-option>
+          </clr-options>
+        </clr-combobox>
+      </clr-combobox-container>
+      <clr-date-container>
+        <label>Date</label>
+        <input type="date" clrDate name="demo"/>
+      </clr-date-container>
+      <button class="btn btn-primary" (click)="submit()" style="margin-top:3vh; margin-left:3.3vw;">Submit</button>
+    </form>
+  </div>
+</clr-modal>

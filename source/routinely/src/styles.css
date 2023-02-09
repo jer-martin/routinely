@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~modern-normalize/modern-normalize.css';
+@import '~@cds/core/global.min.css';
+@import '~@cds/city/css/bundles/default.min.css';
+
 @font-face {
     font-family: 'Metropolis';
     src: url(fonts/metropolis.regular.otf);

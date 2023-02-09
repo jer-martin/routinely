@@ -33,9 +33,6 @@ export class AppComponent {
   goToSettings() {
     this.router.navigate(['/preferences']);
   }
-  // goToEventModal() {
-  //   this.router.navigate(['/eventmodal']);
-  // }
 
 
   // if at home page, set home to true. else set home to false
@@ -47,7 +44,7 @@ export class AppComponent {
       this.home = false;
     }
   }
-  
+
 }
 
 

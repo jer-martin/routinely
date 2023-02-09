@@ -15,11 +15,13 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { FilterComponent } from './filter/filter.component';
 import { SettingsComponent } from './settings/settings.component';
+import { EventModalComponent } from "./eventModal/event-modal.component";
 
 import { CalendarSettingsComponent } from './calendar-settings/calendar-settings.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { BugReportComponent } from './bug-report/bug-report.component';
 
+import '@cds/core/modal/register.js';
 
 @NgModule({
   declarations: [
@@ -30,16 +32,16 @@ import { BugReportComponent } from './bug-report/bug-report.component';
     ScheduleComponent,
     FilterComponent,
     SettingsComponent,
-   
+    EventModalComponent,
     CalendarSettingsComponent,
     PreferencesComponent,
     BugReportComponent,
   ],
 
   imports: [
+    ClarityModule,
     BrowserModule,
     BrowserAnimationsModule,
-    ClarityModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule
@@ -47,10 +49,10 @@ import { BugReportComponent } from './bug-report/bug-report.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
+export class AppModule {
 
 
 
    // if at home page, home = true. anywhere else, home = false
-   
+
 }

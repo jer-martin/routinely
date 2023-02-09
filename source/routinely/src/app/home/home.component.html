@@ -18,7 +18,7 @@
         padding-left: 10%;
         font-size:12pt;
         font-color: hsl(198, 0%, 80%);
-        
+
         aspect-ratio: 1/1;
       }
     </style>
@@ -51,19 +51,20 @@
             <div class="card-footer">
                 <button type="button" class="btn btn-icon btn-outline" aria-label="settings" routerLink="/bugreport" routerLinkActive="false">
                 <cds-icon shape="exclamation-triangle"></cds-icon>
-                
+
               </button>
             </div>
           </div>
         </div>
-    
+
         <div class="clr-col-8" style="padding-right:5vw">
 
 
     <div class="card">
-        <div class="card-header" style="padding-top:2.5%">
+        <div class="card-header">
+          <app-event-modal></app-event-modal>
           <div class="month-container">
-          <cds-icon shape="angle" direction="left" class="arrow-button" id="left-arrow" (click)="iterateMonthDown(month!)"></cds-icon>  
+          <cds-icon shape="angle" direction="left" class="arrow-button" id="left-arrow" (click)="iterateMonthDown(month!)"></cds-icon>
           <h3 class="month-string">{{month}}</h3>
           <cds-icon shape="angle" direction="right" class="arrow-button" id="right-arrow" (click)="iterateMonthUp(month!)"></cds-icon>
           </div>
