@@ -7,3 +7,11 @@ header {
     padding-bottom: 1vh;
     padding-top: 1vh;
 }
+
+div {
+    user-select: none;
+}
+
+span {
+    user-select: none;
+}
