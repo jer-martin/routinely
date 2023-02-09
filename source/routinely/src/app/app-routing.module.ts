@@ -11,8 +11,6 @@ import { BugReportComponent } from './bug-report/bug-report.component';
 import { CalendarSettingsComponent } from './calendar-settings/calendar-settings.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 
-import '@cds/core/modal/register.js';
-
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },

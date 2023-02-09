@@ -1,6 +1,4 @@
-import {Component, ViewChild} from "@angular/core";
-import {ClrModal} from "@clr/angular";
-import '@cds/core/modal/register.js';
+import { Component } from "@angular/core";
 
 @Component({
   selector: 'app-event-modal',

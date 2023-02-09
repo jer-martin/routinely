@@ -21,8 +21,6 @@ import { CalendarSettingsComponent } from './calendar-settings/calendar-settings
 import { PreferencesComponent } from './preferences/preferences.component';
 import { BugReportComponent } from './bug-report/bug-report.component';
 
-import '@cds/core/modal/register.js';
-
 @NgModule({
   declarations: [
     AppComponent,
