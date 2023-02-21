@@ -10,6 +10,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { BugReportComponent } from './bug-report/bug-report.component';
 import { CalendarSettingsComponent } from './calendar-settings/calendar-settings.component';
 import { PreferencesComponent } from './preferences/preferences.component';
+import { WeekviewComponent } from './weekview/weekview.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'bugreport', component: BugReportComponent},
   { path: 'calendarsettings', component: CalendarSettingsComponent},
   { path: 'preferences', component: PreferencesComponent},
+  { path: 'weekview', component: WeekviewComponent},
 
 
   // otherwise redirect to home

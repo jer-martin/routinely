@@ -33,16 +33,16 @@
                 <div class="tabs-vertical">
                   <ul id="demoTabs" class="nav" role="tablist">
                     <li role="presentation" class="nav-item">
-                      <button id="tab1" class="btn btn-link nav-link" aria-controls="panel1"
-                              aria-selected="false" type="button" >Placeholder</button>
+                      <button id="tab1" class="btn btn-link nav-link active" aria-controls="panel1"
+                              aria-selected="true" type="button" >Month</button>
                     </li>
                     <li role="presentation" class="nav-item">
                       <button id="tab2" class="btn btn-link nav-link" aria-controls="panel2"
-                              aria-selected="false" type="button" >Placeholder</button>
+                              aria-selected="false" type="button" routerLink="/weekview">Week</button>
                     </li>
                     <li role="presentation" class="nav-item">
                       <button id="tab3" class="btn btn-link nav-link" aria-controls="panel3"
-                              aria-selected="false" type="button" >Placeholder</button>
+                              aria-selected="false" type="button" >Year</button>
                     </li>
                   </ul>
                 </div>
@@ -63,6 +63,7 @@
     <div class="card">
         <div class="card-header">
           <app-event-modal></app-event-modal>
+          
           <div class="month-container">
           <cds-icon shape="angle" direction="left" class="arrow-button" id="left-arrow" (click)="iterateMonthDown(month!)"></cds-icon>
           <h3 class="month-string">{{month}}</h3>
@@ -113,7 +114,7 @@
 <div class="box">29</div>
 <div class="box">30</div>
 <div class="box">31</div>
-<div class="box"></div>
+<app-day-modal></app-day-modal>
 <div class="box"></div>
 <div class="box"></div>
 <div class="box"></div>

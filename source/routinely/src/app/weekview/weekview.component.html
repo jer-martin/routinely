@@ -1,0 +1,60 @@
+
+    <div class="clr-row">
+        <div class="clr-col-4" style="padding-left:5vw">
+            <div class="card">
+                <div class="card-block">
+          <div class="card-text">
+            <div class="tabs-vertical">
+              <ul id="demoTabs" class="nav" role="tablist">
+                <li role="presentation" class="nav-item">
+                  <button id="tab1" class="btn btn-link nav-link" aria-controls="panel1"
+                          aria-selected="false" type="button" routerLink="">Month</button>
+                </li>
+                <li role="presentation" class="nav-item">
+                  <button id="tab2" class="btn btn-link nav-link active" aria-controls="panel2"
+                          aria-selected="true" type="button" routerLink="/weekview">Week</button>
+                </li>
+                <li role="presentation" class="nav-item">
+                  <button id="tab3" class="btn btn-link nav-link" aria-controls="panel3"
+                          aria-selected="false" type="button" >Year</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+            <button type="button" class="btn btn-icon btn-outline" aria-label="settings" routerLink="/bugreport" routerLinkActive="false">
+            <cds-icon shape="exclamation-triangle"></cds-icon>
+
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="clr-col-8" style="padding-right:5vw">
+
+
+<div class="card">
+    <div class="card-header">
+      <app-event-modal></app-event-modal>
+     
+    </div>
+
+    <div class="day-container">
+      <div class="day">S</div>
+      <div class="day">M</div>
+      <div class="day">T</div>
+      <div class="day">W</div>
+      <div class="day">T</div>
+      <div class="day">F</div>
+      <div class="day">S</div>
+    </div>
+
+    
+
+    </div>
+
+
+
+
+

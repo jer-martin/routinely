@@ -20,6 +20,8 @@ import { EventModalComponent } from "./eventModal/event-modal.component";
 import { CalendarSettingsComponent } from './calendar-settings/calendar-settings.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { BugReportComponent } from './bug-report/bug-report.component';
+import { WeekviewComponent } from './weekview/weekview.component';
+import { DayModalComponent } from './day-modal/day-modal.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { BugReportComponent } from './bug-report/bug-report.component';
     CalendarSettingsComponent,
     PreferencesComponent,
     BugReportComponent,
+    WeekviewComponent,
+    DayModalComponent,
   ],
 
   imports: [
