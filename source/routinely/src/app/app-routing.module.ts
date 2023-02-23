@@ -13,7 +13,7 @@ import { PreferencesComponent } from './preferences/preferences.component';
 import { WeekviewComponent } from './weekview/weekview.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: 'routinely', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'filter', component: FilterComponent },
   { path: 'sidebar', component: SidebarComponent },
