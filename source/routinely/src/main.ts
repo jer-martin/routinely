@@ -11,5 +11,6 @@ ClarityIcons.addIcons(userIcon);
 ClarityIcons.addIcons(exclamationCircleIcon);
 ClarityIcons.addIcons(plusIcon);
 
+
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));

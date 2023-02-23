@@ -17,8 +17,6 @@
         padding-top: 10%;
         padding-left: 10%;
         font-size:12pt;
-        font-color: hsl(198, 0%, 80%);
-
         aspect-ratio: 1/1;
       }
     </style>
@@ -49,7 +47,7 @@
               </div>
             </div>
             <div class="card-footer">
-                <button type="button" class="btn btn-icon btn-outline" aria-label="settings" routerLink="/bugreport" routerLinkActive="false">
+                <button type="button" class="btn btn-icon btn-outline bug-report" aria-label="settings" routerLink="/bugreport" routerLinkActive="false">
                 <cds-icon shape="exclamation-triangle"></cds-icon>
 
               </button>
@@ -66,7 +64,7 @@
           
           <div class="month-container">
           <cds-icon shape="angle" direction="left" class="arrow-button" id="left-arrow" (click)="iterateMonthDown(month!)"></cds-icon>
-          <h3 class="month-string">{{month}}</h3>
+          <h3 class="month-string">{{month}} {{year}}</h3>
           <cds-icon shape="angle" direction="right" class="arrow-button" id="right-arrow" (click)="iterateMonthUp(month!)"></cds-icon>
           </div>
         </div>
@@ -82,39 +80,39 @@
         </div>
 
 
-    <div class="grid">
-        <div class="box">1</div>
-<div class="box">2</div>
-<div class="box">3</div>
-<div class="box">4</div>
-<div class="box">5</div>
-<div class="box">6</div>
-<div class="box">7</div>
-<div class="box">8</div>
-<div class="box">9</div>
-<div class="box">10</div>
-<div class="box">11</div>
-<div class="box">12</div>
-<div class="box">13</div>
-<div class="box">14</div>
-<div class="box">15</div>
-<div class="box">16</div>
-<div class="box">17</div>
-<div class="box">18</div>
-<div class="box">19</div>
-<div class="box">20</div>
-<div class="box">21</div>
-<div class="box">22</div>
-<div class="box">23</div>
-<div class="box">24</div>
-<div class="box">25</div>
-<div class="box">26</div>
-<div class="box">27</div>
-<div class="box">28</div>
-<div class="box">29</div>
-<div class="box">30</div>
-<div class="box">31</div>
-<app-day-modal></app-day-modal>
+    <div class="grid"> 
+        <div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
 <div class="box"></div>
 <div class="box"></div>
 <div class="box"></div>

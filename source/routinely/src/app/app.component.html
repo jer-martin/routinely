@@ -10,22 +10,22 @@
 
 
   <!-- TODO: implement rest of icons and classes -->
-  <header class="header-6">
+  <header class="header header-6" id="header">
     <div class="branding">
-        <a href="..." class="nav-link">
-            <cds-icon shape="clock"></cds-icon>
-            <span class="title">Routinely</span>
+        <a href="..." class="nav-link logo-text">
+            <cds-icon class="clock" shape="clock"></cds-icon>
+            <span class="title logo-text">Routinely</span>
         </a>
     </div>
     <div class="header-nav">
         <!--if we want nav links they go here-->
     </div>
     <div class="header-actions">
-        <a  class="nav-link nav-icon" aria-label="settings" routerLink="/settings" routerLinkActive="true">
-          <cds-icon shape="user"></cds-icon>
+        <a  class="nav-link nav-icon user" aria-label="settings" routerLink="/settings" routerLinkActive="true">
+          <cds-icon class="user" shape="user"></cds-icon>
         </a>
-        <clr-dropdown>
-            <button class="nav-icon" clrDropdownTrigger aria-label="toggle settings menu">
+        <clr-dropdown style:hover="color: rgb(120,120,120);">
+            <button class="nav-icon cog" clrDropdownTrigger aria-label="toggle settings menu">
                 <cds-icon shape="cog"></cds-icon>
                 <cds-icon shape="angle" direction="down"></cds-icon>
             </button>

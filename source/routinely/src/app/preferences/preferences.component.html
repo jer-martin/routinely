@@ -37,8 +37,30 @@
             </div>
             <div class="card-block">
             <div class="card-text">
+              <clr-dropdown [clrCloseMenuOnItemClick]="false">
+                <button clrDropdownTrigger aria-label="Dropdown demo button">
+                    <span>Header Color</span> 
+                    <cds-icon shape="angle" direction="down"></cds-icon>
+                </button>
+                <clr-dropdown-menu *clrIfOpen>
+                    <div aria-label="purple" clrDropdownItem (click)="changeHeaderColor('purple')">Purple</div>
+                    <div aria-label="Dropdown header Action 2"  clrDropdownItem (click)="changeHeaderColor('blue')">Blue</div>
+                    <div aria-label="Dropdown header Action 3"  clrDropdownItem (click)="changeHeaderColor('slate')">Slate</div>
+                    <div aria-label="Dropdown header Action 4"  clrDropdownItem (click)="changeHeaderColor('green')">Green</div>
+                </clr-dropdown-menu>
+              </clr-dropdown>
 
-                 
+              <clr-dropdown [clrCloseMenuOnItemClick]="false">
+                <button clrDropdownTrigger aria-label="Dropdown demo button">
+                    <span>Theme Color</span> 
+                    <cds-icon shape="angle" direction="down"></cds-icon>
+                </button>
+                <clr-dropdown-menu *clrIfOpen>
+                    <div aria-label="purple" clrDropdownItem (click)="themeDark()">Dark</div>
+                    <div aria-label="purple" clrDropdownItem (click)="themeLight()">Light</div>
+
+                </clr-dropdown-menu>
+              </clr-dropdown>
 
 
             </div>
