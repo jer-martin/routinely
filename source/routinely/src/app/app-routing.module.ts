@@ -13,7 +13,7 @@ import { PreferencesComponent } from './preferences/preferences.component';
 import { WeekviewComponent } from './weekview/weekview.component';
 
 const routes: Routes = [
-  { path: 'routinely', component: HomeComponent },
+  { path: 'Routinely', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'filter', component: FilterComponent },
   { path: 'sidebar', component: SidebarComponent },
@@ -25,8 +25,8 @@ const routes: Routes = [
   { path: 'weekview', component: WeekviewComponent},
 
 
-  // otherwise redirect to home
-  { path: '**', redirectTo: '' }
+  // otherwise redirect to Routinely
+  { path: '**', redirectTo: 'Routinely' }
 ];
 
 @NgModule({

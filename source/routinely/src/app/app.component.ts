@@ -33,11 +33,15 @@ export class AppComponent {
   goToSettings() {
     this.router.navigate(['/preferences']);
   }
+  goToHome() {
+    this.router.navigate(['/Routinely']);
+    this.checkHome();
+  }
 
 
   // if at home page, set home to true. else set home to false
   checkHome() {
-    if (this.router.url === '/') {
+    if (this.router.url === '/Routinely') {
       this.home = true;
     }
     else {
