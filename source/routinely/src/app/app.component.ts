@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Router} from '@angular/router';
+import { DateTime } from 'luxon';
 
 
 @Component({
@@ -13,6 +14,7 @@ export class AppComponent {
   form = {username: '', password: '', rememberMe: false};
 
   home: boolean = true;
+  calTime = DateTime.local();
 
 
   constructor(private router: Router) { }
@@ -47,6 +49,10 @@ export class AppComponent {
     else {
       this.home = false;
     }
+  }
+
+  checkTime() {
+    return this.calTime;
   }
 
   //write changeHeaderColor() that takes in a string

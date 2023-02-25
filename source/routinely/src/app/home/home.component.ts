@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DateTime } from 'luxon';
+import { SharerService } from '../sharer.service';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { DateTime } from 'luxon';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router, private sharerService: SharerService) { }
   goToLogin() {
     this.router.navigate(['/login']);
   }
@@ -27,11 +28,12 @@ export class HomeComponent {
   // }
   monthNum: number | undefined;
   
-  // this allows me to populate boxes only up to this number
-  //month = "January";
-  calTime = DateTime.local();
+  calTime = this.sharerService.currentCalTime.getValue();
+  
   month = this.calTime.monthLong;
   year = this.calTime.year;
+
+
 
   monthOut() {
     return this.month;
@@ -97,5 +99,13 @@ export class HomeComponent {
   // run populate boxes on init
   ngOnInit() {
     this.populateBoxes(this.month);
+    this.sharerService.getCalTimeSource().subscribe(calTime => {
+      this.calTime = calTime;
+    });
+  }
+
+  sendCalTime() {
+    const calTime = this.calTime;
+    this.sharerService.changeCalTime(calTime);
   }
 }
