@@ -13,7 +13,7 @@
 
 body {
   overflow-x: hidden;
-  scrollbar-gutter: stable;
+  scrollbar-gutter: auto;
 }
 
 h3 {
