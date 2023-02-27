@@ -11,7 +11,7 @@ Built by Bryan Esquivias, Jeremy Martin, Anand Mathi, and Madhav Sagi.
 
 ## FOR TA
 [User Stories](docs/user_stories.md)   
-[Sprint 1](docs/Sprint1.md)
+[Sprint 1](docs/Sprint1.md)   
 [Sprint 2](docs/Sprint2.md)
 
 
