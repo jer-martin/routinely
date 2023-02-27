@@ -24,44 +24,63 @@
   <body>
 
     <div class="clr-row">
-        <div class="clr-col-4" style="padding-left:5vw">
-          <div class="card">
-            <div class="card-block">
-              <div class="card-text">
-                <div class="tabs-vertical">
-                  <ul id="demoTabs" class="nav" role="tablist">
-                    <li role="presentation" class="nav-item">
-                      <button id="tab1" class="btn btn-link nav-link active" aria-controls="panel1"
-                              aria-selected="true" type="button" >Month</button>
-                    </li>
-                    <li role="presentation" class="nav-item">
-                      <button id="tab2" class="btn btn-link nav-link" aria-controls="panel2"
-                              aria-selected="false" type="button" routerLink="/weekview" (click)="sendCalTime()">Week</button>
-                    </li>
-                    <li role="presentation" class="nav-item">
-                      <button id="tab3" class="btn btn-link nav-link" aria-controls="panel3"
-                              aria-selected="false" type="button" >Year</button>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="card-footer">
-                <button type="button" class="btn btn-icon btn-outline bug-report" aria-label="settings" routerLink="/bugreport" routerLinkActive="false">
-                <cds-icon shape="exclamation-triangle"></cds-icon>
-
-              </button>
-            </div>
-          </div>
+      <div class="clr-col-4" style="padding-left:3%">
+      <app-filter></app-filter>
         </div>
+<!--        <div class="clr-col-4" style="padding-left:5vw">-->
+<!--          <div class="card">-->
+<!--            <div class="card-block">-->
+<!--              <div class="card-text">-->
+<!--                <div class="tabs-vertical">-->
+<!--                  <ul id="demoTabs" class="nav" role="tablist">-->
+<!--                    <li role="presentation" class="nav-item">-->
+<!--                      <button id="tab1" class="btn btn-link nav-link active" aria-controls="panel1"-->
+<!--                              aria-selected="true" type="button" >Month</button>-->
+<!--                    </li>-->
+<!--                    <li role="presentation" class="nav-item">-->
+<!--                      <button id="tab2" class="btn btn-link nav-link" aria-controls="panel2"-->
+<!--                              aria-selected="false" type="button" routerLink="/weekview" (click)="sendCalTime()">Week</button>-->
+<!--                    </li>-->
+<!--                    <li role="presentation" class="nav-item">-->
+<!--                      <button id="tab3" class="btn btn-link nav-link" aria-controls="panel3"-->
+<!--                              aria-selected="false" type="button" >Year</button>-->
+<!--                    </li>-->
+<!--                  </ul>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="card-footer">-->
+<!--                <button type="button" class="btn btn-icon btn-outline bug-report" aria-label="settings" routerLink="/bugreport" routerLinkActive="false">-->
+<!--                <cds-icon shape="exclamation-triangle"></cds-icon>-->
 
-        <div class="clr-col-8" style="padding-right:5vw">
+<!--              </button>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+        <div class="clr-col-8" style="padding-right:3%">
 
 
     <div class="card">
+
         <div class="card-header">
-          <app-event-modal></app-event-modal>
-          
+          <div style="display: flex; max-height: 0px;">
+            <div class="btn-group">
+              <div class="radio btn">
+                <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-1" routerLink="/">
+                <label for="btn-demo-radio-1">Month</label>
+              </div>
+              <div class="radio btn">
+                <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-2" routerLink="/weekview">
+                <label for="btn-demo-radio-2">Week</label>
+              </div>
+              <div class="radio btn">
+                <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-3">
+                <label for="btn-demo-radio-3">Day</label>
+              </div>
+            </div>
+            <app-event-modal style="margin-left: auto"></app-event-modal>
+          </div>
           <div class="month-container">
           <cds-icon shape="angle" direction="left" class="arrow-button" id="left-arrow" (click)="iterateMonthDown(month!)"></cds-icon>
           <h3 class="month-string">{{month}} {{year}}</h3>
@@ -80,7 +99,7 @@
         </div>
 
 
-    <div class="grid"> 
+    <div class="grid">
         <div class="box"></div>
 <div class="box"></div>
 <div class="box"></div>

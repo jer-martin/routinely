@@ -11,6 +11,11 @@
     margin-top: 5%;
 }
 
+body {
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
+}
+
 h3 {
     user-select: none;
 }

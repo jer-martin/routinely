@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { DateTime } from 'luxon';
+import {DateTime, Duration, DurationUnit, Interval} from 'luxon';
 import { SharerService } from '../sharer.service';
 
 
@@ -27,9 +27,9 @@ export class HomeComponent {
   //   this.router.navigate(['/eventmodal']);
   // }
   monthNum: number | undefined;
-  
+
   calTime = this.sharerService.currentCalTime.getValue();
-  
+
   month = this.calTime.monthLong;
   year = this.calTime.year;
 
@@ -42,7 +42,7 @@ export class HomeComponent {
 
   iterateMonthUp(month: string) {
     document.getElementById('right-arrow')!.attributes.getNamedItem('shape')!.value = 'angle-double';
-   
+
     // subtract a month from calTime
     this.calTime = this.calTime.plus({ months: 1 });
     this.month = this.calTime.monthLong;
@@ -56,7 +56,7 @@ export class HomeComponent {
 
   iterateMonthDown(month: string) {
     document.getElementById('left-arrow')!.attributes.getNamedItem('shape')!.value = 'angle-double';
-    
+
     // subtract a month from calTime
     this.calTime = this.calTime.minus({ months: 1 });
     this.month = this.calTime.monthLong;
@@ -85,15 +85,16 @@ export class HomeComponent {
 
   // populate boxes with numbers up to the day count
   populateBoxes(month: string) {
-    const dayCount = this.checkDayCount(month);
-    const boxes = document.getElementsByClassName('box');
-    //clear boxes before populating
-    for (let i = 0; i < boxes.length; i++) {
-      boxes[i].innerHTML = '';
-    }
-    for (let i = 0; i < dayCount; i++) {
-      boxes[i].innerHTML = i + 1 + '';
-    }
+    CalendarMonth(this.calTime);
+    // const dayCount = this.checkDayCount(month);
+    // const boxes = document.getElementsByClassName('box');
+    // //clear boxes before populating
+    // for (let i = 0; i < boxes.length; i++) {
+    //   boxes[i].innerHTML = '';
+    // }
+    // for (let i = 0; i < dayCount; i++) {
+    //   boxes[i].innerHTML = i + 1 + '';
+    // }
   }
 
   // run populate boxes on init
@@ -108,4 +109,76 @@ export class HomeComponent {
     const calTime = this.calTime;
     this.sharerService.changeCalTime(calTime);
   }
+}
+
+function CalendarMonth(dt : DateTime) {
+  const days = updView(dt, 'month');
+  const boxes = document.getElementsByClassName('box');
+  for (let i = 0; i < boxes.length; i++) {
+    boxes[i].innerHTML = '';
+  }
+  console.log(days);
+  let firstDay : number = days[0].start.weekday;
+  if (firstDay === 7) {
+    firstDay = 0;
+  }
+  days.map((day, i) => {
+    // cards are 0-indexed and days are 1-indexed, starting at monday
+    let weekday : number= day.start.weekday;
+    // remap sunday
+    if (weekday === 7) {weekday = 0;}
+    // fill boxes according to: day+firstDay+1
+    boxes[day.start.day+firstDay-1].innerHTML = day.start.day.toString();
+  })
+}
+
+function genView(dt : DateTime, view : DurationUnit) {
+  switch (view) {
+    case "day":
+    case "days":
+      return genDay(dt);
+    case "week":
+    case "weeks":
+      return genWeek(dt);
+    case "month":
+    case "months":
+      return genMonth(dt);
+    default:
+      console.log("something's wrong");
+      return genMonth(dt);
+  }
+}
+
+function updView(dt : DateTime, view : DurationUnit) : Interval[] {
+  return splitByUnit(genView(dt, view), 'day');
+}
+
+function splitByUnit(interval : Interval, unit : DurationUnit) {
+  return interval.splitBy(unitDuration(unit));
+}
+
+function unitDuration(unit : DurationUnit) : Duration {
+  return Duration.fromObject({[unit]: 1});
+}
+
+export function genDay(dt: DateTime): Interval {
+  return Interval.fromDateTimes(dt.startOf('day'), dt.endOf('day'));
+}
+
+function genWeek(dt : DateTime) : Interval {
+  let interval = Interval.fromDateTimes(dt.startOf('week'), dt.endOf('week'));
+  if (dt.weekday === 7) {
+    interval = Interval.fromDateTimes(dt.plus(unitDuration('week')).startOf('week'), dt.plus(unitDuration('week')).endOf('week'));
+  }
+  return interval.mapEndpoints(dt => dt.minus(unitDuration('day')));
+}
+
+function genMonth(dt : DateTime) : Interval { // ** can update with prev intervals to generate days for prev/future months
+  const month = Interval.fromDateTimes(dt.startOf('month'), dt.endOf('month'));
+
+  const prevStart = month.start.minus({ days: month.start.weekday });
+  const prevEnd = month.start.minus({ days: 1 }).endOf('day');
+  const prevMonthInterval = Interval.fromDateTimes(prevStart, prevEnd);
+
+  return month;
 }
