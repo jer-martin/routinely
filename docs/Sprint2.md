@@ -32,7 +32,7 @@ enter code here
 enter code here
 ```
 ### Backend
-#### Test 1 (Cypress):
+#### Test 1:
 ```
 enter code here
 ```
