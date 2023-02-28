@@ -37,24 +37,16 @@
 
     <div class="clr-col-8" style="padding-right:3%">
 
+      <ul class="tabs">
+        <div src="tabf0-1" class="inactive" routerLink="/home">Month</div>
+        <div src="tabf0-2" class="active" id="activeTab" routerLink="/weekview" [ngStyle]="{'background': colorHSL, 'color': textcolor}">Week</div>
+        <div src="tabf0-3" class="inactive">Day</div>
+      </ul>
 
     <div class="card">
       <div class="card-header">
         <div style="display: flex; max-height: 0px;">
-          <div class="btn-group">
-            <div class="radio btn">
-              <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-1" routerLink="/">
-              <label for="btn-demo-radio-1">Month</label>
-            </div>
-            <div class="radio btn">
-              <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-2" routerLink="/weekview">
-              <label for="btn-demo-radio-2">Week</label>
-            </div>
-            <div class="radio btn">
-              <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-3">
-              <label for="btn-demo-radio-3">Day</label>
-            </div>
-          </div>
+          
           <app-event-modal style="margin-left: auto"></app-event-modal>
         </div>
 

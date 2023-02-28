@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 import { DateTime } from 'luxon';
+import { SharerService } from './sharer.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class AppComponent {
   calTime = DateTime.local();
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private sharerService: SharerService) { }
   goToLogin() {
     this.router.navigate(['/login']);
     this.checkHome();
@@ -85,9 +86,11 @@ export class AppComponent {
   ngOnInit() {
     this.checkHome();
     let headerColor = localStorage.getItem("headerColor");
+    let color = this.sharerService.getColor();
     // run changeHeaderColor() to set the header color
     if (headerColor) {
       this.changeHeaderColor(headerColor);
+      this.sharerService.setColor(headerColor);
     }
   }
 

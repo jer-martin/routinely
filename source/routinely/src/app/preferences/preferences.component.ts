@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SharerService } from '../sharer.service';
 
 @Component({
   selector: 'app-preferences',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class PreferencesComponent {
   
-    constructor() { }
+  constructor(private sharerService:SharerService) { }
 
     //write changeHeaderColor() that takes in a string
     changeHeaderColor(color : string) {
@@ -19,12 +20,15 @@ export class PreferencesComponent {
       // add header-n class depending on color
       if (color === "purple") {
         document.getElementById("header")?.classList.add("header-3");
+        this.sharerService.setColor("purple");
       }
       else if (color === "blue") {
         document.getElementById("header")?.classList.add("header-6");
+        this.sharerService.setColor("blue");
       }
       else if (color === "slate") {
         document.getElementById("header")?.classList.add("header-1");
+        this.sharerService.setColor("slate");
       }
       else if (color === "green") {
         document.getElementById("header")?.style.setProperty("$clr-header-background-color", "#228B22");

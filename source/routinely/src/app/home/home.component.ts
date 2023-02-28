@@ -98,11 +98,17 @@ export class HomeComponent {
   }
 
   // run populate boxes on init
+  color: string = this.sharerService.getColor();
+  textColor: string = this.sharerService.getTextColor();
+  colorHSL = this.sharerService.getColorHSL();
   ngOnInit() {
     this.populateBoxes(this.month);
     this.sharerService.getCalTimeSource().subscribe(calTime => {
       this.calTime = calTime;
     });
+    this.color = this.sharerService.getColor();
+    this.textColor = this.sharerService.getTextColor();
+    this.colorHSL = this.sharerService.getColorHSL();
   }
 
   sendCalTime() {

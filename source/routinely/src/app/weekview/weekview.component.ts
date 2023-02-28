@@ -12,11 +12,18 @@ export class WeekviewComponent {
 
   constructor(private sharerService: SharerService) { }
 
+  color: string = this.sharerService.getColor();
+  textcolor: string = this.sharerService.getTextColor(); 
+  colorHSL: string = ""; 
+
   calTime = this.sharerService.currentCalTime.getValue();
   ngOnInit() {
     this.sharerService.getCalTimeSource().subscribe(calTime => {
       this.calTime = calTime;
     });
+    this.color = this.sharerService.getColor();
+    this.textcolor = this.sharerService.getTextColor();
+    this.colorHSL = this.sharerService.getColorHSL();
   }
   month = this.calTime.monthLong;
   year = this.calTime.year;
