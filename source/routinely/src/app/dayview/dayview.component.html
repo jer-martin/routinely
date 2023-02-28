@@ -39,8 +39,8 @@
 
       <ul class="tabs">
         <div src="tabf0-1" class="inactive" routerLink="/home">Month</div>
-        <div src="tabf0-2" class="active" id="activeTab" routerLink="/weekview" [ngStyle]="{'background': colorHSL, 'color': textcolor}">Week</div>
-        <div src="tabf0-3" class="inactive" routerLink="/dayview">Day</div>
+        <div src="tabf0-2" class="inactive" routerLink="/weekview">Week</div>
+        <div src="tabf0-3" class="active" id="activeTab" routerLink="/weekview" [ngStyle]="{'background': colorHSL, 'color': textcolor}">Day</div>
       </ul>
 
     <div class="card">
@@ -52,9 +52,9 @@
 
         <div class="monthweekcontainer">
           <div class="month-container">
-                <cds-icon shape="angle" direction="left" class="arrow-button" id="left-arrow" (click)="iterateWeekDown()"></cds-icon>
-                <h3 class="month-string">Week of {{month}}, {{day}} {{year}}</h3>
-                <cds-icon shape="angle" direction="right" class="arrow-button" id="right-arrow" (click)="iterateWeekUp()"></cds-icon>
+                <cds-icon shape="angle" direction="left" class="arrow-button" id="left-arrow" (click)="iterateDayDown()"></cds-icon>
+                <h3 class="month-string">{{month}}, {{day}} {{year}}</h3>
+                <cds-icon shape="angle" direction="right" class="arrow-button" id="right-arrow" (click)="iterateDayUp()"></cds-icon>
           </div>
         </div>
 

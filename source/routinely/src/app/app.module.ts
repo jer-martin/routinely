@@ -22,6 +22,7 @@ import { PreferencesComponent } from './preferences/preferences.component';
 import { BugReportComponent } from './bug-report/bug-report.component';
 import { WeekviewComponent } from './weekview/weekview.component';
 import { DayModalComponent } from './day-modal/day-modal.component';
+import { DayviewComponent } from './dayview/dayview.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { DayModalComponent } from './day-modal/day-modal.component';
     BugReportComponent,
     WeekviewComponent,
     DayModalComponent,
+    DayviewComponent,
   ],
 
   imports: [
