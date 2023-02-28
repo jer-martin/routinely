@@ -142,7 +142,7 @@ function CalendarMonth(dt : DateTime) {
     boxes[i].innerHTML = day.start.day.toString();
     if (day.start.month != dt.month) {
       // console.log(day);
-      boxes[i].setAttribute("style",  "background-color: hsl(198, 0%, 83%)");
+      boxes[i].setAttribute("style",  "background-color: hsl(198, 0%, 93%)");
     }
     else {
       boxes[i].setAttribute("style", boxes[i].getAttribute("style") + "background-color: hsl(198, 0%, 98%)");

@@ -55,5 +55,20 @@ export class SharerService {
     }
   }
 
+  getAccentHSL() {
+    if (this.color === "blue") {
+      return "hsl(198, 100%, 32%)";
+    }
+    else if (this.color === "purple") {
+      return "hsl(282, 44%, 52%)";
+    }
+    else if (this.color === "slate") {
+      return "hsl(198, 0%, 20%)";
+    }
+    else {
+      return "hsl(0, 0%, 0%)";
+    }
+  }
+
 
 }

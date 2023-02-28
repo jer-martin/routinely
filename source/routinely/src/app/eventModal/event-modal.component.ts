@@ -12,7 +12,7 @@ export class EventModalComponent {
   eventName: string = '';
   eventCategory: string = '';
   basic: boolean = false;
-  colorHSL: string = this.sharerService.getColorHSL();
+  colorHSL: string = this.sharerService.getAccentHSL();
 
   submit() {
     this.basic = false;
