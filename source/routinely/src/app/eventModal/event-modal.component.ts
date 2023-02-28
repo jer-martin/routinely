@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { SharerService } from "../sharer.service";
 
 @Component({
   selector: 'app-event-modal',
@@ -6,9 +7,12 @@ import { Component } from "@angular/core";
   styleUrls: ['./event-modal.component.css']
 })
 export class EventModalComponent {
+  constructor(private sharerService:SharerService) { }
+  
   eventName: string = '';
   eventCategory: string = '';
   basic: boolean = false;
+  colorHSL: string = this.sharerService.getColorHSL();
 
   submit() {
     this.basic = false;
