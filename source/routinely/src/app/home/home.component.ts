@@ -117,21 +117,38 @@ function CalendarMonth(dt : DateTime) {
   for (let i = 0; i < boxes.length; i++) {
     boxes[i].innerHTML = '';
   }
-  console.log(days);
-  let firstDay : number = days[0].start.weekday;
-  if (firstDay === 7) {
-    firstDay = 0;
-  }
+  // console.log(days);
+  // let firstDay : number = days[0].start.weekday;
+  /*
+  prevMonth: get interval for previous month, then fill backwards until box index = 0
+  how to keep track of both day and box indices?
+  alternative: include the prev/next days when generating the month interval
+   */
+  // cards are 0-indexed and days are 1-indexed, starting at monday -- remap sunday to solve this
+  // if (firstDay === 7) {
+  //   firstDay = 0;
+  // }
+  // curMonth
+  // days.map((day, i) => {
+  //   boxes[day.start.day+firstDay-1].innerHTML = day.start.day.toString();
+  // })
   days.map((day, i) => {
-    // cards are 0-indexed and days are 1-indexed, starting at monday
-    let weekday : number= day.start.weekday;
-    // remap sunday
-    if (weekday === 7) {weekday = 0;}
-    // fill boxes according to: day+firstDay+1
-    boxes[day.start.day+firstDay-1].innerHTML = day.start.day.toString();
+    boxes[i].innerHTML = day.start.day.toString();
+    if (day.start.month != dt.month) {
+      // console.log(day);
+      boxes[i].setAttribute("style",  "background-color: hsl(198, 0%, 83%)");
+    }
+    else {
+      boxes[i].setAttribute("style", boxes[i].getAttribute("style") + "background-color: hsl(198, 0%, 98%)");
+    }
   })
 }
 
+// todo:
+//  (1) implement views for day/week
+//  (2) render components as tabs rather than different pages
+//  (3) attach IDs to each card using .toISO() to easily display events from database
+//  (4) highlight today, create variable for to-do list
 function genView(dt : DateTime, view : DurationUnit) {
   switch (view) {
     case "day":
@@ -142,15 +159,15 @@ function genView(dt : DateTime, view : DurationUnit) {
       return genWeek(dt);
     case "month":
     case "months":
-      return genMonth(dt);
+      return genBackfillMonth(dt);
     default:
       console.log("something's wrong");
-      return genMonth(dt);
+      return genBackfillMonth(dt);
   }
 }
 
 function updView(dt : DateTime, view : DurationUnit) : Interval[] {
-  return splitByUnit(genView(dt, view), 'day');
+  return splitByUnit(genView(dt, view), "day");
 }
 
 function splitByUnit(interval : Interval, unit : DurationUnit) {
@@ -162,23 +179,35 @@ function unitDuration(unit : DurationUnit) : Duration {
 }
 
 export function genDay(dt: DateTime): Interval {
-  return Interval.fromDateTimes(dt.startOf('day'), dt.endOf('day'));
+  return Interval.fromDateTimes(dt.startOf("day"), dt.endOf("day"));
 }
 
 function genWeek(dt : DateTime) : Interval {
-  let interval = Interval.fromDateTimes(dt.startOf('week'), dt.endOf('week'));
-  if (dt.weekday === 7) {
-    interval = Interval.fromDateTimes(dt.plus(unitDuration('week')).startOf('week'), dt.plus(unitDuration('week')).endOf('week'));
-  }
-  return interval.mapEndpoints(dt => dt.minus(unitDuration('day')));
+  return Interval.fromDateTimes(dt.startOf("week"), dt.endOf("week"));
 }
 
 function genMonth(dt : DateTime) : Interval { // ** can update with prev intervals to generate days for prev/future months
-  const month = Interval.fromDateTimes(dt.startOf('month'), dt.endOf('month'));
+  return Interval.fromDateTimes(dt.startOf("month"), dt.endOf("month"));
+}
 
-  const prevStart = month.start.minus({ days: month.start.weekday });
-  const prevEnd = month.start.minus({ days: 1 }).endOf('day');
-  const prevMonthInterval = Interval.fromDateTimes(prevStart, prevEnd);
+function genBackfillMonth(dt: DateTime) : Interval {
+  // create current month interval
+  // create previous month interval, starting from beginning of week to start of curMonth
+  // create next month interval, starting from end of curMonth with length (42-prevIntervalLength-curIntervalLength)
+  const curMonthInterval = genMonth(dt);
+  const prevMonthInterval = Interval.fromDateTimes(curMonthInterval.start.minus({ days: curMonthInterval.start.weekday }), curMonthInterval.start);
 
-  return month;
+  let prevMonthLength = 0;
+  if (curMonthInterval.start.weekday !== 7) {
+    prevMonthLength = curMonthInterval.start.diff(prevMonthInterval.start, "days").as("days");
+  }
+  // https://stackoverflow.com/questions/63763221/how-to-calculate-a-duration-between-two-dates-in-luxon
+  const curMonthLength = curMonthInterval.end.diff(curMonthInterval.start, "days").as("days");
+  const nextMonthInterval = Interval.fromDateTimes(curMonthInterval.end, curMonthInterval.end.plus({ days: 42-prevMonthLength-curMonthLength }));
+
+  if (curMonthInterval.start.weekday === 7) { // if month starts on sunday -- prevents blank space in first week
+    return Interval.fromDateTimes(curMonthInterval.start, nextMonthInterval.end);
+  }
+
+  return Interval.fromDateTimes(prevMonthInterval.start, nextMonthInterval.end);
 }
