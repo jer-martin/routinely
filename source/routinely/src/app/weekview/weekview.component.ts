@@ -9,17 +9,21 @@ import { SharerService } from '../sharer.service';
 })
 export class WeekviewComponent {
   
+  
 
   constructor(private sharerService: SharerService) { }
 
   color: string = this.sharerService.getColor();
   textcolor: string = this.sharerService.getTextColor(); 
-  colorHSL: string = ""; 
+  colorHSL: string = this.sharerService.getColorHSL();
+  accentHSL = this.sharerService.getAccentHSL();
 
   calTime = this.sharerService.currentCalTime.getValue();
   ngOnInit() {
     this.sharerService.getCalTimeSource().subscribe(calTime => {
       this.calTime = calTime;
+      this.month = calTime.monthLong;
+      this.year = calTime.year;
     });
     this.color = this.sharerService.getColor();
     this.textcolor = this.sharerService.getTextColor();
@@ -27,41 +31,12 @@ export class WeekviewComponent {
   }
   month = this.calTime.monthLong;
   year = this.calTime.year;
-  week = this.calTime.weekNumber;
-  day = this.calTime.day;
+  dayWeekStart = this.calTime.startOf('week').day - 1;
 
-  monthOut() {
-    return this.month;
-  }
+ 
+ 
 
 
-  iterateMonthUp(month: string) {
-    document.getElementById('right-arrow')!.attributes.getNamedItem('shape')!.value = 'angle-double';
-   
-    // subtract a month from calTime
-    this.calTime = this.calTime.plus({ months: 1 });
-    this.month = this.calTime.monthLong;
-    this.year = this.calTime.year;
-   
-    // 100 ms timer then change back to angle
-    setTimeout(() => {
-      document.getElementById('right-arrow')!.attributes.getNamedItem('shape')!.value = 'angle';
-    }, 100);
-  }
-
-  iterateMonthDown(month: string) {
-    document.getElementById('left-arrow')!.attributes.getNamedItem('shape')!.value = 'angle-double';
-    
-    // subtract a month from calTime
-    this.calTime = this.calTime.minus({ months: 1 });
-    this.month = this.calTime.monthLong;
-    this.year = this.calTime.year;
-    
-    // 300 ms timer then change back to angle
-    setTimeout(() => {
-      document.getElementById('left-arrow')!.attributes.getNamedItem('shape')!.value = 'angle';
-    }, 100);
-  }
 
   checkDayCount(month: string) {
     if (month === 'January' || month === 'March' || month === 'May' || month === 'July' || month === 'August' || month === 'October' || month === 'December') {
@@ -80,14 +55,12 @@ export class WeekviewComponent {
 
   iterateWeekUp() {
     document.getElementById('right-arrow')!.attributes.getNamedItem('shape')!.value = 'angle-double';
-   
     // subtract a month from calTime
     this.calTime = this.calTime.plus({ weeks: 1 });
+    this.sendCalTime();
     this.month = this.calTime.monthLong;
     this.year = this.calTime.year;
-    this.week = this.calTime.weekNumber;
-    this.calTime = this.calTime.startOf('week');
-    this.day = this.calTime.day;
+    this.dayWeekStart = this.calTime.startOf('week').day - 1;
    
     // 100 ms timer then change back to angle
     setTimeout(() => {
@@ -100,11 +73,7 @@ export class WeekviewComponent {
 
     // subtract a month from calTime
     this.calTime = this.calTime.minus({ weeks: 1 });
-    this.month = this.calTime.monthLong;
-    this.year = this.calTime.year;
-    this.week = this.calTime.weekNumber;
-    this.calTime = this.calTime.startOf('week');
-    this.day = this.calTime.day;
+    this.sendCalTime();
 
     // 300 ms timer then change back to angle
     setTimeout(() => {
@@ -114,8 +83,12 @@ export class WeekviewComponent {
   }
 
   sendCalTime() {
-    const calTime = this.calTime;
-    this.sharerService.changeCalTime(calTime);
+    this.sharerService.changeCalTime(this.calTime);
+  }
+
+  colorToday() {
+    const weekStart = this.calTime.startOf('week');
+    document.getElementById('today')!.style.backgroundColor = this.accentHSL;
   }
   
 }

@@ -126,6 +126,7 @@ export class DayviewComponent {
       this.year = this.calTime.year;
       this.week = this.calTime.weekNumber;
       this.day = this.calTime.day;
+      this.sendCalTime();
   
       // 100 ms timer then change back to angle
       setTimeout(() => {
@@ -142,6 +143,7 @@ export class DayviewComponent {
       this.year = this.calTime.year;
       this.week = this.calTime.weekNumber;
       this.day = this.calTime.day;
+      this.sendCalTime();
   
       // 300 ms timer then change back to angle
       setTimeout(() => {

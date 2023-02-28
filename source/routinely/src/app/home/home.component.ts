@@ -48,6 +48,7 @@ export class HomeComponent {
     this.month = this.calTime.monthLong;
     this.year = this.calTime.year;
     this.populateBoxes(this.month);
+    this.sendCalTime();
     // 100 ms timer then change back to angle
     setTimeout(() => {
       document.getElementById('right-arrow')!.attributes.getNamedItem('shape')!.value = 'angle';
@@ -62,6 +63,7 @@ export class HomeComponent {
     this.month = this.calTime.monthLong;
     this.year = this.calTime.year;
     this.populateBoxes(this.month);
+    this.sendCalTime();
     // 300 ms timer then change back to angle
     setTimeout(() => {
       document.getElementById('left-arrow')!.attributes.getNamedItem('shape')!.value = 'angle';
@@ -112,8 +114,7 @@ export class HomeComponent {
   }
 
   sendCalTime() {
-    const calTime = this.calTime;
-    this.sharerService.changeCalTime(calTime);
+    this.sharerService.changeCalTime(this.calTime);
   }
 }
 
@@ -143,6 +144,10 @@ function CalendarMonth(dt : DateTime) {
     if (day.start.month != dt.month) {
       // console.log(day);
       boxes[i].setAttribute("style",  "background-color: hsl(198, 0%, 93%)");
+    }
+    // this should only light up the actual current day, not current calTime day
+    else if (day.start.day === DateTime.local().day && day.start.month === DateTime.local().month && day.start.year === DateTime.local().year) {
+      boxes[i].setAttribute("style", "background-color: hsl(198, 81%, 88%)");
     }
     else {
       boxes[i].setAttribute("style", boxes[i].getAttribute("style") + "background-color: hsl(198, 0%, 98%)");
