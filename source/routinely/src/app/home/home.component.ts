@@ -177,15 +177,15 @@ function genView(dt : DateTime, view : DurationUnit) {
   }
 }
 
-function updView(dt : DateTime, view : DurationUnit) : Interval[] {
+export function updView(dt : DateTime, view : DurationUnit) : Interval[] {
   return splitByUnit(genView(dt, view), "day");
 }
 
-function splitByUnit(interval : Interval, unit : DurationUnit) {
+export function splitByUnit(interval : Interval, unit : DurationUnit) {
   return interval.splitBy(unitDuration(unit));
 }
 
-function unitDuration(unit : DurationUnit) : Duration {
+export function unitDuration(unit : DurationUnit) : Duration {
   return Duration.fromObject({[unit]: 1});
 }
 
@@ -193,15 +193,15 @@ export function genDay(dt: DateTime): Interval {
   return Interval.fromDateTimes(dt.startOf("day"), dt.endOf("day"));
 }
 
-function genWeek(dt : DateTime) : Interval {
+export function genWeek(dt : DateTime) : Interval {
   return Interval.fromDateTimes(dt.startOf("week"), dt.endOf("week"));
 }
 
-function genMonth(dt : DateTime) : Interval { // ** can update with prev intervals to generate days for prev/future months
+export function genMonth(dt : DateTime) : Interval { // ** can update with prev intervals to generate days for prev/future months
   return Interval.fromDateTimes(dt.startOf("month"), dt.endOf("month"));
 }
 
-function genBackfillMonth(dt: DateTime) : Interval {
+export function genBackfillMonth(dt: DateTime) : Interval {
   // create current month interval
   // create previous month interval, starting from beginning of week to start of curMonth
   // create next month interval, starting from end of curMonth with length (42-prevIntervalLength-curIntervalLength)
