@@ -26,7 +26,7 @@
 #### Test 1 (Cypress):
 ```
 import { PreferencesComponent } from "src/app/preferences/preferences.component"
-
+// this is an end to end test
 describe('template spec', () => {
   it('passes', () => {
     // click cog
