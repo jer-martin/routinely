@@ -1,4 +1,6 @@
 import { PreferencesComponent } from "src/app/preferences/preferences.component"
+import {genBackfillMonth, genDay, genMonth} from "../../src/app/home/home.component";
+import {DateTime} from "luxon";
 
 describe('template spec', () => {
   it('passes', () => {
@@ -28,5 +30,5 @@ describe('template spec', () => {
     // check sidebar link works
     cy.get('.bug-report').click()
   })
-  
+
 })

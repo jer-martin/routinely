@@ -141,6 +141,7 @@ function CalendarMonth(dt : DateTime) {
   // })
   days.map((day, i) => {
     boxes[i].innerHTML = day.start.day.toString();
+    console.log(day.end.day.toString());
     if (day.start.month != dt.month) {
       // console.log(day);
       boxes[i].setAttribute("style",  "background-color: hsl(198, 0%, 93%)");
@@ -210,10 +211,10 @@ export function genBackfillMonth(dt: DateTime) : Interval {
 
   let prevMonthLength = 0;
   if (curMonthInterval.start.weekday !== 7) {
-    prevMonthLength = curMonthInterval.start.diff(prevMonthInterval.start, "days").as("days");
+    prevMonthLength = Math.round(curMonthInterval.start.diff(prevMonthInterval.start, "days").as("days"));
   }
   // https://stackoverflow.com/questions/63763221/how-to-calculate-a-duration-between-two-dates-in-luxon
-  const curMonthLength = curMonthInterval.end.diff(curMonthInterval.start, "days").as("days");
+  const curMonthLength = Math.round(curMonthInterval.end.diff(curMonthInterval.start, "days").as("days"));
   const nextMonthInterval = Interval.fromDateTimes(curMonthInterval.end, curMonthInterval.end.plus({ days: 42-prevMonthLength-curMonthLength }));
 
   if (curMonthInterval.start.weekday === 7) { // if month starts on sunday -- prevents blank space in first week
