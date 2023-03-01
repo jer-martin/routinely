@@ -1,6 +1,6 @@
 # Sprint 2
 
-[Front-end video](https://www.youtube.com/watch?v=5beDx5UT23Q&ab_channel=AnandMathi) | Back-end video
+[Front-end video](https://www.youtube.com/watch?v=5beDx5UT23Q&ab_channel=AnandMathi) | [Back-end video](https://youtu.be/wxfjVYqEYUQ)
 
 
 ## Work Synopsis
@@ -186,17 +186,43 @@ Here is a list of a few completed endpoints:
 ```
 GET REQUEST:
 "/ping"
+
+RESPONSE:
+"pong"
 ```
 This get request simply pings the API to make sure it is running properly and sends a code 200 if everything is ok.
 ```
 GET REQUEST:
 "/userList"
+
+RESPONSE:
+[
+    {
+        "id": "bryan",
+        "userType": "Student"
+    },
+    {
+        "id": "Jeremy",
+        "userType": "Student"
+    },
+    {
+        "id": "Anand",
+        "userType": "Basic"
+    },
+    {
+        "id": "Madhav",
+        "userType": "Basic"
+    }
+]
 ```
 This get request retrieves the entire list of users currently identified by a unique username and also consists of a userType. This responds with a code 200 if userlist is retrieved properly.
 
 ```
 POST REQUEST:
 "/createUser"
+
+RESEPONSE:
+"Successfuly added user"
 ```
 This post request takes in a username and usertype as arguments and attempts to create a user with the given username. If the username is already taken it will inform the user to create a new username. This responds with a code 200 if user is created and a code 500 if the username is already taken.
 
