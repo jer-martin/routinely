@@ -11,4 +11,8 @@ export class HomeComponent {
   goToLogin() {
     this.router.navigate(['/login']);
   }
+  checkUserStatus(){ 
+    this.router.navigate(['../api/userList'])
+    
+  }
 }

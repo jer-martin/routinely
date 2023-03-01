@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import { HttpClient } from '@angular/common/http'
+
 
 @Component({
   selector: 'app-root',
@@ -7,12 +9,18 @@ import {Router} from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'routinely';
-  form = {username: '', password: '', rememberMe: false};
+  //title = 'routinely';
+//  form = {username: '', password: '', rememberMe: false};
 
- 
-  
+
+constructor(
+  private httpClient: HttpClient
+) {}
+
+
 }
+
+
 
 
 

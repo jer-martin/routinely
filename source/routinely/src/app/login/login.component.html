@@ -9,22 +9,28 @@
         <div class="login-group">
             <clr-input-container>
                 <label class="clr-sr-only">Username</label>
-                <input type="text" name="username" clrInput placeholder="Username" [(ngModel)]="form.username"/>
+                <input [(ngModel)]="id" type="text" name="username" clrInput placeholder="Username" [(ngModel)]="form.username"/>
             </clr-input-container>
             <clr-password-container>
                 <label class="clr-sr-only">Password</label>
-                <input type="password" name="password" clrPassword placeholder="Password" [(ngModel)]="form.password"/>
+                <input [(ngModel)]="userType" type="password" name="password" clrPassword placeholder="Password" [(ngModel)]="form.password"/>
             </clr-password-container>
             <clr-checkbox-wrapper>
                 <label>Remember me</label>
                 <input type="checkbox" name="rememberMe" clrCheckbox [(ngModel)]="form.rememberMe"/>
             </clr-checkbox-wrapper>
-            <div class="error active">
+            <div id="failureLogin" >
                 Invalid user name or password
             </div>
-            <button type="submit" class="btn btn-primary">NEXT</button>
+            <button (click)="addUser()" type="submit" class="btn btn-primary">Add user</button>
+            <button (click)="loadUsers()" type="submit" class="btn btn-primary">View Users</button>
             
         </div>
     </form>
   </div>
+  <div *ngFor="let userList of userList"> 
+    <div>{{ userList.id }}</div>
+    <div>{{ userList.userType }}</div>
+    <br>
+</div>
   
