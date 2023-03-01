@@ -104,19 +104,102 @@ describe('genDay()', () => {
 ```
 
 ### Backend
+The tests can be found in the "main_test.go" file located in the "backend" folder.
 #### Test 1:
 ```
-enter code here
+func TestGetAllUsers(t *testing.T) {
+	users :=("[{\"id\":\"bryan\",\"userType\":\"Student\"},{\"id\":\"Jeremy\",\"userType\":\"Student\"},{\"id\":\"Anand\",\"userType\":\"Basic\"},{\"id\":\"Madhav\",\"userType\":\"Basic\"}]")
+	
+	router := setUpRouter()
+	w := httptest.NewRecorder()
+	req, _ := http.NewRequest("GET", "/api/userList", nil)
+	router.ServeHTTP(w, req)
+
+	assert.Equal(t, 200, w.Code)
+	assert.Equal(t, users, w.Body.String())
+}
 ```
 
 #### Test 2:
 ```
-enter code here
+func TestCreateUser(t *testing.T) {
+	message := "\"Successfuly added user\""
+	type User struct {
+		ID             string `json:"id"`
+		UserType       string `json:"userType"`
+	}
+	userToAdd := User{
+        ID: `newUser`,
+        UserType: "newUser",
+    }
+	jsonValue,_ := json.Marshal(userToAdd)
+	router := setUpRouter()
+	w := httptest.NewRecorder()
+	req, _ := http.NewRequest("POST", "/api/createUser", bytes.NewBuffer(jsonValue))
+	router.ServeHTTP(w, req)
+	
+	assert.Equal(t, 200, w.Code)
+	assert.Equal(t, message, w.Body.String())
+}
 ```
 
 #### Test 3:
 ```
-enter code here
-```
+func TestCreateUserFAILURE(t *testing.T) {
+	message := "\"Username already exists , please enter new username\""
+	type User struct {
+		ID             string `json:"id"`
+		UserType       string `json:"userType"`
+	}
+	userToAdd := User{
+        ID: `bryan`,
+        UserType: "Student",
+    }
+	jsonValue,_ := json.Marshal(userToAdd)
+	router := setUpRouter()
+	w := httptest.NewRecorder()
+	req, _ := http.NewRequest("POST", "/api/createUser", bytes.NewBuffer(jsonValue))
+	router.ServeHTTP(w, req)
+	
+	assert.Equal(t, 502, w.Code)
+	assert.Equal(t, message, w.Body.String())
 
+}
+```
+#### Test 4:
+```
+func TestStartup(t *testing.T) {
+	router := setUpRouter()
+	w := httptest.NewRecorder()
+	req, _ := http.NewRequest("GET", "/ping", nil)
+	router.ServeHTTP(w, req)
+
+	assert.Equal(t, 200, w.Code)
+	assert.Equal(t, "pong", w.Body.String())
+}
+```
 ## Backend Documentation
+
+The prupose of this API is to retrieve and create User data. This includes user Login / creation as well as retreiving the users calender and customization settings. The APi is written in Golang with the GIN framework and is still in development. Currently you can get a list of users, create users and find users. The api is reached at the ednpoint: "/api". 
+Here is a list of a few completed endpoints:
+
+```
+GET REQUEST:
+"/ping"
+```
+This get request simply pings the API to make sure it is running properly and sends a code 200 if everything is ok.
+```
+GET REQUEST:
+"/userList"
+```
+This get request retrieves the entire list of users currently identified by a unique username and also consists of a userType. This responds with a code 200 if userlist is retrieved properly.
+
+```
+POST REQUEST:
+"/createUser"
+```
+This post request takes in a username and usertype as arguments and attempts to create a user with the given username. If the username is already taken it will inform the user to create a new username. This responds with a code 200 if user is created and a code 500 if the username is already taken.
+
+
+
+
