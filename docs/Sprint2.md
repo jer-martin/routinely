@@ -18,7 +18,7 @@ Front-end video | Back-end video
  - Updated proxy services in the front end to be able to send requests to the backend (backend listens on port 5000)
  - Finished up user login , right now the user is identified by a unique username and "user type" with the intention of differentiating between students and "regular" users. (Subject to change)
  - User creation completed with guards in place to make sure all usernames are unique (no duplicates)
- - Updated some more front end code to better integrate with backend, havent merged with main because its still in progress. This work is on bryans fork(https://github.com/bryanesquivias/Routinely) .
+ - Updated some more front end code to better integrate with backend, havent merged with main because its still in progress. This work is on bryans branch "test branch".
  - Compelted unit tests for current functions , mocked data is hardcoded but also looking into mocking frameworks to integrate.
 
 ## Testing
