@@ -226,6 +226,8 @@ RESEPONSE:
 ```
 This post request takes in a username and usertype as arguments and attempts to create a user with the given username. If the username is already taken it will inform the user to create a new username. This responds with a code 200 if user is created and a code 500 if the username is already taken.
 
+This screenshot shows the creation of the database that will store the values from the website.
+![Screenshot 2023-03-01 235611](https://user-images.githubusercontent.com/88696930/222335181-860fdc53-2b48-4835-9eca-fbba51a73c31.jpg)
 
 
 
