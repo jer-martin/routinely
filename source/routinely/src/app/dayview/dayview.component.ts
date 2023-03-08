@@ -28,6 +28,7 @@ export class DayviewComponent {
     year = this.calTime.year;
     week = this.calTime.weekNumber;
     day = this.calTime.day;
+    sunday = this.calTime.set({weekday: 7}).weekdayLong;
   
     monthOut() {
       return this.month;
@@ -127,6 +128,7 @@ export class DayviewComponent {
       this.week = this.calTime.weekNumber;
       this.day = this.calTime.day;
       this.sendCalTime();
+      this.checkSunday();
   
       // 100 ms timer then change back to angle
       setTimeout(() => {
@@ -144,11 +146,18 @@ export class DayviewComponent {
       this.week = this.calTime.weekNumber;
       this.day = this.calTime.day;
       this.sendCalTime();
+      this.checkSunday();
   
       // 300 ms timer then change back to angle
       setTimeout(() => {
         document.getElementById('left-arrow')!.attributes.getNamedItem('shape')!.value = 'angle';
       }, 100);
+    }
+
+    checkSunday() {
+      if (this.calTime.weekdayLong == this.sunday) {
+        console.log("its sunday");
+      }
     }
   
 }
