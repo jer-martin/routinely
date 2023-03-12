@@ -28,12 +28,12 @@ export class WeekviewComponent {
     this.color = this.sharerService.getColor();
     this.textcolor = this.sharerService.getTextColor();
     this.colorHSL = this.sharerService.getColorHSL();
-    this.sundayCheck();
     this.year = this.calTime.year;
     this.dayWeekStartTime = this.calTime.startOf('week').minus({ days: 1 });
     this.dayWeekStart = this.dayWeekStartTime.day;
     this.month = this.dayWeekStartTime.monthLong;
     this.sunday = "Sunday";
+    this.sundayCheck();
   }
   year = this.calTime.year;
   dayWeekStartTime = this.calTime.startOf('week').minus({ days: 1 });
