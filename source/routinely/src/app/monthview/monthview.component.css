@@ -96,24 +96,3 @@ ul.tabs div.active {
 .card {
   margin-top: 0px;
 }
-
-clr-tabs.tabs {
-  margin-top: 1vh;
-  padding: 0;
-}
-
-clr-tabs.tabs clr-tab {
-  display: inline-block;
-  background: hsl(198, 0%, 91%);
-  color: hsl(198, 0%, 40%);
-  cursor: pointer;
-  padding: 5px 25px 5px 15px;
-  -webkit-clip-path: polygon(100% 0, 90% 0, 100% 100%, 0 100%, 0.5% 0);
-  clip-path: polygon(100% 0, 90% 0, 100% 100%, 0 100%, 0.5% 0);
-
-}
-
-clr-tabs.tabs clr-tab.active {
-  background: hsl(198, 78%, 78%);
-  color: #333;
-}

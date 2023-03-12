@@ -1,0 +1,145 @@
+<html>
+
+<head>
+  <style>
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+      grid-gap: 2px;
+    }
+
+    .box {
+      border: 2px solid hsl(198, 0%, 80%);
+      background-color: hsl(198, 0%, 98%);
+      text-align: left;
+      font-size: 30px;
+      width: 100%;
+      height: 100%;
+      padding-top: 10%;
+      padding-left: 10%;
+      font-size: 12pt;
+      aspect-ratio: 1/1;
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+
+
+  <!--        <div class="clr-col-4" style="padding-left:5vw">-->
+  <!--          <div class="card">-->
+  <!--            <div class="card-block">-->
+  <!--              <div class="card-text">-->
+  <!--                <div class="tabs-vertical">-->
+  <!--                  <ul id="demoTabs" class="nav" role="tablist">-->
+  <!--                    <li role="presentation" class="nav-item">-->
+  <!--                      <button id="tab1" class="btn btn-link nav-link active" aria-controls="panel1"-->
+  <!--                              aria-selected="true" type="button" >Month</button>-->
+  <!--                    </li>-->
+  <!--                    <li role="presentation" class="nav-item">-->
+  <!--                      <button id="tab2" class="btn btn-link nav-link" aria-controls="panel2"-->
+  <!--                              aria-selected="false" type="button" routerLink="/weekview" (click)="sendCalTime()">Week</button>-->
+  <!--                    </li>-->
+  <!--                    <li role="presentation" class="nav-item">-->
+  <!--                      <button id="tab3" class="btn btn-link nav-link" aria-controls="panel3"-->
+  <!--                              aria-selected="false" type="button" >Year</button>-->
+  <!--                    </li>-->
+  <!--                  </ul>-->
+  <!--                </div>-->
+  <!--              </div>-->
+  <!--            </div>-->
+  <!--            <div class="card-footer">-->
+  <!--                <button type="button" class="btn btn-icon btn-outline bug-report" aria-label="settings" routerLink="/bugreport" routerLinkActive="false">-->
+  <!--                <cds-icon shape="exclamation-triangle"></cds-icon>-->
+
+  <!--              </button>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--        </div>-->
+
+  <div class="clr-col-8">
+
+
+
+    <div class="card">
+
+      <div class="card-header">
+        <div style="display: flex; max-height: 0px;">
+
+          <app-event-modal style="margin-left: auto"></app-event-modal>
+        </div>
+        <div class="month-container">
+          <cds-icon shape="angle" direction="left" class="arrow-button" id="left-arrow"
+            (click)="iterateMonthDown(month!)"></cds-icon>
+          <h3 class="month-string">{{month}} {{year}}</h3>
+          <cds-icon shape="angle" direction="right" class="arrow-button" id="right-arrow"
+            (click)="iterateMonthUp(month!)"></cds-icon>
+        </div>
+      </div>
+
+      <div class="day-container">
+        <div class="day">S</div>
+        <div class="day">M</div>
+        <div class="day">T</div>
+        <div class="day">W</div>
+        <div class="day">T</div>
+        <div class="day">F</div>
+        <div class="day">S</div>
+      </div>
+
+
+      <div class="grid">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</body>

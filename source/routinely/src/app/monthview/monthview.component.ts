@@ -2,21 +2,15 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DateTime, Duration, DurationUnit, Interval } from 'luxon';
 import { SharerService } from '../sharer.service';
-import { ViewChild } from '@angular/core';
-import { ViewContainerRef } from '@angular/core';
-import { ComponentFactoryResolver } from '@angular/core';
-import { MonthviewComponent } from '../monthview/monthview.component';
-
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-monthview',
+  templateUrl: './monthview.component.html',
+  styleUrls: ['./monthview.component.css']
 })
-export class HomeComponent {
-  @ViewChild('cardContainer', { read: ViewContainerRef, static: true }) container!: ViewContainerRef;
+export class MonthviewComponent {
 
-  constructor(private router: Router, private sharerService: SharerService, private resolver: ComponentFactoryResolver) { }
+  constructor(private router: Router, private sharerService: SharerService) { }
   goToLogin() {
     this.router.navigate(['/login']);
   }
@@ -117,10 +111,6 @@ export class HomeComponent {
     this.color = this.sharerService.getColor();
     this.textColor = this.sharerService.getTextColor();
     this.colorHSL = this.sharerService.getColorHSL();
-    this.router.navigate(['/monthview']);
-    const factory = this.resolver.resolveComponentFactory(MonthviewComponent);
-    const componentRef = factory.create(this.container.injector);
-    this.container.insert(componentRef.hostView);
   }
 
   sendCalTime() {
@@ -233,3 +223,5 @@ export function genBackfillMonth(dt: DateTime): Interval {
 
   return Interval.fromDateTimes(prevMonthInterval.start, nextMonthInterval.end);
 }
+
+
