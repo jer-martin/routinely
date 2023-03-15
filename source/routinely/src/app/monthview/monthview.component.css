@@ -46,11 +46,11 @@ h3 {
 }
 
 .box:hover {
-  background-color: hsl(198, 0%, 90%);
+  background-color: hsl(0, 15%, 79%);
 }
 
 .box:active {
-  background-color: hsl(198, 0%, 80%);
+  background-color: hsl(227, 53%, 65%);
 }
 
 .day-container {
