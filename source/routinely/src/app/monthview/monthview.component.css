@@ -46,7 +46,7 @@ h3 {
 }
 
 .box:hover {
-  background-color: hsl(0, 15%, 79%);
+  background-color: hsl(198, 78%, 78);
 }
 
 .box:active {

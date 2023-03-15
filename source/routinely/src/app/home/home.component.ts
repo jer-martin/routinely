@@ -9,22 +9,12 @@ import { MonthviewComponent } from '../monthview/monthview.component';
 import { HttpClient} from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { lastValueFrom } from 'rxjs/internal/lastValueFrom';
-
-interface IeventList{
-  eventName: string
-  description: string
-}
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-
-
-  eventName = '';
-  description = ''
-  public eventList: IeventList[] =[]
 
   @ViewChild('cardContainer', { read: ViewContainerRef,static: true }) container!: ViewContainerRef;
   
@@ -41,20 +31,7 @@ export class HomeComponent {
   goToSidebar() {
     this.router.navigate(['/sidebar']);
   }
-    async addEvent(){
-    firstValueFrom(this.httpClient.post('/api/addEvent',{
-      eventName: this.eventName,
-      description: this.description
-    }))
-    this.eventName = 'BRYAN';
-    this.description = 'ESQUIVIAS'
-  }
-  async loadEvents(){
-    const userList = await this.httpClient
-    .get<IeventList[]>('/api/userList')
-    this.eventList = await lastValueFrom(userList)
- 
-   }
+
   goToEventModal() {
     this.router.navigate(['/eventmodal']);
   }
