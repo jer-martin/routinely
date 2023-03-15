@@ -14,6 +14,7 @@ import { WeekviewComponent } from './weekview/weekview.component';
 import { DayviewComponent } from './dayview/dayview.component';
 import { MonthviewComponent } from './monthview/monthview.component';
 
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },

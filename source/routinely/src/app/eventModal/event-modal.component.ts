@@ -37,8 +37,8 @@ export class EventModalComponent {
   basic: boolean = false;
   colorHSL: string = this.sharerService.getAccentHSL();
 
-  submit() {
-    this.basic = false;
-    console.log("name: " + this.eventNames + " cat: " + this.eventCategory + " date: ")
-  }
+  // submit() {
+  //   this.basic = false;
+  //   console.log("name: " + this.eventNames + " cat: " + this.eventCategory + " date: ")
+  // }
 }

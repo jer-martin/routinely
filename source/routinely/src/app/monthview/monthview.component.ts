@@ -1,29 +1,17 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DateTime, Duration, DurationUnit, Interval } from 'luxon';
-import { firstValueFrom } from 'rxjs';
-import { SharerService } from '../sharer.service';
-import { HttpClient } from '@angular/common/http';
-import { lastValueFrom } from 'rxjs';
 
-interface IeventList{
-  eventName: string
-  description: string
-}
+import { SharerService } from '../sharer.service';
+
 @Component({
   selector: 'app-monthview',
   templateUrl: './monthview.component.html',
   styleUrls: ['./monthview.component.css']
 })
 export class MonthviewComponent {
-
-
-  eventName = 'Bryan';
-  description = 'EEE'
-  public eventList: IeventList[] =[]
-
   
-  constructor(private router: Router,private httpClient: HttpClient,private sharerService: SharerService) { }
+  constructor(private router: Router,private sharerService: SharerService) { }
   goToLogin() {
     this.router.navigate(['/login']);
   }
@@ -36,20 +24,6 @@ export class MonthviewComponent {
   goToSidebar() {
     this.router.navigate(['/sidebar']);
   }
-  async addEvent(){
-    firstValueFrom(this.httpClient.post('/api/addEvent',{
-      eventName: this.eventName,
-      description: this.description
-    }))
-    this.eventName = '';
-    this.description = ''
-  }
-  async loadEvents(){
-    const userList = await this.httpClient
-    .get<IeventList[]>('/api/viewEvents')
-    this.eventList = await lastValueFrom(userList)
- 
-   }
   // goToEventModal() {
   //   this.router.navigate(['/eventmodal']);
   // }
