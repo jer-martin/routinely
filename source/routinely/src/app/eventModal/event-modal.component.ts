@@ -4,7 +4,8 @@ import { firstValueFrom,lastValueFrom } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 interface IeventList{
   eventName: string
-  description: string
+  eventCategory: string
+  //description: string
 }
 @Component({
   selector: 'app-event-modal',
@@ -12,17 +13,20 @@ interface IeventList{
   styleUrls: ['./event-modal.component.css']
 })
 export class EventModalComponent {
-  eventName = 'CEN3031';
-  description = 'Intro to Software Engineering'
+  eventName = '';
+  //description = 'Intro to Software Engineering'
+  eventCategory = '';
   public eventList: IeventList[] =[]
 
   async addEvent(){
     firstValueFrom(this.httpClient.post('/api/addEvent',{
       eventName: this.eventName,
-      description: this.description
+      eventCategory: this.eventCategory
+      //description: this.description
     }))
     this.eventName = '';
-    this.description = ''
+    //this.description = '';
+    this.eventCategory = '';
   }
   async loadEvents(){
     const userList = await this.httpClient
@@ -33,7 +37,7 @@ export class EventModalComponent {
   constructor(private httpClient:HttpClient,private sharerService:SharerService) { }
   
   eventNames: string = '';
-  eventCategory: string = '';
+  //eventCategory: string = '';
   basic: boolean = false;
   colorHSL: string = this.sharerService.getAccentHSL();
 

@@ -15,12 +15,12 @@ var users = []User{
 
 type Event struct {
 	EventName             string `json:"eventName"`
-	Description       string `json:"description"`
+	EventCategory       string `json:"eventCategory"`
 }
 
 
 var events = []Event{
-	{EventName: "CEN3031", Description: "Class for school" },
+	{EventName: "CEN3031", EventCategory: "Classes" },
 
 }
 func main(){
