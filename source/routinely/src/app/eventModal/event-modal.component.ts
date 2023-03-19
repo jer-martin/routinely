@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { SharerService } from "../sharer.service";
+import { DateTime, Duration, DurationUnit, Interval } from 'luxon';
 
 @Component({
   selector: 'app-event-modal',
@@ -13,9 +14,10 @@ export class EventModalComponent {
   eventCategory: string = '';
   basic: boolean = false;
   colorHSL: string = this.sharerService.getAccentHSL();
+  eventDate: DateTime = DateTime.now();
 
   submit() {
     this.basic = false;
-    console.log("name: " + this.eventName + " cat: " + this.eventCategory + " date: ")
+    console.log("name: " + this.eventName + " cat: " + this.eventCategory + " date: " + this.eventDate.toFormat("yyyy-MM-dd") + " time: " + this.eventDate.toFormat("HH:mm:ss"));
   }
 }

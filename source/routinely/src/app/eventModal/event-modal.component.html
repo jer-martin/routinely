@@ -23,7 +23,7 @@
       </clr-combobox-container>
       <clr-date-container>
         <label>Date</label>
-        <input type="date" clrDate name="demo"/>
+        <input type="date" DateTime name="date" [(ngModel)]="eventDate"/>
       </clr-date-container>
       <button class="btn btn-primary" (click)="submit()" style="margin-top:3vh; margin-left:3.3vw;">Submit</button>
     </form>
