@@ -26,22 +26,26 @@
             ],
             "styles": [
               "node_modules/@clr/ui/clr-ui.min.css",
+              "node_modules/@clr/icons/clr-icons.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/@webcomponents/custom-elements/custom-elements.min.js",
+              "node_modules/@clr/icons/clr-icons.min.js"
+            ]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "5000kb",
+                  "maximumError": "10mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "20kb",
+                  "maximumError": "40kb"
                 }
               ],
               "outputHashing": "all"

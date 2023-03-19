@@ -1,0 +1,119 @@
+.month-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  width: 100%;
+}
+
+.arrow-button {
+  margin-top: 5%;
+}
+
+body {
+  overflow-x: hidden;
+  scrollbar-gutter: auto;
+}
+
+h3 {
+  user-select: none;
+}
+
+
+
+.nav-link {
+  user-select: none;
+}
+
+.box {
+  width: 10%;
+  height: 10%;
+  display: flex;
+  user-select: none;
+  font-size: 70%;
+  border: 2px solid hsl(198, 0%, 80%);
+  background-color: hsl(198, 0%, 98%);
+  text-align: left;
+  font-size: 30px;
+  width: 100%;
+  height: 100%;
+  padding-top: 10%;
+  padding-left: 10%;
+  font-size: 12pt;
+  font-color: hsl(198, 0%, 80%);
+  aspect-ratio: 1/1;
+}
+
+.box:hover {
+  background-color: hsl(198, 0%, 90%);
+}
+
+.box:active {
+  background-color: hsl(198, 0%, 80%);
+}
+
+.day-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  width: 100%;
+}
+
+.day {
+  width: 10%;
+  height: 10%;
+  display: flex;
+  user-select: none;
+  font-size: 70%;
+  align-items: center;
+  justify-content: center;
+}
+
+ul.tabs {
+  margin-top: 1vh;
+  padding: 0;
+}
+
+ul.tabs div {
+  display: inline-block;
+  background: hsl(198, 0%, 91%);
+  color: hsl(198, 0%, 40%);
+  cursor: pointer;
+  padding: 5px 25px 5px 15px;
+  -webkit-clip-path: polygon(100% 0, 90% 0, 100% 100%, 0 100%, 0.5% 0);
+  clip-path: polygon(100% 0, 90% 0, 100% 100%, 0 100%, 0.5% 0);
+
+}
+
+ul.tabs div.active {
+  background: hsl(198, 78%, 78%);
+  color: #333;
+}
+
+.card {
+  margin-top: 0px;
+}
+
+clr-tabs.tabs {
+  margin-top: 1vh;
+  padding: 0;
+}
+
+clr-tabs.tabs clr-tab {
+  display: inline-block;
+  background: hsl(198, 0%, 91%);
+  color: hsl(198, 0%, 40%);
+  cursor: pointer;
+  padding: 5px 25px 5px 15px;
+  -webkit-clip-path: polygon(100% 0, 90% 0, 100% 100%, 0 100%, 0.5% 0);
+  clip-path: polygon(100% 0, 90% 0, 100% 100%, 0 100%, 0.5% 0);
+
+}
+
+clr-tabs.tabs clr-tab.active {
+  background: hsl(198, 78%, 78%);
+  color: #333;
+}

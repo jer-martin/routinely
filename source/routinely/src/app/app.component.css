@@ -2,3 +2,44 @@ header {
     width: 100%;
     padding-bottom: 20px;
 }
+
+.settings-option {
+    padding-bottom: 1vh;
+    padding-top: 1vh;
+}
+
+div {
+    user-select: none;
+}
+
+span {
+    user-select: none;
+}
+
+.title {
+    color: rgb(156, 156, 156)
+}
+
+.logo-text {
+    color: rgb(156, 156, 156);
+}
+
+.logo-text:hover {
+    color: rgb(224, 224, 224);
+}
+
+.nav-link:hover {
+    color: rgb(120, 120, 120);
+}
+
+.nav-icon:hover {
+    color: rgb(120, 120, 120);
+}
+
+.user:hover {
+    color: rgb(120, 120, 120);
+}
+
+.cog:hover {
+    color: rgb(120, 120, 120);
+}

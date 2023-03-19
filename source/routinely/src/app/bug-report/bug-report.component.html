@@ -1,0 +1,88 @@
+<div class="clr-row">
+    <div class="clr-col-4" style="padding-left:10vw">
+      <div class="card">
+        <div class="card-block">
+          <div class="card-text">
+            <div class="tabs-vertical">
+              <ul id="demoTabs" class="nav" role="tablist">
+                <li role="presentation" class="nav-item">
+                  <button id="tab1" class="btn btn-link nav-link" aria-controls="panel1"
+                          aria-selected="false" type="button" routerLink="/settings" routerLinkActive="true">Account</button>
+                </li>
+                <li role="presentation" class="nav-item">
+                  <button id="tab2" class="btn btn-link nav-link" aria-controls="panel2"
+                          aria-selected="false" type="button" routerLink="/calendarsettings" routerLinkActive="true">Calendar</button>
+                </li>
+                <li role="presentation" class="nav-item">
+                  <button id="tab3" class="btn btn-link nav-link" aria-controls="panel3"
+                          aria-selected="false" type="button" routerLink="/preferences" routerLinkActive="true">Preferences</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+            <button type="button" class="btn btn-icon btn-primary bug" aria-label="settings" routerLink="/bugreport" routerLinkActive="true">
+            <cds-icon shape="exclamation-triangle"></cds-icon>
+            Report A Bug
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="clr-col-8" style="padding-right:10vw">
+        <div class="card">
+            <div class="card-block">
+                <div class="card-text" style="padding-bottom: 7vh">
+                    <h2 style="padding-left: 3vw;">Bug Report Form</h2>
+                    
+                    <form clrForm>
+                        <clr-input-container style="padding-left: 3vw;">
+                        <label>User's name</label>
+                        <input clrInput placeholder="user name" name="name" [(ngModel)]="name" />
+                        </clr-input-container>
+                    </form>
+
+                    <form clrForm>
+                        <clr-input-container style="padding-left: 3vw;">
+                        <label>User's email</label>
+                        <input clrInput placeholder="email" name="email" [(ngModel)]="email" />
+                        </clr-input-container>
+                    </form>
+
+                    <!--severity, description-->
+
+                    <div class="clr-form-control" style="padding-left: 3.3vw; padding-top: 2vh; padding-bottom:0vh">
+                        <label for="select-full" class="clr-control-label">Severity</label>
+                        <div class="clr-control-container">
+                          <div class="clr-select-wrapper">
+                            <select id="select-full" class="clr-select">
+                              <option value="1">Low</option>
+                              <option value="2">Medium</option>
+                              <option value="3">High</option>
+                            </select>
+                            <cds-icon class="clr-validate-icon" shape="exclamation-circle"></cds-icon>
+                          </div>
+                          <span class="clr-subtext">How badly did this issue effect your usage of the site?</span>
+                        </div>
+                      
+                    </div>
+
+                    <form class="clr-form" style="padding-left:3.3vw">
+                        <div class="clr-form-control">
+                          <label for="vertical-textarea-basic" class="clr-control-label">Description of Issue</label>
+                          <div class="clr-control-container">
+                            <div class="clr-textarea-wrapper">
+                              <textarea id="vertical-textarea-basic" placeholder="Enter description" class="clr-textarea"></textarea>
+                              <cds-icon class="clr-validate-icon" shape="exclamation-circle"></cds-icon>
+                            </div>
+                          </div>
+                        </div>
+                    </form>
+                    
+                    <button [clrLoading]="validateBtnState" class="btn btn-success" (click)="validateDemo()" style="margin-top:3vh; margin-left:3.3vw;">Submit</button>
+                </div>
+
+        </div>
+    </div>
+</div>

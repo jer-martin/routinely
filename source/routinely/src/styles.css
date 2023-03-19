@@ -1,1 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~modern-normalize/modern-normalize.css';
+@import '~@cds/core/global.min.css';
+@import '~@cds/city/css/bundles/default.min.css';
+
+@font-face {
+    font-family: 'Metropolis';
+    src: url(fonts/metropolis.regular.otf);
+}
+
+button:focus, button:active:focus, button.active:focus {
+    outline: none !important;
+    outline-style: none !important;
+}
+
+.bug {
+    width:100%;
+}
+
+.settings-option {
+    padding-top: 2vh;
+    padding-bottom: 50vh;
+}
+
+.error-text {
+    font-size: 12pt;
+    font-family: Metropolis;
+}
+
+ul.tabs {
+    margin-top: 1vh;
+    padding: 0;
+    font-family: Metropolis;
+  }

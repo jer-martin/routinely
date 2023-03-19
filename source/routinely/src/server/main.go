@@ -1,44 +1,29 @@
 package main
-
-import (
-	"fmt"
-	"log"
-	"net/http"
-	"os"
-
-	"github.com/jer-martin/routinely/utils"
-
-	"github.com/gorilla/mux"
-)
-
-func main() {
-	r := mux.NewRouter()
-
-	r.HandleFunc("/hello-world", helloWorld)
-
-	http.Handle("/", r)
-
-	srv := &http.Server{
-		Handler: r,
-		Addr:    ":" + os.Getenv("PORT"),
-	}
-
-	log.Fatal(srv.ListenAndServe())
+type User struct {
+	ID             string `json:"id"`
+	UserType       string `json:"userType"`
 }
 
-func helloWorld(w http.ResponseWriter, r *http.Request) {
-	var data = struct {
-		Title string `json:"title"`
-	}{
-		Title: "Golang + Angular Starter Kit",
-	}
 
-	jsonBytes, err := utils.StructToJSON(data)
-	if err != nil {
-		fmt.Print(err)
-	}
+var users = []User{
+	{ID: "bryan", UserType: "Student" },
+	{ID: "Jeremy", UserType: "Student" },
+	{ID: "Anand", UserType: "Basic"},
+	{ID: "Madhav", UserType: "Basic"},
 
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(jsonBytes)
-	return
+}
+
+type Event struct {
+	EventName             string `json:"eventName"`
+	EventCategory       string `json:"eventCategory"`
+}
+
+
+var events = []Event{
+	{EventName: "CEN3031", EventCategory: "Classes" },
+
+}
+func main(){
+	r := setUpRouter()
+	r.Run("localhost:3000")
 }

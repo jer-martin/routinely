@@ -1,0 +1,215 @@
+<html>
+
+<body>
+
+
+  <div class="card">
+    <div class="card-header">
+      <div style="display: flex; max-height: 0px;">
+
+        <app-event-modal style="margin-left: auto"></app-event-modal>
+      </div>
+
+      <div class="monthweekcontainer">
+        <div class="month-container">
+          <cds-icon shape="angle" direction="left" class="arrow-button" id="left-arrow"
+            (click)="iterateDayDown()"></cds-icon>
+          <h3 class="month-string">{{month}}, {{day}} {{year}}</h3>
+          <cds-icon shape="angle" direction="right" class="arrow-button" id="right-arrow"
+            (click)="iterateDayUp()"></cds-icon>
+        </div>
+      </div>
+
+      <div class="day-container">
+        <div class="day">S</div>
+        <div class="day">M</div>
+        <div class="day">T</div>
+        <div class="day">W</div>
+        <div class="day">T</div>
+        <div class="day">F</div>
+        <div class="day">S</div>
+      </div>
+
+      <div class="weekgrid">
+
+
+        <div class="weekbox" id="Task1Sunday"></div>
+        <div class="weekbox" id="Task1Monday"></div>
+        <div class="weekbox" id="Task1Tuesday"></div>
+        <div class="weekbox" id="Task1Wednesday"></div>
+        <div class="weekbox" id="Task1Thursday"></div>
+        <div class="weekbox" id="Task1Friday"></div>
+        <div class="weekbox" id="Task1Saturday"></div>
+        <div class="weekbox" id="Task2Sunday"></div>
+        <div class="weekbox" id="Task2Monday"></div>
+        <div class="weekbox" id="Task2Tuesday"></div>
+        <div class="weekbox" id="Task2Wednesday"></div>
+        <div class="weekbox" id="Task2Thursday"></div>
+        <div class="weekbox" id="Task2Friday"></div>
+        <div class="weekbox" id="Task2Saturday"></div>
+        <div class="weekbox" id="Task3Sunday"></div>
+        <div class="weekbox" id="Task3Monday"></div>
+        <div class="weekbox" id="Task3Tuesday"></div>
+        <div class="weekbox" id="Task3Wednesday"></div>
+        <div class="weekbox" id="Task3Thursday"></div>
+        <div class="weekbox" id="Task3Friday"></div>
+        <div class="weekbox" id="Task3Saturday"></div>
+        <div class="weekbox" id="Task4Sunday"></div>
+        <div class="weekbox" id="Task4Monday"></div>
+        <div class="weekbox" id="Task4Tuesday"></div>
+        <div class="weekbox" id="Task4Wednesday"></div>
+        <div class="weekbox" id="Task4Thursday"></div>
+        <div class="weekbox" id="Task4Friday"></div>
+        <div class="weekbox" id="Task4Saturday"></div>
+        <div class="weekbox" id="Task5Sunday"></div>
+        <div class="weekbox" id="Task5Monday"></div>
+        <div class="weekbox" id="Task5Tuesday"></div>
+        <div class="weekbox" id="Task5Wednesday"></div>
+        <div class="weekbox" id="Task5Thursday"></div>
+        <div class="weekbox" id="Task5Friday"></div>
+        <div class="weekbox" id="Task5Saturday"></div>
+        <div class="weekbox" id="Task6Sunday"></div>
+        <div class="weekbox" id="Task6Monday"></div>
+        <div class="weekbox" id="Task6Tuesday"></div>
+        <div class="weekbox" id="Task6Wednesday"></div>
+        <div class="weekbox" id="Task6Thursday"></div>
+        <div class="weekbox" id="Task6Friday"></div>
+        <div class="weekbox" id="Task6Saturday"></div>
+        <div class="weekbox" id="Task7Sunday"></div>
+        <div class="weekbox" id="Task7Monday"></div>
+        <div class="weekbox" id="Task7Tuesday"></div>
+        <div class="weekbox" id="Task7Wednesday"></div>
+        <div class="weekbox" id="Task7Thursday"></div>
+        <div class="weekbox" id="Task7Friday"></div>
+        <div class="weekbox" id="Task7Saturday"></div>
+        <div class="weekbox" id="Task8Sunday"></div>
+        <div class="weekbox" id="Task8Monday"></div>
+        <div class="weekbox" id="Task8Tuesday"></div>
+        <div class="weekbox" id="Task8Wednesday"></div>
+        <div class="weekbox" id="Task8Thursday"></div>
+        <div class="weekbox" id="Task8Friday"></div>
+        <div class="weekbox" id="Task8Saturday"></div>
+        <div class="weekbox" id="Task9Sunday"></div>
+        <div class="weekbox" id="Task9Monday"></div>
+        <div class="weekbox" id="Task9Tuesday"></div>
+        <div class="weekbox" id="Task9Wednesday"></div>
+        <div class="weekbox" id="Task9Thursday"></div>
+        <div class="weekbox" id="Task9Friday"></div>
+        <div class="weekbox" id="Task9Saturday"></div>
+        <div class="weekbox" id="Task10Sunday"></div>
+        <div class="weekbox" id="Task10Monday"></div>
+        <div class="weekbox" id="Task10Tuesday"></div>
+        <div class="weekbox" id="Task10Wednesday"></div>
+        <div class="weekbox" id="Task10Thursday"></div>
+        <div class="weekbox" id="Task10Friday"></div>
+        <div class="weekbox" id="Task10Saturday"></div>
+        <div class="weekbox" id="Task11Sunday"></div>
+        <div class="weekbox" id="Task11Monday"></div>
+        <div class="weekbox" id="Task11Tuesday"></div>
+        <div class="weekbox" id="Task11Wednesday"></div>
+        <div class="weekbox" id="Task11Thursday"></div>
+        <div class="weekbox" id="Task11Friday"></div>
+        <div class="weekbox" id="Task11Saturday"></div>
+        <div class="weekbox" id="Task12Sunday"></div>
+        <div class="weekbox" id="Task12Monday"></div>
+        <div class="weekbox" id="Task12Tuesday"></div>
+        <div class="weekbox" id="Task12Wednesday"></div>
+        <div class="weekbox" id="Task12Thursday"></div>
+        <div class="weekbox" id="Task12Friday"></div>
+        <div class="weekbox" id="Task12Saturday"></div>
+        <div class="weekbox" id="Task13Sunday"></div>
+        <div class="weekbox" id="Task13Monday"></div>
+        <div class="weekbox" id="Task13Tuesday"></div>
+        <div class="weekbox" id="Task13Wednesday"></div>
+        <div class="weekbox" id="Task13Thursday"></div>
+        <div class="weekbox" id="Task13Friday"></div>
+        <div class="weekbox" id="Task13Saturday"></div>
+        <div class="weekbox" id="Task14Sunday"></div>
+        <div class="weekbox" id="Task14Monday"></div>
+        <div class="weekbox" id="Task14Tuesday"></div>
+        <div class="weekbox" id="Task14Wednesday"></div>
+        <div class="weekbox" id="Task14Thursday"></div>
+        <div class="weekbox" id="Task14Friday"></div>
+        <div class="weekbox" id="Task14Saturday"></div>
+        <div class="weekbox" id="Task15Sunday"></div>
+        <div class="weekbox" id="Task15Monday"></div>
+        <div class="weekbox" id="Task15Tuesday"></div>
+        <div class="weekbox" id="Task15Wednesday"></div>
+        <div class="weekbox" id="Task15Thursday"></div>
+        <div class="weekbox" id="Task15Friday"></div>
+        <div class="weekbox" id="Task15Saturday"></div>
+        <div class="weekbox" id="Task16Sunday"></div>
+        <div class="weekbox" id="Task16Monday"></div>
+        <div class="weekbox" id="Task16Tuesday"></div>
+        <div class="weekbox" id="Task16Wednesday"></div>
+        <div class="weekbox" id="Task16Thursday"></div>
+        <div class="weekbox" id="Task16Friday"></div>
+        <div class="weekbox" id="Task16Saturday"></div>
+        <div class="weekbox" id="Task17Sunday"></div>
+        <div class="weekbox" id="Task17Monday"></div>
+        <div class="weekbox" id="Task17Tuesday"></div>
+        <div class="weekbox" id="Task17Wednesday"></div>
+        <div class="weekbox" id="Task17Thursday"></div>
+        <div class="weekbox" id="Task17Friday"></div>
+        <div class="weekbox" id="Task17Saturday"></div>
+        <div class="weekbox" id="Task18Sunday"></div>
+        <div class="weekbox" id="Task18Monday"></div>
+        <div class="weekbox" id="Task18Tuesday"></div>
+        <div class="weekbox" id="Task18Wednesday"></div>
+        <div class="weekbox" id="Task18Thursday"></div>
+        <div class="weekbox" id="Task18Friday"></div>
+        <div class="weekbox" id="Task18Saturday"></div>
+        <div class="weekbox" id="Task19Sunday"></div>
+        <div class="weekbox" id="Task19Monday"></div>
+        <div class="weekbox" id="Task19Tuesday"></div>
+        <div class="weekbox" id="Task19Wednesday"></div>
+        <div class="weekbox" id="Task19Thursday"></div>
+        <div class="weekbox" id="Task19Friday"></div>
+        <div class="weekbox" id="Task19Saturday"></div>
+        <div class="weekbox" id="Task20Sunday"></div>
+        <div class="weekbox" id="Task20Monday"></div>
+        <div class="weekbox" id="Task20Tuesday"></div>
+        <div class="weekbox" id="Task20Wednesday"></div>
+        <div class="weekbox" id="Task20Thursday"></div>
+        <div class="weekbox" id="Task20Friday"></div>
+        <div class="weekbox" id="Task20Saturday"></div>
+        <div class="weekbox" id="Task21Sunday"></div>
+        <div class="weekbox" id="Task21Monday"></div>
+        <div class="weekbox" id="Task21Tuesday"></div>
+        <div class="weekbox" id="Task21Wednesday"></div>
+        <div class="weekbox" id="Task21Thursday"></div>
+        <div class="weekbox" id="Task21Friday"></div>
+        <div class="weekbox" id="Task21Saturday"></div>
+        <div class="weekbox" id="Task22Sunday"></div>
+        <div class="weekbox" id="Task22Monday"></div>
+        <div class="weekbox" id="Task22Tuesday"></div>
+        <div class="weekbox" id="Task22Wednesday"></div>
+        <div class="weekbox" id="Task22Thursday"></div>
+        <div class="weekbox" id="Task22Friday"></div>
+        <div class="weekbox" id="Task22Saturday"></div>
+        <div class="weekbox" id="Task23Sunday"></div>
+        <div class="weekbox" id="Task23Monday"></div>
+        <div class="weekbox" id="Task23Tuesday"></div>
+        <div class="weekbox" id="Task23Wednesday"></div>
+        <div class="weekbox" id="Task23Thursday"></div>
+        <div class="weekbox" id="Task23Friday"></div>
+        <div class="weekbox" id="Task23Saturday"></div>
+        <div class="weekbox" id="Task24Sunday"></div>
+        <div class="weekbox" id="Task24Monday"></div>
+        <div class="weekbox" id="Task24Tuesday"></div>
+        <div class="weekbox" id="Task24Wednesday"></div>
+        <div class="weekbox" id="Task24Thursday"></div>
+        <div class="weekbox" id="Task24Friday"></div>
+        <div class="weekbox" id="Task24Saturday"></div>
+
+        <!-- ... -->
+      </div>
+
+    </div>
+
+  </div>
+
+
+</body>
+
+</html>
