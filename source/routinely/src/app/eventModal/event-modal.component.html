@@ -11,7 +11,7 @@
       </clr-input-container>
       <clr-combobox-container>
         <label>Event Category</label>
-        <clr-combobox name="category" required placeholder="Choose event category" [(ngModel)]="eventCategory">
+        <clr-combobox name="Category" required placeholder="Choose event category" [(ngModel)]="eventCategory">
           <clr-options>
             <clr-option clrValue="Classes">Classes</clr-option>
             <clr-option clrValue="Social">Social</clr-option>
@@ -25,7 +25,7 @@
         <label>Date</label>
         <input type="date" DateTime name="date" [(ngModel)]="eventDate"/>
       </clr-date-container>
-      <button class="btn btn-primary" (click)="submit()" style="margin-top:3vh; margin-left:3.3vw;">Submit</button>
+      <button class="btn btn-primary" (click)="addEvent()" style="margin-top:3vh; margin-left:3.3vw;">Submit</button>
     </form>
   </div>
 </clr-modal>

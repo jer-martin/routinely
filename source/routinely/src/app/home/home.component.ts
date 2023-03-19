@@ -6,17 +6,19 @@ import { ViewChild } from '@angular/core';
 import { ViewContainerRef } from '@angular/core';
 import { ComponentFactoryResolver } from '@angular/core';
 import { MonthviewComponent } from '../monthview/monthview.component';
-
-
+import { HttpClient} from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
+import { lastValueFrom } from 'rxjs/internal/lastValueFrom';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  @ViewChild('cardContainer', { read: ViewContainerRef, static: true }) container!: ViewContainerRef;
 
-  constructor(private router: Router, private sharerService: SharerService, private resolver: ComponentFactoryResolver) { }
+  @ViewChild('cardContainer', { read: ViewContainerRef,static: true }) container!: ViewContainerRef;
+  
+  constructor(private router: Router,private httpClient: HttpClient,private sharerService: SharerService, private resolver: ComponentFactoryResolver) { }
   goToLogin() {
     this.router.navigate(['/login']);
   }
@@ -29,9 +31,10 @@ export class HomeComponent {
   goToSidebar() {
     this.router.navigate(['/sidebar']);
   }
-  // goToEventModal() {
-  //   this.router.navigate(['/eventmodal']);
-  // }
+
+  goToEventModal() {
+    this.router.navigate(['/eventmodal']);
+  }
   monthNum: number | undefined;
 
   calTime = this.sharerService.currentCalTime.getValue();

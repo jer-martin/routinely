@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DateTime, Duration, DurationUnit, Interval } from 'luxon';
+
 import { SharerService } from '../sharer.service';
 
 @Component({
@@ -9,8 +10,8 @@ import { SharerService } from '../sharer.service';
   styleUrls: ['./monthview.component.css']
 })
 export class MonthviewComponent {
-
-  constructor(private router: Router, private sharerService: SharerService) { }
+  
+  constructor(private router: Router,private sharerService: SharerService) { }
   goToLogin() {
     this.router.navigate(['/login']);
   }
