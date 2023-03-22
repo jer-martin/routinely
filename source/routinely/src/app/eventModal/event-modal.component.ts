@@ -20,6 +20,7 @@ export class EventModalComponent {
   public eventList: IeventList[] =[]
 
   async addEvent(){
+    this.basic = false;
     firstValueFrom(this.httpClient.post('/api/addEvent',{
       eventName: this.eventName,
       eventCategory: this.eventCategory
@@ -33,10 +34,10 @@ export class EventModalComponent {
     const userList = await this.httpClient
     .get<IeventList[]>('/api/viewEvents')
     this.eventList = await lastValueFrom(userList)
- 
+
    }
   constructor(private httpClient:HttpClient,private sharerService:SharerService) { }
-  
+
   eventNames: string = '';
   //eventCategory: string = '';
   basic: boolean = false;
