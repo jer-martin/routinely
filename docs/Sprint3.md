@@ -1,6 +1,6 @@
 # Sprint 3
 
-[Front-end video]() | [Back-end video]() | [Back-end Database Video]()
+Front-end video | Back-end video
 
 
 ## Work Synopsis
