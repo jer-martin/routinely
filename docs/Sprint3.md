@@ -1,6 +1,6 @@
 # Sprint 3
 
-[Front-end video]() | [Back-end video]() [Back-end Database Video]()
+[Front-end video]() | [Back-end video]() | [Back-end Database Video]()
 
 
 ## Work Synopsis
@@ -12,6 +12,7 @@
  - Form now closes after pressing submit and does a POST request
  - Events added through the Add Event modal are now reflected in the calendar
  - Input fields on the form now reset after pressing submit
+ - Input validation for non-recurring (singular) events
  - Minor design changes
 
 ### Backend
@@ -21,33 +22,27 @@
 ### Frontend
 #### Test 1 (Cypress):
 ```
-
 ```
 
 #### Test 2:
 ```
-
 ```
 
 #### Test 3:
 ```
-
 ```
 #### Test 4:
 ```
-
 ```
 
 ### Backend
 The tests can be found in the "main_test.go" file located in the "backend" folder.
 #### Test 1:
 ```
-
 ```
 
 #### Test 2:
 ```
-
 ```
 
 #### Test 3:
