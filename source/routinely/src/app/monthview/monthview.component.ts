@@ -10,7 +10,7 @@ import { SharerService } from '../sharer.service';
   styleUrls: ['./monthview.component.css']
 })
 export class MonthviewComponent {
-  
+
   constructor(private router: Router,private sharerService: SharerService) { }
   goToLogin() {
     this.router.navigate(['/login']);
@@ -142,7 +142,7 @@ function CalendarMonth(dt: DateTime) {
   // })
   days.map((day, i) => {
     boxes[i].innerHTML = day.start.day.toString();
-    console.log(day.end.day.toString());
+    // console.log(day.end.day.toString());
     if (day.start.month != dt.month) {
       // console.log(day);
       boxes[i].setAttribute("style", "background-color: hsl(198, 0%, 93%)");
@@ -157,11 +157,6 @@ function CalendarMonth(dt: DateTime) {
   })
 }
 
-// todo:
-//  (1) implement views for day/week
-//  (2) render components as tabs rather than different pages
-//  (3) attach IDs to each card using .toISO() to easily display events from database
-//  (4) highlight today, create variable for to-do list
 function genView(dt: DateTime, view: DurationUnit) {
   switch (view) {
     case "day":

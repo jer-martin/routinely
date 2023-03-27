@@ -17,7 +17,7 @@ import { lastValueFrom } from 'rxjs/internal/lastValueFrom';
 export class HomeComponent {
 
   @ViewChild('cardContainer', { read: ViewContainerRef,static: true }) container!: ViewContainerRef;
-  
+
   constructor(private router: Router,private httpClient: HttpClient,private sharerService: SharerService, private resolver: ComponentFactoryResolver) { }
   goToLogin() {
     this.router.navigate(['/login']);
@@ -154,7 +154,7 @@ function CalendarMonth(dt: DateTime) {
   // })
   days.map((day, i) => {
     boxes[i].innerHTML = day.start.day.toString();
-    console.log(day.end.day.toString());
+    // console.log(day.end.day.toString());
     if (day.start.month != dt.month) {
       // console.log(day);
       boxes[i].setAttribute("style", "background-color: hsl(198, 0%, 93%)");

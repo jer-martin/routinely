@@ -1,0 +1,9 @@
+::ng-deep .modal-dialog {
+  width: 28vw!important;
+}
+
+.btn-group.btn-icon label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
