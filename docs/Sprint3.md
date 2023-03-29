@@ -22,17 +22,42 @@ Front-end video | Back-end video
 ### Frontend
 #### Test 1 (Cypress):
 ```
+describe('modal', () => {
+  it('passes', () => {
+    cy.visit('http://localhost:4200')
+    cy.get('.addEvent').click()
+    cy.get('.startdate').eq(8).should('be.disabled')
+    cy.get('.enddate').eq(8).should('be.disabled')
+    cy.get('.startdate').eq(8).should('not.be.disabled')
+    cy.contains('Recurring').click()
+    cy.get('.startdate').eq(8).should('not.be.disabled')
+    cy.get('.enddate').eq(8).should('not.be.disabled')
+    cy.get('.startdate').eq(8).should('be.disabled')
+  })
+
+})
 ```
 
 #### Test 2:
 ```
+describe('validateRecurringInterval()', () => {
+  it('should say that the dates are invalid', () => {
+    const startDate = DateTime.fromObject({year:2023, month: 1, day: 31});
+    const endDate = DateTime.fromObject({year:2022, month: 3, day: 28});
+    expect(validateRecurringInterval(startDate, endDate)).toBe(false);
+  })
+})
 ```
 
 #### Test 3:
 ```
-```
-#### Test 4:
-```
+describe('validateRecurringInterval()', () => {
+  it('should say that the dates are valid', () => {
+    const startDate = DateTime.fromObject({year:2021, month: 3, day: 30});
+    const endDate = DateTime.fromObject({year:2026, month: 1, day: 28});
+    expect(validateRecurringInterval(startDate, endDate)).toBe(true);
+  })
+})
 ```
 
 ### Backend
