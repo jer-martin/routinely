@@ -17,7 +17,9 @@ type Event struct {
 	EventCategory string `json:"eventCategory"`
 }
 
-var events = []Event{}
+var events = []Event{
+	{EventName: "CEN3031", EventCategory: "Classes"},
+}
 
 func main() {
 	r := setUpRouter()
