@@ -16,6 +16,12 @@
  - Minor design changes
 
 ### Backend
+ - Finished event creation functionality.
+ - Properly recieves data from front end and formats it to send to database.
+ - Currently experimenting with go maps to store events with the date as the key in order to quickly store and retrieve events.
+ - Added makefile to be able to start server with a simple "make run" commmand.
+ - Refactored code to separate by different services,will eventually be completely separated to easily distinguish functionality ie. userCreation        Service, eventCreation Service etc. This will look similar to the layout of a springboot application for simplicity. 
+ - Completed unit tests for event creation.
  - 
 
 ## Testing
@@ -64,17 +70,55 @@ describe('validateRecurringInterval()', () => {
 The tests can be found in the "main_test.go" file located in the "backend" folder.
 #### Test 1:
 ```
+func TestViewEvents(t *testing.T) {
+	events := ("[{\"eventName\":\"CEN3031\",\"eventCategory\":\"Classes\"}]")
+
+	router := setUpRouter()
+	w := httptest.NewRecorder()
+	req, _ := http.NewRequest("GET", "/api/viewEvents", nil)
+	router.ServeHTTP(w, req)
+
+	assert.Equal(t, 200, w.Code)
+	assert.Equal(t, events, w.Body.String())
+}
 ```
 
 #### Test 2:
 ```
+func TestAddEvent(t *testing.T) {
+	message := "\"Successfuly created event\""
+	type Event struct {
+		EventName     string `json:"eventName"`
+		EventCategory string `json:"eventCategory"`
+	}
+	eventToAdd := Event{
+		EventName:     `COP4600`,
+		EventCategory: "Classes",
+	}
+	jsonValue, _ := json.Marshal(eventToAdd)
+	router := setUpRouter()
+	w := httptest.NewRecorder()
+	req, _ := http.NewRequest("POST", "/api/addEvent", bytes.NewBuffer(jsonValue))
+	router.ServeHTTP(w, req)
+
+	assert.Equal(t, 200, w.Code)
+	assert.Equal(t, message, w.Body.String())
+}
 ```
 
 #### Test 3:
 ```
-```
-#### Test 4:
-```
+func TestAddEventFAILURE(t *testing.T) {
+	events := ("[{\"eventName\":\"CEN3031\",\"eventCategory\":\"Classes\"}]")
+
+	router := setUpRouter()
+	w := httptest.NewRecorder()
+	req, _ := http.NewRequest("GET", "/api/addEvent", nil)
+	router.ServeHTTP(w, req)
+
+	assert.Equal(t, 200, w.Code)
+	assert.Equal(t, events, w.Body.String())
+}
 ```
 ## Backend Documentation
 
