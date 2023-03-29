@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DateTime, Duration, DurationUnit, Interval } from 'luxon';
 
@@ -10,8 +10,7 @@ import { SharerService } from '../sharer.service';
   styleUrls: ['./monthview.component.css']
 })
 export class MonthviewComponent {
-
-  constructor(private router: Router,private sharerService: SharerService) { }
+  constructor(private router: Router,private sharerService: SharerService, private renderer: Renderer2) { }
   goToLogin() {
     this.router.navigate(['/login']);
   }
@@ -88,7 +87,7 @@ export class MonthviewComponent {
 
   // populate boxes with numbers up to the day count
   populateBoxes(month: string) {
-    CalendarMonth(this.calTime);
+    CalendarMonth(this.calTime, this.sharerService.getEvents());
     // const dayCount = this.checkDayCount(month);
     // const boxes = document.getElementsByClassName('box');
     // //clear boxes before populating
@@ -119,7 +118,7 @@ export class MonthviewComponent {
   }
 }
 
-function CalendarMonth(dt: DateTime) {
+function CalendarMonth(dt: DateTime, events: Map<number, string[]>) {
   const days = updView(dt, 'month');
   const boxes = document.getElementsByClassName('box');
   for (let i = 0; i < boxes.length; i++) {
@@ -141,6 +140,18 @@ function CalendarMonth(dt: DateTime) {
   //   boxes[day.start.day+firstDay-1].innerHTML = day.start.day.toString();
   // })
   days.map((day, i) => {
+    // console.log(events);
+    // const dayEvents = events.get(day.start.day);
+    // // @ts-ignore
+    // if (dayEvents){
+    //   dayEvents.forEach(event => {
+    //     const button = document.createElement('button');
+    //     button.innerText = event;
+    //     button.classList.add('btn', 'btn-primary');
+    //     boxes[i].appendChild(button);
+    //     console.log("match");
+    //   })
+    // }
     boxes[i].innerHTML = day.start.day.toString();
     // console.log(day.end.day.toString());
     if (day.start.month != dt.month) {

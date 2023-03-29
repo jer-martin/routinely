@@ -236,3 +236,7 @@ export function genBackfillMonth(dt: DateTime): Interval {
 
   return Interval.fromDateTimes(prevMonthInterval.start, nextMonthInterval.end);
 }
+
+export function validateRecurringInterval(start: DateTime, end: DateTime) {
+  return start.startOf("day") < end.startOf("day");
+}

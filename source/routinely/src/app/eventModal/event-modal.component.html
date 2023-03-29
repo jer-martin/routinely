@@ -1,10 +1,10 @@
-<button type="button" class="btn btn-icon btn-link" (click)="basic = true">
+<button type="button" class="btn btn-icon btn-link addEvent" (click)="basic = true">
   <cds-icon shape="plus" size="24" [ngStyle]="{color: colorHSL}"></cds-icon>
 </button>
-<clr-modal [(clrModalOpen)]="basic" [clrModalStaticBackdrop]="false">
+<clr-modal [clrModalOpen]="basic" (clrModalOpenChange)="reset()" [clrModalStaticBackdrop]="false">
   <h3 class="modal-title">Add Event</h3>
   <div class="modal-body">
-    <form clrForm clrLayout="vertical">
+    <form clrForm id="form" clrLayout="vertical">
       <clr-toggle-container>
         <clr-toggle-wrapper>
           <input type="checkbox" clrToggle name="recurring" [(ngModel)]="recurringEvent"/>
@@ -15,33 +15,33 @@
       <div class="clr-col-6">
       <clr-input-container>
         <label>Event Name</label>
-        <input clrInput placeholder="Enter event name" name="name" [(ngModel)]="eventName"/>
+        <input clrInput placeholder="Enter event name" required name="name" [(ngModel)]="eventName"/>
       </clr-input-container>
-      <clr-combobox-container>
+      <clr-combobox-container required>
         <label>Event Category</label>
-        <clr-combobox name="Category" placeholder="Choose event category" [(ngModel)]="eventCategory">
-          <clr-options>
-            <clr-option clrValue="Classes">Classes</clr-option>
-            <clr-option clrValue="Social">Social</clr-option>
-            <clr-option clrValue="Exercise">Exercise</clr-option>
-            <clr-option clrValue="Clubs">Clubs</clr-option>
-            <clr-option clrValue="Other">Other</clr-option>
+        <clr-combobox required name="Category" placeholder="Choose event category" [(ngModel)]="eventCategory">
+          <clr-options required>
+            <clr-option required clrValue="Classes">Classes</clr-option>
+            <clr-option required clrValue="Social">Social</clr-option>
+            <clr-option required clrValue="Exercise">Exercise</clr-option>
+            <clr-option required clrValue="Clubs">Clubs</clr-option>
+            <clr-option required clrValue="Other">Other</clr-option>
           </clr-options>
         </clr-combobox>
       </clr-combobox-container>
-        <clr-date-container>
+        <clr-date-container required>
           <label>Date</label>
-          <input type="date" [disabled]="recurringEvent" clrDate [(clrDate)]="eventDate"/>
+          <input type="date" required [disabled]="recurringEvent" clrDate class="date" [(clrDate)]="eventDate"/>
         </clr-date-container>
       </div>
         <div class="clr-col-6" style="float: right">
       <clr-date-container style="float: right">
         <label>Start Date</label>
-        <input type="date" id="startDate" [disabled]="!recurringEvent" clrDate [(clrDate)]="startDate"/>
+        <input type="date" id="startDate" [required]="recurringEvent" class="startdate" [disabled]="!recurringEvent" clrDate [(clrDate)]="startDate"/>
       </clr-date-container>
       <clr-date-container style="float: right">
         <label>End Date</label>
-        <input type="date" id="endDate" [disabled]="!recurringEvent" clrDate [(clrDate)]="endDate"/>
+        <input type="date" id="endDate" [required]="recurringEvent" class="enddate" [disabled]="!recurringEvent" clrDate [(clrDate)]="endDate"/>
       </clr-date-container>
           <div class="btn-group btn-icon btn-group-sm" style="margin-top: 2vw; display:inline-flex; margin-left:12%">
             <div class="checkbox btn" [ngClass]="{'disabled': !recurringEvent}" style="width:24px; height:24px; ">

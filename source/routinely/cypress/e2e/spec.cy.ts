@@ -32,3 +32,18 @@ describe('template spec', () => {
   })
 
 })
+
+describe('modal', () => {
+  it('passes', () => {
+    cy.visit('http://localhost:4200')
+    cy.get('.addEvent').click()
+    cy.get('.startdate').eq(8).should('be.disabled')
+    cy.get('.enddate').eq(8).should('be.disabled')
+    cy.get('.startdate').eq(8).should('not.be.disabled')
+    cy.contains('Recurring').click()
+    cy.get('.startdate').eq(8).should('not.be.disabled')
+    cy.get('.enddate').eq(8).should('not.be.disabled')
+    cy.get('.startdate').eq(8).should('be.disabled')
+  })
+
+})
