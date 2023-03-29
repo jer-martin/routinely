@@ -1,6 +1,6 @@
 # Sprint 3
 
-[Front-end video](https://youtu.be/V71Mdj1SkS0) | Back-end video
+[Front-end video](https://youtu.be/V71Mdj1SkS0) | [Back-end video](https://youtu.be/uJrb4pV2Wxo)
 
 
 ## Work Synopsis
@@ -22,7 +22,6 @@
  - Added makefile to be able to start server with a simple "make run" commmand.
  - Refactored code to separate by different services,will eventually be completely separated to easily distinguish functionality ie. userCreation        Service, eventCreation Service etc. This will look similar to the layout of a springboot application for simplicity. 
  - Completed unit tests for event creation.
- - 
 
 ## Testing
 ### Frontend
