@@ -11,7 +11,7 @@ export class SharerService {
   currentCalTime = this.calTimeSource;
   private calTime: DateTime = DateTime.local(); // Provide an initial value to the calTime property
   private color: string = "blue";
-  private eventStorage : Map<number, string[]> = new Map<number, string[]>(); // local storage for events (temp until we get databases working)
+  private eventStorage : Map<string, string[]> = new Map<string, string[]>(); // local storage for events (temp until we get databases working)
 
   constructor() { }
 
@@ -22,15 +22,15 @@ export class SharerService {
 
   addEvent(dt: DateTime, name : string) { // only dates and names necessary for now
     // key is DateTime, val is array of event names (strings)
-    console.log(dt);
+    // console.log(dt);
     // console.log(name);
-    if (this.eventStorage.get(dt.day) != undefined) {
+    if (this.eventStorage.get(dt.toISO()) != undefined) {
       // @ts-ignore
-      this.eventStorage.set(dt, this.eventStorage.get(dt).concat(name));
+      this.eventStorage.set(dt.toISO(), this.eventStorage.get(dt.toISO()).concat(name));
     }
     else {
       let events: string[] = [name];
-      this.eventStorage.set(dt.day, events);
+      this.eventStorage.set(dt.toISO(), events);
     }
     // console.log(this.eventStorage.get(dt));
   }

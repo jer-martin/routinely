@@ -118,42 +118,33 @@ export class MonthviewComponent {
   }
 }
 
-function CalendarMonth(dt: DateTime, events: Map<number, string[]>) {
+function CalendarMonth(dt: DateTime, events: Map<string, string[]>) {
   const days = updView(dt, 'month');
   const boxes = document.getElementsByClassName('box');
   for (let i = 0; i < boxes.length; i++) {
+    // @ts-ignore
     boxes[i].innerHTML = '';
   }
-  // console.log(days);
-  // let firstDay : number = days[0].start.weekday;
-  /*
-  prevMonth: get interval for previous month, then fill backwards until box index = 0
-  how to keep track of both day and box indices?
-  alternative: include the prev/next days when generating the month interval
-   */
-  // cards are 0-indexed and days are 1-indexed, starting at monday -- remap sunday to solve this
-  // if (firstDay === 7) {
-  //   firstDay = 0;
-  // }
-  // curMonth
-  // days.map((day, i) => {
-  //   boxes[day.start.day+firstDay-1].innerHTML = day.start.day.toString();
-  // })
   days.map((day, i) => {
-    // console.log(events);
-    // const dayEvents = events.get(day.start.day);
-    // // @ts-ignore
-    // if (dayEvents){
-    //   dayEvents.forEach(event => {
-    //     const button = document.createElement('button');
-    //     button.innerText = event;
-    //     button.classList.add('btn', 'btn-primary');
-    //     boxes[i].appendChild(button);
-    //     console.log("match");
-    //   })
-    // }
-    boxes[i].innerHTML = day.start.day.toString();
-    // console.log(day.end.day.toString());
+    console.log(events);
+    console.log(day.start.toISO());
+    const dayEvents = events.get(day.start.toISO());
+    console.log(dayEvents);
+    const label = document.createElement('label');
+    label.style.display = 'flex';
+    label.innerText = day.start.day.toString();
+    boxes[i].appendChild(label);
+    // @ts-ignore
+    if (dayEvents){
+      dayEvents.forEach(event => {
+        const button = document.createElement('button');
+        button.innerText = event;
+        button.classList.add('btn', 'btn-primary', 'btn-sm', 'align-items-center', 'justify-content-center');
+        button.style.margin = 'auto';
+        boxes[i].appendChild(button);
+        console.log("match");
+      })
+    }
     if (day.start.month != dt.month) {
       // console.log(day);
       boxes[i].setAttribute("style", "background-color: hsl(198, 0%, 93%)");
