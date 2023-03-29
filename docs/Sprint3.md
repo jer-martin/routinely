@@ -12,7 +12,7 @@
  - Form now closes after pressing submit and does a POST request
  - Events added through the Add Event modal are now reflected in the calendar
  - Input fields on the form now reset after pressing submit
- - Input validation for non-recurring (singular) events
+ - Input validation for recurring events
  - Minor design changes
 
 ### Backend
