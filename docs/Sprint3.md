@@ -196,6 +196,29 @@ This screenshot shows how passwords are being sent into databases thorugh use of
 These are some curret issues that occur due to servers shutting down instantly for some reason I cannot figure out as of right now. 
 ![image](https://user-images.githubusercontent.com/88696930/228716858-dfa03a4f-3a68-4575-a173-229b08f2a333.png)
 
+```
+func setUpRouter() *gin.Engine {
+	r := gin.Default()
 
+	// Set up database connection
+	db, err := sql.Open("mysql", "user:password@tcp(localhost:3306)/database_name")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Close()
+
+	// Test database connection
+	err = db.Ping()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Set up API endpoints
+	r.GET("/users", getUsers)
+	r.POST("/users", addUser)
+
+	return r
+}
+```
 
 
