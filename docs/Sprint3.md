@@ -190,4 +190,12 @@ RESPONSE:
 This screenshot shows the creation of the database that will store the values from the website.
 ![Screenshot 2023-03-01 235611](https://user-images.githubusercontent.com/88696930/222335181-860fdc53-2b48-4835-9eca-fbba51a73c31.jpg)
 
+This screenshot shows how passwords are being sent into databases thorugh use of golang which is accessing and posting information to the database.
+![image](https://user-images.githubusercontent.com/88696930/228712731-128b18e8-c7af-4089-af78-a85e93a50ed0.png)
+
+These are some curret issues that occur due to servers shutting down instantly for some reason I cannot figure out as of right now. 
+![image](https://user-images.githubusercontent.com/88696930/228716858-dfa03a4f-3a68-4575-a173-229b08f2a333.png)
+
+
+
 
