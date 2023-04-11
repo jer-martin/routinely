@@ -64,28 +64,53 @@
     <div class="clr-col-8" style="padding-right:3%">
 
 
-      <clr-tabs class="tabs" [ngStyle]="{'background':colorHSL, 'color':textColor}">
+      <!-- <clr-tabs class="tabs" [ngStyle]="{'background':colorHSL, 'color':textColor}">
         <clr-tab>
-          <button clrTabLink id="link1">Month</button>
-          <clr-tab-content id="content1" *clrIfActive>
-            <div class="card" #cardContainer>
-              <app-monthview></app-monthview>
+          <button clrTabLink id="link1" (click)="activeTab = 'month'">Month</button>
+          <ng-container *ngIf="activeTab === 'month'">
+            <clr-tab-content id="content1" *clrIfActive>
+              <div class="card" #cardContainer>
+                <app-monthview (switchTab)="onSwitchTab($event)"></app-monthview>
+              </div>
+            </clr-tab-content>
+          </ng-container>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink id="link2" (click)="activeTab = 'week'">Week</button>
+          <ng-container *ngIf="activeTab === 'week'">
+            <clr-tab-content id="content2" *clrIfActive>
+              <app-weekview></app-weekview>
+            </clr-tab-content>
+          </ng-container>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink id="link3" (click)="activeTab = 'day'">Day</button>
+          <ng-container *ngIf="activeTab === 'day'">
+            <clr-tab-content id="content3" *clrIfActive>
+              <app-dayview></app-dayview>
+            </clr-tab-content>
+          </ng-container>
+        </clr-tab>
+      </clr-tabs> -->
 
-            </div>
-          </clr-tab-content>
-        </clr-tab>
-        <clr-tab>
-          <button clrTabLink>Week</button>
-          <clr-tab-content> <!-- removed *clrIfActive="true" bc was messing with default tab -->
-            <app-weekview> </app-weekview>
-          </clr-tab-content>
-        </clr-tab>
-        <clr-tab>
-          <button clrTabLink>Day</button>
-          <clr-tab-content> <!-- removed *clrIfActive="true" bc was messing with default tab -->
-            <app-dayview> </app-dayview>
-          </clr-tab-content>
-        </clr-tab>
-      </clr-tabs>
+        
+        <ul class="tabs">
+          <li><a (click)="activeTab = 'month'" [class.active]="activeTab === 'month'">Month</a></li>
+          <li><a (click)="activeTab = 'week'" [class.active]="activeTab === 'week'">Week</a></li>
+          <li><a (click)="activeTab = 'day'" [class.active]="activeTab === 'day'">Day</a></li>
+        </ul>
+        <div class="tab-content">
+          <div *ngIf="activeTab === 'month'">
+            <app-monthview (switchTab)="onSwitchTab($event)"></app-monthview>
+          </div>
+          <div *ngIf="activeTab === 'week'">
+            <app-weekview></app-weekview>
+          </div>
+          <div *ngIf="activeTab === 'day'">
+            <app-dayview></app-dayview>
+          </div>
+        </div>
+      
+
     </div>
   </div>

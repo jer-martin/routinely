@@ -98,5 +98,11 @@ export class WeekviewComponent {
       console.log("suinday")
     }
   }
+
+  // return div id
+  getDayId(day: number) {
+    return "day" + day;
+  }
+
 }
 
