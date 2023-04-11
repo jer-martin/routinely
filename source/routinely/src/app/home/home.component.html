@@ -94,11 +94,11 @@
       </clr-tabs> -->
 
         
-        <ul class="tabs">
-          <li><a (click)="activeTab = 'month'" [class.active]="activeTab === 'month'">Month</a></li>
-          <li><a (click)="activeTab = 'week'" [class.active]="activeTab === 'week'">Week</a></li>
-          <li><a (click)="activeTab = 'day'" [class.active]="activeTab === 'day'">Day</a></li>
-        </ul>
+      <ul class="tabs">
+        <li><a (click)="activeTab = 'month'" [class.active]="activeTab === 'month'" [ngStyle]="{'background-color': activeTab === 'month' ? colorHSL : '', 'color': activeTab === 'month' ? textColor : ''}">Month</a></li>
+        <li><a (click)="activeTab = 'week'" [class.active]="activeTab === 'week'" [ngStyle]="{'background-color': activeTab === 'week' ? colorHSL : '', 'color': activeTab === 'week' ? textColor : ''}">Week</a></li>
+        <li><a (click)="activeTab = 'day'" [class.active]="activeTab === 'day'" [ngStyle]="{'background-color': activeTab === 'day' ? colorHSL : '', 'color': activeTab === 'day' ? textColor : ''}">Day</a></li>
+      </ul>
         <div class="tab-content">
           <div *ngIf="activeTab === 'month'">
             <div class="card" #cardContainer>
