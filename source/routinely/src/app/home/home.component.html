@@ -101,13 +101,20 @@
         </ul>
         <div class="tab-content">
           <div *ngIf="activeTab === 'month'">
-            <app-monthview (switchTab)="onSwitchTab($event)"></app-monthview>
+            <div class="card" #cardContainer>
+              
+              <app-monthview (switchTab)="onSwitchTab($event)"></app-monthview>
+
+            </div>
           </div>
           <div *ngIf="activeTab === 'week'">
-            <app-weekview></app-weekview>
+            <div class="card" #cardContainer>
+              <app-weekview></app-weekview>
+            </div>
           </div>
           <div *ngIf="activeTab === 'day'">
-            <app-dayview></app-dayview>
+            <div class="card" #cardContainer>
+              <app-dayview></app-dayview>
           </div>
         </div>
       

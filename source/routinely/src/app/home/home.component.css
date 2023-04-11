@@ -115,3 +115,18 @@ h3 {
   background: hsl(198, 78%, 78%);
   color: #333;
 }
+
+.card {
+  margin-top: 0vh;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-section,
+.right-section {
+  display: flex;
+  align-items: center;
+}
