@@ -38,18 +38,31 @@
 
   <div class="card">
     <div class="card-header">
-      <div style="display: flex; max-height: 0px;">
+      <!-- <div style="display: flex; max-height: 0px;">
 
         <app-event-modal style="margin-left: auto"></app-event-modal>
-      </div>
+      </div> -->
 
-      <div class="monthweekcontainer">
+      <!-- <div class="monthweekcontainer">
         <div class="month-container">
           <cds-icon shape="angle" direction="left" class="arrow-button" id="left-arrow"
             (click)="iterateWeekDown()"></cds-icon>
           <h3 class="month-string">Week of {{month}}, {{dayWeekStart}} {{year}}</h3>
           <cds-icon shape="angle" direction="right" class="arrow-button" id="right-arrow"
             (click)="iterateWeekUp()"></cds-icon>
+        </div>
+      </div> -->
+
+      <div class="header-content">
+        <div class="left-section">
+          <cds-icon shape="angle" direction="left" class="arrow-button" id="left-arrow" (click)="iterateWeekDown()"></cds-icon>
+          <div class="month-year-container">
+            <h3 class="month-string">Week of {{month}}, {{dayWeekStart}} {{year}}</h3>
+          </div>
+        </div>
+        <div class="right-section">
+          <cds-icon shape="angle" direction="right" class="arrow-button" id="right-arrow" (click)="iterateWeekUp()"></cds-icon>
+          <app-event-modal></app-event-modal>
         </div>
       </div>
 

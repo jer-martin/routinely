@@ -15,6 +15,30 @@ h3 {
     user-select: none;
 }
 
+.header-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-section,
+.right-section {
+  display: flex;
+  align-items: center;
+}
+
+.month-year-container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.month-string {
+  pointer-events: auto;
+}
 
 
 .nav-link {

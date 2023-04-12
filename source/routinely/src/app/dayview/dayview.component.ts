@@ -9,7 +9,26 @@ import { SharerService } from '../sharer.service';
 })
 export class DayviewComponent {
   
-    constructor(private sharerService: SharerService) { }
+    times: string[] = [];
+    events: { time: string; title: string }[] = [
+      { time: '09:30', title: 'Meeting with team' },
+      { time: '14:00', title: 'Project deadline' },
+      { time: '16:00', title: 'Call with client' },
+    ];
+
+    generateTimes(): void {
+      for (let i = 0; i < 24; i++) {
+        for (let j = 0; j < 60; j += 30) {
+          const hour = i.toString().padStart(2, '0');
+          const minute = j.toString().padStart(2, '0');
+          this.times.push(`${hour}:${minute}`);
+        }
+      }
+    }
+
+    constructor(private sharerService: SharerService) { 
+      this.generateTimes();
+    }
   
     color: string = this.sharerService.getColor();
     textcolor: string = this.sharerService.getTextColor(); 
