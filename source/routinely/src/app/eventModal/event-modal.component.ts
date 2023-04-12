@@ -1,4 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, ViewChild, EventEmitter, Output } from "@angular/core";
 import { SharerService } from "../sharer.service";
 import { DateTime, Duration, DurationUnit, Interval } from 'luxon';
 import { firstValueFrom,lastValueFrom } from "rxjs";
@@ -24,7 +24,11 @@ export class EventModalComponent {
   startDate : Date | undefined;
   endDate : Date | undefined;
   recurringEvent = false;
+  immutableEvent = false;
   public eventList: IeventList[] =[]
+  catList: Array<string> = this.sharerService.getCategories();
+
+  @Output() eventAdded: EventEmitter<void> = new EventEmitter<void>();
 
   reset() {
     this.basic = false;
@@ -36,6 +40,7 @@ export class EventModalComponent {
     this.startDate = undefined;
     this.endDate = undefined;
     this.recurringEvent = false;
+    this.immutableEvent = false;
     // add code to reset button group
   }
 
@@ -49,6 +54,7 @@ export class EventModalComponent {
       eventCategory: this.eventCategory
       //description: this.description
     }))
+    this.eventAdded.emit();
     this.reset();
   }
   async loadEvents(){

@@ -9,11 +9,15 @@ import { DateTime } from 'luxon';
 export class SharerService {
   private calTimeSource = new BehaviorSubject<DateTime>(DateTime.local());
   currentCalTime = this.calTimeSource;
+  private catList: Array<string> = new Array<string>();
   private calTime: DateTime = DateTime.local(); // Provide an initial value to the calTime property
   private color: string = "blue";
   private eventStorage : Map<string, string[]> = new Map<string, string[]>(); // local storage for events (temp until we get databases working)
 
-  constructor() { }
+  constructor() {
+    // default, for now -- need to implement GET request
+    this.catList = ["Classes", "Clubs", "Social", "Exercise", "Other3"];
+  }
 
   changeCalTime(calTime: DateTime) {
     this.calTime = calTime;
@@ -33,6 +37,14 @@ export class SharerService {
       this.eventStorage.set(dt.toISO(), events);
     }
     // console.log(this.eventStorage.get(dt));
+  }
+
+  getCategories() {
+    return this.catList;
+  }
+
+  updCategories(newCatList: Array<string>) {
+    this.catList = newCatList;
   }
 
   getEvents() {

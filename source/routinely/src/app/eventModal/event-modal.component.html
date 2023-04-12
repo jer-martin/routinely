@@ -1,14 +1,18 @@
 <button type="button" class="btn btn-icon btn-link addEvent" (click)="basic = true">
   <cds-icon shape="plus" size="24" [ngStyle]="{color: colorHSL}"></cds-icon>
 </button>
-<clr-modal [clrModalOpen]="basic" (clrModalOpenChange)="reset()" [clrModalStaticBackdrop]="false">
+<clr-modal class="evM" [clrModalOpen]="basic" (clrModalOpenChange)="reset()" [clrModalStaticBackdrop]="false">
   <h3 class="modal-title">Add Event</h3>
   <div class="modal-body">
     <form clrForm id="form" clrLayout="vertical">
-      <clr-toggle-container>
+      <clr-toggle-container clrInline>
         <clr-toggle-wrapper>
           <input type="checkbox" clrToggle name="recurring" [(ngModel)]="recurringEvent"/>
           <label>Recurring</label>
+        </clr-toggle-wrapper>
+        <clr-toggle-wrapper>
+          <input type="checkbox" clrToggle name="immutable" [(ngModel)]="immutableEvent"/>
+          <label>Immutable</label>
         </clr-toggle-wrapper>
       </clr-toggle-container>
       <div class="clr-row">
@@ -21,11 +25,7 @@
         <label>Event Category</label>
         <clr-combobox required name="Category" placeholder="Choose event category" [(ngModel)]="eventCategory">
           <clr-options required>
-            <clr-option required clrValue="Classes">Classes</clr-option>
-            <clr-option required clrValue="Social">Social</clr-option>
-            <clr-option required clrValue="Exercise">Exercise</clr-option>
-            <clr-option required clrValue="Clubs">Clubs</clr-option>
-            <clr-option required clrValue="Other">Other</clr-option>
+            <clr-option *ngFor="let category of catList" required [clrValue]="category">{{category}}</clr-option>
           </clr-options>
         </clr-combobox>
       </clr-combobox-container>
@@ -75,6 +75,7 @@
           </div>
       </div>
       </div>
+      <button class="btn" (click)="basic=false" style="margin-top:1vw; float: right">Cancel</button>
       <button class="btn btn-primary" (click)="addEvent()" style="margin-top:1vw; float: right">Submit</button>
     </form>
   </div>

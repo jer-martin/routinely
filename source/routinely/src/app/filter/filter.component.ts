@@ -12,6 +12,7 @@ export class FilterComponent {
   constructor(private router: Router, private sharerService: SharerService) { }
 
   colorHSL: string = this.sharerService.getAccentHSL();
+  catList: Array<string> = this.sharerService.getCategories();
 
   goToHome() {
     this.router.navigate(['']);

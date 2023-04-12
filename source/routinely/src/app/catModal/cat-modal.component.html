@@ -1,0 +1,17 @@
+<div class="card-footer">
+  <button class="btn btn-sm btn-link" (click)="basic = true" [ngStyle]="{'color': colorHSL} ">Edit Categories</button>
+</div>
+<clr-modal [clrModalSize]="'sm'" [clrModalOpen]="basic" (clrModalOpenChange)="reset()" [clrModalStaticBackdrop]="false">
+  <h3 class="modal-title">Edit Categories</h3>
+  <div class="modal-body">
+    <form clrForm id="form" clrLayout="vertical">
+      <clr-input-container *ngFor="let category of catList;" >
+        <input placeholder="Enter category name" clrInput name="category" [value]="category" required/>
+      </clr-input-container>
+      <div class="text-center" style="margin-top:1vw;">
+        <button class="btn btn-primary" (click)="basic=false" style="margin-top:1vw; display: inline-block;">Submit</button>
+        <button class="btn" (click)="basic=false" style="margin-top:1vw; display: inline-block;">Cancel</button>
+      </div>
+    </form>
+  </div>
+</clr-modal>

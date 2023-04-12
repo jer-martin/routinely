@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common'
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ClarityModule } from "@clr/angular";
@@ -16,6 +17,7 @@ import { ScheduleComponent } from './schedule/schedule.component';
 import { FilterComponent } from './filter/filter.component';
 import { SettingsComponent } from './settings/settings.component';
 import { EventModalComponent } from "./eventModal/event-modal.component";
+import { CatModalComponent } from "./catModal/cat-modal.component";
 
 import { CalendarSettingsComponent } from './calendar-settings/calendar-settings.component';
 import { PreferencesComponent } from './preferences/preferences.component';
@@ -34,6 +36,7 @@ import { MonthviewComponent } from './monthview/monthview.component';
     ScheduleComponent,
     FilterComponent,
     SettingsComponent,
+    CatModalComponent,
     EventModalComponent,
     CalendarSettingsComponent,
     PreferencesComponent,
@@ -50,6 +53,7 @@ import { MonthviewComponent } from './monthview/monthview.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
+    CommonModule,
     ReactiveFormsModule,
     HttpClientModule
   ],
