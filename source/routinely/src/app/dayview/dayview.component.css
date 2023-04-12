@@ -174,5 +174,22 @@ ul.tabs {
   .event-title {
     flex-grow: 1;
   }
+ 
+  .card {
+    width: 100%; /* Make card width equal to the container width */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
   
+  .card-header {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0; /* Prevent the header from shrinking */
+  }
+  
+  .day-view {
+    max-height: calc(100vh - 200px); /* Set a specific height for the day view, subtracting the header height */
+    overflow-y: auto; /* Enable vertical scrolling within the day view */
+  }
   
