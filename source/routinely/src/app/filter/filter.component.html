@@ -12,7 +12,10 @@
           <clr-control-helper>Select the categories you wish to filter <b>out.</b></clr-control-helper>
         </clr-checkbox-container>
       </div>
-      <app-cat-modal></app-cat-modal>
+      <div class="add-category">
+        <cds-icon shape="plus" size="24" [ngStyle]="{color: colorHSL}" (click)="toggleInput()"></cds-icon>
+        <input clrInput class="catInput" *ngIf="showInput" [(ngModel)]="newCategory" (keydown.enter)="addCategory()" placeholder="Enter new category" />
+      </div>
     </div>
   </div>
 </div>

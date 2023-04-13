@@ -11,3 +11,33 @@
 .card-footer {
   padding-right: 70px;
 }
+
+.clr-control-helper {
+  margin-bottom: 16px;
+}
+
+.add-category {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}
+
+cds-icon {
+  margin-left: 1.5vh;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+
+.catInput {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: .5vw;
+}
+
+
+
+
+
+

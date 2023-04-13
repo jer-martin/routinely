@@ -13,8 +13,24 @@ export class FilterComponent {
 
   colorHSL: string = this.sharerService.getAccentHSL();
   catList: Array<string> = this.sharerService.getCategories();
+  showInput: boolean = false;
+  newCategory: string = '';
 
   goToHome() {
     this.router.navigate(['']);
   }
+
+  toggleInput() {
+    this.showInput = !this.showInput;
+  }
+
+  addCategory() {
+    if (this.newCategory != '') {
+      this.catList.push(this.newCategory);
+      this.newCategory = '';
+      this.showInput = false;
+    }
+    this.sharerService.updCategories(this.catList);
+  }
+
 }
