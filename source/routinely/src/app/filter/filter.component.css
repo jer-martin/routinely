@@ -6,6 +6,7 @@
 .card-text {
   padding-top: 0;
   margin-top: 0;
+  text-decoration: line-through;
 }
 
 .card-footer {
@@ -25,8 +26,8 @@
 
 cds-icon {
   margin-left: 1.5vh;
-  margin-top: 1vh;
-  margin-bottom: 1vh;
+  /*margin-top: 1vh;*/
+  /*margin-bottom: 1vh;*/
 }
 
 .catInput {
@@ -36,6 +37,9 @@ cds-icon {
   margin-left: .5vw;
 }
 
+.strikethrough {
+  text-decoration: line-through;
+}
 
 
 

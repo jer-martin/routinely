@@ -26,7 +26,7 @@ export class EventModalComponent {
   recurringEvent = false;
   immutableEvent = false;
   public eventList: IeventList[] =[]
-  catList: Array<string> = this.sharerService.getCategories();
+  catList: Set<string> = this.sharerService.getCategories();
 
   @Output() eventAdded: EventEmitter<void> = new EventEmitter<void>();
 

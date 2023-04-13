@@ -5,15 +5,17 @@
       <div class="card-block">
         <clr-checkbox-container>
           <clr-checkbox-wrapper *ngFor="let category of catList">
-            <input type="checkbox" clrCheckbox [value]="category" name="{{category}}" />
-            <label>{{category}}</label>
+            <input [indeterminate]="showInput" [disabled]="showInput" type="checkbox" clrCheckbox [value]="category" name="{{category}}" />
+            <label [ngClass]="{'strikethrough': category === hoveredCategory && showInput}" (click)="showInput ? removeCat(category) : $event.stopPropagation()" (mouseenter)="onCheckboxHover(category)" (mouseleave)="onCheckboxHover('')">{{category}}</label>
           </clr-checkbox-wrapper>
-          <br/>
-          <clr-control-helper>Select the categories you wish to filter <b>out.</b></clr-control-helper>
+          <clr-control-helper *ngIf="catList.size != 0">Select the categories you wish to filter <b>out.</b></clr-control-helper>
+          <clr-control-helper *ngIf="catList.size === 0">You currently have no categories. Click the button below to create one!</clr-control-helper>
         </clr-checkbox-container>
       </div>
       <div class="add-category">
-        <cds-icon shape="plus" size="24" [ngStyle]="{color: colorHSL}" (click)="toggleInput()"></cds-icon>
+        <button type="button" class="btn btn-icon btn-link" title="Edit categories" >
+        <cds-icon shape="pencil" size="24" [ngStyle]="{color: colorHSL}" (click)="toggleInput()"></cds-icon>
+        </button>
         <input clrInput class="catInput" *ngIf="showInput" [(ngModel)]="newCategory" (keydown.enter)="addCategory()" placeholder="Enter new category" />
       </div>
     </div>

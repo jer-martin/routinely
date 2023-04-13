@@ -12,9 +12,18 @@ export class FilterComponent {
   constructor(private router: Router, private sharerService: SharerService) { }
 
   colorHSL: string = this.sharerService.getAccentHSL();
-  catList: Array<string> = this.sharerService.getCategories();
+  catList: Set<string> = this.sharerService.getCategories();
   showInput: boolean = false;
   newCategory: string = '';
+  hoveredCategory = '';
+
+  onCheckboxHover(category: string) {
+    this.hoveredCategory = category;
+  }
+
+  removeCat(category: string) {
+    this.catList.delete(category);
+  }
 
   goToHome() {
     this.router.navigate(['']);
@@ -25,8 +34,8 @@ export class FilterComponent {
   }
 
   addCategory() {
-    if (this.newCategory != '') {
-      this.catList.push(this.newCategory);
+    if (this.newCategory != '' && !this.catList.has(this.newCategory)) {
+      this.catList.add(this.newCategory);
       this.newCategory = '';
       this.showInput = false;
     }

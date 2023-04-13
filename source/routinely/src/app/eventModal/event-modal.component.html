@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-icon btn-link addEvent" (click)="basic = true">
+<button type="button" class="btn btn-icon btn-link addEvent" title="Add new event" (click)="basic = true">
   <cds-icon shape="plus" size="24" [ngStyle]="{color: colorHSL}"></cds-icon>
 </button>
 <clr-modal class="evM" [clrModalOpen]="basic" (clrModalOpenChange)="reset()" [clrModalStaticBackdrop]="false">
