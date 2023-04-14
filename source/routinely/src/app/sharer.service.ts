@@ -10,6 +10,8 @@ export class SharerService {
   private calTimeSource = new BehaviorSubject<DateTime>(DateTime.local());
   currentCalTime = this.calTimeSource;
   private calTime: DateTime = DateTime.local(); // Provide an initial value to the calTime property
+  private color: string = "blue";
+  private eventStorage : Map<string, string[]> = new Map<string, string[]>(); // local storage for events (temp until we get databases working)
 
   constructor() { }
 
@@ -18,7 +20,75 @@ export class SharerService {
     this.calTimeSource.next(calTime);
   }
 
+  addEvent(dt: DateTime, name : string) { // only dates and names necessary for now
+    // key is DateTime, val is array of event names (strings)
+    // console.log(dt);
+    // console.log(name);
+    if (this.eventStorage.get(dt.toISO()) != undefined) {
+      // @ts-ignore
+      this.eventStorage.set(dt.toISO(), this.eventStorage.get(dt.toISO()).concat(name));
+    }
+    else {
+      let events: string[] = [name];
+      this.eventStorage.set(dt.toISO(), events);
+    }
+    // console.log(this.eventStorage.get(dt));
+  }
+
+  getEvents() {
+    return this.eventStorage;
+  }
+
   getCalTimeSource() {
     return this.calTimeSource;
   }
+
+  getColor() {
+    return this.color;
+  }
+
+  setColor(color: string) {
+    this.color = color;
+  }
+
+  getTextColor() {
+    if (this.color === "purple" || this.color === "slate") {
+      return "white";
+    }
+    else {
+      return "black";
+    }
+  }
+
+  getColorHSL() {
+    if (this.color === "blue") {
+      return "hsl(198, 78%, 78%)";
+    }
+    else if (this.color === "purple") {
+      return "hsl(282, 44%, 62%)";
+    }
+    else if (this.color === "slate") {
+      return "hsl(198, 0%, 30%)";
+    }
+    else {
+      return "hsl(0, 0%, 0%)";
+    }
+  }
+
+  getAccentHSL() {
+    if (this.color === "blue") {
+      return "hsl(198, 100%, 32%)";
+    }
+    else if (this.color === "purple") {
+      return "hsl(282, 44%, 52%)";
+    }
+    else if (this.color === "slate") {
+      return "hsl(198, 0%, 20%)";
+    }
+    else {
+      return "hsl(0, 0%, 0%)";
+    }
+  }
+
+
 }

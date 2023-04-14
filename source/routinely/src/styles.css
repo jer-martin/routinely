@@ -26,3 +26,9 @@ button:focus, button:active:focus, button.active:focus {
     font-size: 12pt;
     font-family: Metropolis;
 }
+
+ul.tabs {
+    margin-top: 1vh;
+    padding: 0;
+    font-family: Metropolis;
+  }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
+import { SharerService } from '../sharer.service';
 
 @Component({
   selector: 'app-filter',
@@ -8,7 +9,10 @@ import {Router} from "@angular/router";
 })
 export class FilterComponent {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private sharerService: SharerService) { }
+
+  colorHSL: string = this.sharerService.getAccentHSL();
+
   goToHome() {
     this.router.navigate(['']);
   }

@@ -27,6 +27,9 @@
       "node"
     ]
   },
+  "files": ["src/app/home/home.component.spec.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/app/home/home.component.spec.ts"],
+  "exclude": ["node_modules", "**/*.spec.ts"],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

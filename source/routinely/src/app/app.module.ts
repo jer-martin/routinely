@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { Router } from '@angular/router';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -22,6 +22,8 @@ import { PreferencesComponent } from './preferences/preferences.component';
 import { BugReportComponent } from './bug-report/bug-report.component';
 import { WeekviewComponent } from './weekview/weekview.component';
 import { DayModalComponent } from './day-modal/day-modal.component';
+import { DayviewComponent } from './dayview/dayview.component';
+import { MonthviewComponent } from './monthview/monthview.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { DayModalComponent } from './day-modal/day-modal.component';
     BugReportComponent,
     WeekviewComponent,
     DayModalComponent,
+    DayviewComponent,
+    MonthviewComponent,
   ],
 
   imports: [
@@ -46,7 +50,8 @@ import { DayModalComponent } from './day-modal/day-modal.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

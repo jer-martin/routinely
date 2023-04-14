@@ -1,4 +1,6 @@
 import { PreferencesComponent } from "src/app/preferences/preferences.component"
+import {genBackfillMonth, genDay, genMonth} from "../../src/app/home/home.component";
+import {DateTime} from "luxon";
 
 describe('template spec', () => {
   it('passes', () => {
@@ -28,5 +30,20 @@ describe('template spec', () => {
     // check sidebar link works
     cy.get('.bug-report').click()
   })
-  
+
+})
+
+describe('modal', () => {
+  it('passes', () => {
+    cy.visit('http://localhost:4200')
+    cy.get('.addEvent').click()
+    cy.get('.startdate').eq(8).should('be.disabled')
+    cy.get('.enddate').eq(8).should('be.disabled')
+    cy.get('.startdate').eq(8).should('not.be.disabled')
+    cy.contains('Recurring').click()
+    cy.get('.startdate').eq(8).should('not.be.disabled')
+    cy.get('.enddate').eq(8).should('not.be.disabled')
+    cy.get('.startdate').eq(8).should('be.disabled')
+  })
+
 })
