@@ -112,7 +112,7 @@ export class MonthviewComponent {
   }
 
   ngAfterViewInit() {
-    
+
   }
 
   sendCalTime() {
@@ -120,7 +120,7 @@ export class MonthviewComponent {
   }
 
   getDay(time: DateTime, event: Event) {
-    
+
     if (!(event.target instanceof HTMLElement)) {
       return;
     }
@@ -128,7 +128,7 @@ export class MonthviewComponent {
     let color = "";
     let dayNum = "";
     let month = "";
-  
+
     dayNum = box.innerText;
     // get the computed style of the clicked box
     const style = getComputedStyle(box);
@@ -160,8 +160,8 @@ export class MonthviewComponent {
     // navigate to the day view
     this.switchToTab(3);
   }
-    
-    
+
+
   // get number of month from string
   getMonthNum(month: string) {
     if (month === 'January') {
@@ -229,7 +229,7 @@ function CalendarMonth(dt: DateTime, events: Map<string, string[]>) {
       dayEvents.forEach(event => {
         const button = document.createElement('button');
         button.innerText = event;
-        button.classList.add('btn', 'btn-primary', 'btn-sm', 'align-items-center', 'justify-content-center');
+        button.classList.add('btn', 'btn-primary', 'btn-event', 'btn-sm', 'align-items-center', 'justify-content-center');
         button.style.margin = 'auto';
         boxes[i].appendChild(button);
         console.log("match");

@@ -34,7 +34,7 @@ export class FilterComponent {
   }
 
   addCategory() {
-    if (this.newCategory != '' && !this.catList.has(this.newCategory)) {
+    if (this.newCategory != '' && !this.catList.has(this.newCategory)) { // should we add a maximum?
       this.catList.add(this.newCategory);
       this.newCategory = '';
       this.showInput = false;
