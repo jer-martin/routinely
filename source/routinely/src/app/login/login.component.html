@@ -8,7 +8,7 @@
         <div class="login-group">
             <clr-input-container>
                 <label class="clr-sr-only">Username</label>
-                <input type="text" name="username" clrInput placeholder="Username" [(ngModel)]="form.username"/>
+                <input type="text" name="username" clrInput placeholder="Username" [(ngModel)]="form.username" (ngModelChange)="errorCheck()"/>
             </clr-input-container>
             <clr-password-container>
                 <label class="clr-sr-only">Password</label>
@@ -18,10 +18,10 @@
                 <label>Remember me</label>
                 <input type="checkbox" name="rememberMe" clrCheckbox [(ngModel)]="form.rememberMe"/>
             </clr-checkbox-wrapper>
-            <div class="error active">
+            <div class="error">
                 <span class="error-text">Invalid user name or password</span>
             </div>
-            <button type="submit" class="btn btn-primary">NEXT</button>
+            <button type="submit" class="btn btn-primary" (click)="loginRequest()">SUBMIT</button>
             
         </div>
     </form>
