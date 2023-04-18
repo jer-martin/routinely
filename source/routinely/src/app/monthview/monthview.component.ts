@@ -150,7 +150,7 @@ export class MonthviewComponent {
     }
 
     // print month + daynum
-    console.log(month + ' ' + dayNum);
+    // console.log(month + ' ' + dayNum);
 
     // create a new datetime object with the month and daynum
     let monthNum = this.getMonthNum(month);
@@ -216,23 +216,24 @@ function CalendarMonth(dt: DateTime, events: Map<string, string[]>) {
     boxes[i].innerHTML = '';
   }
   days.map((day, i) => {
-    console.log(events);
-    console.log(day.start.toISO());
+    // console.log(events);
+    // console.log(day.start.toISO());
     const dayEvents = events.get(day.start.toISO());
-    console.log(dayEvents);
+    // console.log(dayEvents);
     const label = document.createElement('label');
     label.style.display = 'flex';
     label.innerText = day.start.day.toString();
     boxes[i].appendChild(label);
-    // @ts-ignore
     if (dayEvents){
-      dayEvents.forEach(event => {
+      dayEvents.forEach((event, index) => {
         const button = document.createElement('button');
         button.innerText = event;
         button.classList.add('btn', 'btn-primary', 'btn-event', 'btn-sm', 'align-items-center', 'justify-content-center');
         button.style.margin = 'auto';
+        button.style.top = (1.8 * (index+1)).toString() + 'rem';
+        // button.style.top = event.inde
         boxes[i].appendChild(button);
-        console.log("match");
+        // console.log("match");
       })
     }
     if (day.start.month != dt.month) {

@@ -1,3 +1,4 @@
+
 <button type="button" class="btn btn-icon btn-link addEvent" title="Add new event" (click)="basic = true">
   <cds-icon shape="plus" size="24" [ngStyle]="{color: colorHSL}"></cds-icon>
 </button>
@@ -10,56 +11,56 @@
           <input type="checkbox" clrToggle name="recurring" [(ngModel)]="recurringEvent"/>
           <label>Recurring</label>
         </clr-toggle-wrapper>
-        <clr-toggle-wrapper>
-          <input type="checkbox" clrToggle name="immutable" [(ngModel)]="immutableEvent"/>
-          <label>Immutable</label>
-        </clr-toggle-wrapper>
+<!--        <clr-toggle-wrapper>-->
+<!--          <input type="checkbox" clrToggle name="immutable" [(ngModel)]="immutableEvent"/>-->
+<!--          <label>Immutable</label>-->
+<!--        </clr-toggle-wrapper>-->
       </clr-toggle-container>
       <div class="clr-row">
       <div class="clr-col-6">
       <clr-input-container>
         <label>Event Name</label>
-        <input clrInput placeholder="Enter event name" required name="name" [(ngModel)]="eventName"/>
+        <input clrInput placeholder="Enter event name" name="name" [(ngModel)]="eventName"/>
       </clr-input-container>
-      <clr-combobox-container required>
+      <clr-combobox-container>
         <label>Event Category</label>
-        <clr-combobox required name="Category" placeholder="Choose event category" [(ngModel)]="eventCategory">
-          <clr-options required>
-            <clr-option *ngFor="let category of catList" required [clrValue]="category">{{category}}</clr-option>
+        <clr-combobox name="Category" placeholder="Choose event category" [(ngModel)]="eventCategory">
+          <clr-options>
+            <clr-option *ngFor="let category of catList" [clrValue]="category">{{category}}</clr-option>
           </clr-options>
         </clr-combobox>
       </clr-combobox-container>
-        <clr-date-container required>
+        <clr-date-container>
           <label>Date</label>
-          <input type="date" required [disabled]="recurringEvent" clrDate class="date" [(clrDate)]="eventDate"/>
+          <input type="date" [disabled]="recurringEvent" clrDate class="date" [(clrDate)]="dt"/>
         </clr-date-container>
         <clr-input-container style="display: inline-block;">
           <label>Start Time</label>
-          <input class="input-time" min="1" max="12" clrInput type="number" placeholder="H" required name="sh"/>
-          <input class="input-time" min="0" max="59" clrInput type="number" placeholder="M" required name="sm"/>
+          <input class="input-time" [(ngModel)]="startTimeH" min="1" max="12" clrInput type="number" placeholder="H" name="sh"/>
+          <input class="input-time" [(ngModel)]="startTimeM" min="0" max="59" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" clrInput type="number" placeholder="M" name="sm"/>
         </clr-input-container>
         <clr-radio-container clrInline style="display: inline-block;">
           <clr-radio-wrapper>
-            <input type="radio" clrRadio name="options" required value="option1" />
+            <input type="radio" clrRadio name="options" value="option1" />
             <label>AM</label>
           </clr-radio-wrapper>
           <clr-radio-wrapper>
-            <input type="radio" clrRadio name="options" required value="option2" />
+            <input type="radio" clrRadio name="options" value="option2" />
             <label>PM</label>
           </clr-radio-wrapper>
         </clr-radio-container>
         <clr-input-container style="display: inline-block;">
           <label>End Time</label>
-          <input class="input-time" min="1" max="12" clrInput type="number" placeholder="H" required name="eh"/>
-          <input class="input-time" min="0" max="59" clrInput type="number" placeholder="M" required name="em"/>
+          <input class="input-time" [(ngModel)]="endTimeH" min="1" max="12" clrInput type="number" placeholder="H" name="eh"/>
+          <input class="input-time" [(ngModel)]="endTimeM" min="0" max="59" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;"  clrInput type="number" placeholder="M" name="em"/>
         </clr-input-container>
         <clr-radio-container style="display: inline-block;" clrInline>
           <clr-radio-wrapper>
-            <input type="radio" clrRadio name="options2" required value="option1" />
+            <input type="radio" clrRadio name="options2" value="option1" />
             <label>AM</label>
           </clr-radio-wrapper>
           <clr-radio-wrapper>
-            <input type="radio" clrRadio name="options2" required value="option2" />
+            <input type="radio" clrRadio name="options2" value="option2" />
             <label>PM</label>
           </clr-radio-wrapper>
         </clr-radio-container>
@@ -67,11 +68,11 @@
         <div class="clr-col-6" style="float: right">
       <clr-date-container style="float: right">
         <label>Start Date</label>
-        <input type="date" id="startDate" [required]="recurringEvent" class="startdate" [disabled]="!recurringEvent" clrDate [(clrDate)]="startDate"/>
+        <input type="date" id="startDate" class="startdate" [disabled]="!recurringEvent" clrDate [(clrDate)]="startRecDate"/>
       </clr-date-container>
       <clr-date-container style="float: right">
         <label>End Date</label>
-        <input type="date" id="endDate" [required]="recurringEvent" class="enddate" [disabled]="!recurringEvent" clrDate [(clrDate)]="endDate"/>
+        <input type="date" id="endDate" class="enddate" [disabled]="!recurringEvent" clrDate [(clrDate)]="endRecDate"/>
       </clr-date-container>
           <div class="btn-group btn-icon btn-group-sm" style="margin-top: 2vw; display:inline-flex; margin-left:12%">
             <div class="checkbox btn" [ngClass]="{'disabled': !recurringEvent}" style="width:24px; height:24px; ">
@@ -82,7 +83,7 @@
               <input type="checkbox" [disabled]="!recurringEvent" id="btn-demo-check-2">
               <label for="btn-demo-check-2">M</label>
             </div>
-            <div class="checkbox btn" [ngClass]="{'disabled': !recurringEvent}" style="width:24px; height:24px;">
+            <div class="checkbox btn"  [ngClass]="{'disabled': !recurringEvent}" style="width:24px; height:24px;">
               <input type="checkbox" [disabled]="!recurringEvent" id="btn-demo-check-3">
               <label for="btn-demo-check-3">T</label>
             </div>
@@ -90,7 +91,7 @@
               <input type="checkbox" [disabled]="!recurringEvent" id="btn-demo-check-4">
               <label for="btn-demo-check-4">W</label>
             </div>
-            <div class="checkbox btn" [ngClass]="{'disabled': !recurringEvent}" style="width:24px; height:24px;">
+            <div class="checkbox btn"  [ngClass]="{'disabled': !recurringEvent}" style="width:24px; height:24px;">
               <input type="checkbox" [disabled]="!recurringEvent" id="btn-demo-check-5">
               <label for="btn-demo-check-5">R</label>
             </div>

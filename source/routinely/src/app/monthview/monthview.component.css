@@ -36,6 +36,7 @@ h3 {
   /*height: 10%;*/
   display: flex;
   user-select: none;
+  position: relative;
   /*font-size: 70%;*/
   border: 2px solid hsl(198, 0%, 80%);
   background-color: hsl(198, 0%, 98%);
@@ -53,7 +54,8 @@ h3 {
 :host ::ng-deep .btn-event {
   min-width: 6.8vw;
   max-width: 6.8vw;
-  position: relative;
+  position: absolute;
+  /*top: 2rem;*/
   display: block;
   justify-content: center;
 }
