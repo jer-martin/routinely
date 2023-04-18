@@ -1,5 +1,10 @@
 package structs
 
+type UserInfo struct {
+	ID    int
+	token string
+}
+
 type User struct {
 	ID       int    `json:"id"`
 	Username string `json:"username"`

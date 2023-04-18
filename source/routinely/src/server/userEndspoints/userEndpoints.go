@@ -28,7 +28,7 @@ func SetUpRouter() *gin.Engine {
 
 	router.POST("/create-table", createTable)
 	router.POST("/login", Login)
-	router.POST("/createUser",createUser)
+	router.POST("/createUser", createUser)
 	api := router.Group("/api").Use(middleware.AuthMiddleware())
 	{
 		api.GET("/userList", getAllUsers)
@@ -81,8 +81,12 @@ func Login(c *gin.Context) {
 		c.String(http.StatusInternalServerError, "unable to generate JWT")
 		return
 	}
+	var id = getUserIDByUsername(user.Username)
+	var userInfo structs.UserInfo
+	userInfo.ID = id
+	userInfo.TOKEN = validToken
+	c.JSON(http.StatusOK, gin.H{"message": "login successfully", "Token": validToken, "userID": id})
 
-	c.JSON(http.StatusOK, gin.H{"message": "login successfully", "Token": validToken})
 }
 
 func createUser(c *gin.Context) {
@@ -151,6 +155,8 @@ func getAllUsers(c *gin.Context) {
 }
 
 func DeleteEvent(c *gin.Context) {
+	//todo
+	//add token and user id
 	eventID := c.Query("eventID")
 	if eventID == "" {
 		c.String(http.StatusBadRequest, "missing ID of the event in request parameters")
@@ -292,22 +298,25 @@ func findUser(c *gin.Context) bool {
 	return false
 }
 
-// func getAllUsers(c *gin.Context) {
-// 	var users User
-// 	c.JSON(http.StatusOK, users)
-// }
+func getUserIDByUsername(username string) int {
+	rows, err := config.AppConfig.SQL.Query(`select username,password,id from users where username = ?`, username)
+	if err != nil {
+		return -1
+	}
+	defer rows.Close()
+	var userName, password string
+	var userID int
+	for rows.Next() {
+		err := rows.Scan(&userName, &password, &userID)
+		if err != nil {
+			return -1
+		}
+	}
 
-// func createUser(c *gin.Context) {
-// 	var newUser User
-
-// 	c.BindJSON((&newUser))
-// 	for i := 0; i < len(users); i++ {
-// 		if strings.EqualFold(users[i].Username, newUser.Username) {
-// 			c.IndentedJSON(http.StatusBadGateway, "Username already exists , please enter new username")
-// 			return
-// 		}
-// 	}
-
-// 	users = append(users, newUser)
-// 	c.IndentedJSON(http.StatusOK, "Successfully added user")
-// }
+	var user = structs.User{
+		Username: userName,
+		Password: password,
+		ID:       userID,
+	}
+	return user.ID
+}
