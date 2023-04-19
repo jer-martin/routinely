@@ -60,6 +60,11 @@ h3 {
   justify-content: center;
 }
 
+::ng-deep .btn-event:hover{
+  background-color: hsla(0, 91%, 38%, 0.945) !important;
+  border-color:hsla(0, 64%, 10%, 0.945) !important;
+}
+
 .box:hover {
   background-color: hsl(198, 78%, 78%, 20%);
 }

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { DateTime, Duration, DurationUnit, Interval } from 'luxon';
 import { TabSwitchService } from '../tab-switch.service';
 import { SharerService } from '../sharer.service';
+import { event } from 'jquery';
 
 @Component({
   selector: 'app-monthview',
@@ -12,7 +13,7 @@ import { SharerService } from '../sharer.service';
 export class MonthviewComponent {
   @Output() switchTab = new EventEmitter<number>();
 
-
+  
   constructor(private router: Router,private sharerService: SharerService, private renderer: Renderer2, private tabSwitchService: TabSwitchService) { }
   goToLogin() {
     this.router.navigate(['/login']);
@@ -36,8 +37,7 @@ export class MonthviewComponent {
   month = this.calTime.monthLong;
   year = this.calTime.year;
 
-
-
+  
   monthOut() {
     return this.month;
   }
@@ -112,7 +112,6 @@ export class MonthviewComponent {
   }
 
   ngAfterViewInit() {
-
   }
 
   sendCalTime() {
@@ -122,6 +121,9 @@ export class MonthviewComponent {
   getDay(time: DateTime, event: Event) {
 
     if (!(event.target instanceof HTMLElement)) {
+      return;
+    }
+    if (event.target.classList.contains('btn-event')) {
       return;
     }
     const box = event.target as HTMLDivElement;
@@ -160,6 +162,8 @@ export class MonthviewComponent {
     // navigate to the day view
     this.switchToTab(3);
   }
+
+  
 
 
   // get number of month from string
@@ -328,6 +332,56 @@ export function genBackfillMonth(dt: DateTime): Interval {
   return Interval.fromDateTimes(prevMonthInterval.start, nextMonthInterval.end);
 }
 
+function logButtonHover(): void {
+  // Function to handle the mouseover event
+  function handleMouseOver(this: HTMLButtonElement): void {
+    // Store button text in temp variable
+    const originalText = this.textContent || '';
+
+    // Change current button text to X
+    this.textContent = 'X';
+
+    // Store the original text in the button's dataset for later retrieval
+    // Store the original text in the button's dataset for later retrieval
+    this.dataset['originalText'] = originalText;
+  }
+
+  // Function to handle the mouseout event
+  function handleMouseOut(this: HTMLButtonElement): void {
+    // Change current button text to temp variable (original text)
+    this.textContent = this.dataset['originalText'] || '';
+  }
+
+  // Function to attach event listeners to a button
+  function attachListenersToButton(button: HTMLButtonElement): void {
+    button.addEventListener('mouseover', handleMouseOver);
+    button.addEventListener('mouseout', handleMouseOut);
+  }
+
+  // Attach event listeners to existing buttons with the 'btn-event' class
+  const buttons: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.btn-event');
+  buttons.forEach(attachListenersToButton);
+
+  // Create a MutationObserver to watch for changes in the DOM
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+        mutation.addedNodes.forEach((node) => {
+          // Check if the added node is a button with the 'btn-event' class
+          if (node instanceof HTMLButtonElement && node.classList.contains('btn-event')) {
+            attachListenersToButton(node);
+          }
+        });
+      }
+    });
+  });
+
+  // Start observing the entire document for changes
+  observer.observe(document.body, { childList: true, subtree: true });
+}
+
+// Call the logButtonHover function after the DOM content is loaded
+document.addEventListener('DOMContentLoaded', logButtonHover);
 
 
 
