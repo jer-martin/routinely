@@ -29,6 +29,7 @@
   <div class="clr-row">
     <div class="clr-col-4" style="padding-left:3%">
       <app-filter></app-filter>
+      <app-todo></app-todo>
     </div>
     <!--        <div class="clr-col-4" style="padding-left:5vw">-->
     <!--          <div class="card">-->
@@ -64,28 +65,60 @@
     <div class="clr-col-8" style="padding-right:3%">
 
 
-      <clr-tabs class="tabs" [ngStyle]="{'background':colorHSL, 'color':textColor}">
+      <!-- <clr-tabs class="tabs" [ngStyle]="{'background':colorHSL, 'color':textColor}">
         <clr-tab>
-          <button clrTabLink id="link1">Month</button>
-          <clr-tab-content id="content1" *clrIfActive>
+          <button clrTabLink id="link1" (click)="activeTab = 'month'">Month</button>
+          <ng-container *ngIf="activeTab === 'month'">
+            <clr-tab-content id="content1" *clrIfActive>
+              <div class="card" #cardContainer>
+                <app-monthview (switchTab)="onSwitchTab($event)"></app-monthview>
+              </div>
+            </clr-tab-content>
+          </ng-container>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink id="link2" (click)="activeTab = 'week'">Week</button>
+          <ng-container *ngIf="activeTab === 'week'">
+            <clr-tab-content id="content2" *clrIfActive>
+              <app-weekview></app-weekview>
+            </clr-tab-content>
+          </ng-container>
+        </clr-tab>
+        <clr-tab>
+          <button clrTabLink id="link3" (click)="activeTab = 'day'">Day</button>
+          <ng-container *ngIf="activeTab === 'day'">
+            <clr-tab-content id="content3" *clrIfActive>
+              <app-dayview></app-dayview>
+            </clr-tab-content>
+          </ng-container>
+        </clr-tab>
+      </clr-tabs> -->
+
+
+      <ul class="tabs">
+        <li><a (click)="activeTab = 'month'" [class.active]="activeTab === 'month'" [ngStyle]="{'background-color': activeTab === 'month' ? colorHSL : '', 'color': activeTab === 'month' ? textColor : ''}">Month</a></li>
+        <li><a (click)="activeTab = 'week'" [class.active]="activeTab === 'week'" [ngStyle]="{'background-color': activeTab === 'week' ? colorHSL : '', 'color': activeTab === 'week' ? textColor : ''}">Week</a></li>
+        <li><a (click)="activeTab = 'day'" [class.active]="activeTab === 'day'" [ngStyle]="{'background-color': activeTab === 'day' ? colorHSL : '', 'color': activeTab === 'day' ? textColor : ''}">Day</a></li>
+      </ul>
+        <div class="tab-content">
+          <div *ngIf="activeTab === 'month'">
             <div class="card" #cardContainer>
-              <app-monthview></app-monthview>
+
+              <app-monthview (switchTab)="onSwitchTab($event)"></app-monthview>
 
             </div>
-          </clr-tab-content>
-        </clr-tab>
-        <clr-tab>
-          <button clrTabLink>Week</button>
-          <clr-tab-content> <!-- removed *clrIfActive="true" bc was messing with default tab -->
-            <app-weekview> </app-weekview>
-          </clr-tab-content>
-        </clr-tab>
-        <clr-tab>
-          <button clrTabLink>Day</button>
-          <clr-tab-content> <!-- removed *clrIfActive="true" bc was messing with default tab -->
-            <app-dayview> </app-dayview>
-          </clr-tab-content>
-        </clr-tab>
-      </clr-tabs>
+          </div>
+          <div *ngIf="activeTab === 'week'">
+            <div class="card" #cardContainer>
+              <app-weekview></app-weekview>
+            </div>
+          </div>
+          <div *ngIf="activeTab === 'day'">
+            <div class="card" #cardContainer>
+              <app-dayview></app-dayview>
+          </div>
+        </div>
+
+
     </div>
   </div>

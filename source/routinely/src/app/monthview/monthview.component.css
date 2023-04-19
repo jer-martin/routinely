@@ -7,6 +7,11 @@
   width: 100%;
 }
 
+.clr-col-8 {
+  max-height: 45vw;
+  max-width: 70vw !important;
+}
+
 .arrow-button {
   margin-top: 5%;
 }
@@ -27,26 +32,36 @@ h3 {
 }
 
 .box {
-  width: 10%;
-  height: 10%;
+  /*width: 10%;*/
+  /*height: 10%;*/
   display: flex;
   user-select: none;
-  font-size: 70%;
+  position: relative;
+  /*font-size: 70%;*/
   border: 2px solid hsl(198, 0%, 80%);
   background-color: hsl(198, 0%, 98%);
   text-align: left;
-  font-size: 30px;
-  width: 100%;
-  height: 100%;
+  /*font-size: 30px;*/
+  max-width: 100%;
+  max-height: 100%;
   padding-top: 10%;
   padding-left: 10%;
   font-size: 12pt;
-  font-color: hsl(198, 0%, 80%);
   aspect-ratio: 1/1;
+  /*font-color: hsl(198, 0%, 80%);*/
+}
+
+:host ::ng-deep .btn-event {
+  min-width: 6.8vw;
+  max-width: 6.8vw;
+  position: absolute;
+  /*top: 2rem;*/
+  display: block;
+  justify-content: center;
 }
 
 .box:hover {
-  color: hsl(198, 78%, 78);
+  background-color: hsl(198, 78%, 78%, 20%);
 }
 
 .box:active {
@@ -59,17 +74,22 @@ h3 {
   justify-content: space-between;
   margin: 0 0 0 0;
   padding: 0 0 0 0;
-  width: 100%;
+  max-width: 100%;
 }
 
 .day {
-  width: 10%;
+  width: 14.2857142857%;
   height: 10%;
   display: flex;
   user-select: none;
   font-size: 70%;
   align-items: center;
   justify-content: center;
+}
+
+.card {
+  max-width: 100% !important;
+
 }
 
 ul.tabs {
@@ -94,5 +114,32 @@ ul.tabs div.active {
 }
 
 .card {
-  margin-top: 0px;
+  border: none;
+  margin-top: -1px;
+  padding: 10px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-section,
+.right-section {
+  display: flex;
+  align-items: center;
+}
+
+.month-year-container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.month-string {
+  pointer-events: auto;
 }

@@ -1,7 +1,7 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild, Output, EventEmitter} from '@angular/core';
 import { Router } from '@angular/router';
 import { DateTime, Duration, DurationUnit, Interval } from 'luxon';
-
+import { TabSwitchService } from '../tab-switch.service';
 import { SharerService } from '../sharer.service';
 
 @Component({
@@ -10,7 +10,10 @@ import { SharerService } from '../sharer.service';
   styleUrls: ['./monthview.component.css']
 })
 export class MonthviewComponent {
-  constructor(private router: Router,private sharerService: SharerService, private renderer: Renderer2) { }
+  @Output() switchTab = new EventEmitter<number>();
+
+
+  constructor(private router: Router,private sharerService: SharerService, private renderer: Renderer2, private tabSwitchService: TabSwitchService) { }
   goToLogin() {
     this.router.navigate(['/login']);
   }
@@ -87,16 +90,11 @@ export class MonthviewComponent {
 
   // populate boxes with numbers up to the day count
   populateBoxes(month: string) {
-    CalendarMonth(this.calTime, this.sharerService.getEvents());
-    // const dayCount = this.checkDayCount(month);
-    // const boxes = document.getElementsByClassName('box');
-    // //clear boxes before populating
-    // for (let i = 0; i < boxes.length; i++) {
-    //   boxes[i].innerHTML = '';
-    // }
-    // for (let i = 0; i < dayCount; i++) {
-    //   boxes[i].innerHTML = i + 1 + '';
-    // }
+    CalendarMonth(this.calTime, this.sharerService.getTimeEvents());
+  }
+
+  switchToTab(tabIndex: number) {
+    this.switchTab.emit(tabIndex);
   }
 
   // run populate boxes on init
@@ -113,12 +111,104 @@ export class MonthviewComponent {
     this.colorHSL = this.sharerService.getColorHSL();
   }
 
+  ngAfterViewInit() {
+
+  }
+
   sendCalTime() {
     this.sharerService.changeCalTime(this.calTime);
   }
+
+  getDay(time: DateTime, event: Event) {
+
+    if (!(event.target instanceof HTMLElement)) {
+      return;
+    }
+    const box = event.target as HTMLDivElement;
+    let color = "";
+    let dayNum = "";
+    let month = "";
+
+    dayNum = box.innerText;
+    // get the computed style of the clicked box
+    const style = getComputedStyle(box);
+    // update the value of the color variable
+    color = style.backgroundColor;
+
+    if (color === 'rgba(0, 0, 0, 0)' && box.parentElement) {
+      const parentStyle = getComputedStyle(box.parentElement);
+      color = parentStyle.backgroundColor;
+    }
+    // if the box is gray and the dayNum is above 25, then the user is clicking on the previous month
+    // if the box is gray and the dayNum is below 14, then the user is clicking on the next month
+    if (color === 'rgb(237, 237, 237)' && parseInt(dayNum) > 25) {
+      month = time.minus({ months: 1 }).monthLong
+    } else if (color === 'rgb(237, 237, 237)' && parseInt(dayNum) < 14) {
+      month = time.plus({ months: 1 }).monthLong
+    } else {
+      month = time.monthLong
+    }
+
+    // print month + daynum
+    // console.log(month + ' ' + dayNum);
+
+    // create a new datetime object with the month and daynum
+    let monthNum = this.getMonthNum(month);
+    const newTime = DateTime.fromObject({ month: monthNum, day: parseInt(dayNum) });
+    // set calTime to the newTime using sharerService
+    this.sharerService.changeCalTime(newTime);
+    // navigate to the day view
+    this.switchToTab(3);
+  }
+
+
+  // get number of month from string
+  getMonthNum(month: string) {
+    if (month === 'January') {
+      return 1;
+    }
+    else if (month === 'February') {
+      return 2;
+    }
+    else if (month === 'March') {
+      return 3;
+    }
+    else if (month === 'April') {
+      return 4;
+    }
+    else if (month === 'May') {
+      return 5;
+    }
+    else if (month === 'June') {
+      return 6;
+    }
+    else if (month === 'July') {
+      return 7;
+    }
+    else if (month === 'August') {
+      return 8;
+    }
+    else if (month === 'September') {
+      return 9;
+    }
+    else if (month === 'October') {
+      return 10;
+    }
+    else if (month === 'November') {
+      return 11;
+    }
+    else if (month === 'December') {
+      return 12;
+    }
+    else {
+      return 0;
+    }
+  }
+
 }
 
-function CalendarMonth(dt: DateTime, events: Map<string, string[]>) {
+
+function CalendarMonth(dt: DateTime, events: Map<string, [string, DateTime, DateTime][]>) {
   const days = updView(dt, 'month');
   const boxes = document.getElementsByClassName('box');
   for (let i = 0; i < boxes.length; i++) {
@@ -126,23 +216,39 @@ function CalendarMonth(dt: DateTime, events: Map<string, string[]>) {
     boxes[i].innerHTML = '';
   }
   days.map((day, i) => {
-    console.log(events);
-    console.log(day.start.toISO());
-    const dayEvents = events.get(day.start.toISO());
-    console.log(dayEvents);
+    // console.log(events);
+    // console.log(day.start.toISO());
+    const dayEvents = events.get(day.start.toISODate());
+    // console.log(dayEvents);
     const label = document.createElement('label');
     label.style.display = 'flex';
     label.innerText = day.start.day.toString();
     boxes[i].appendChild(label);
-    // @ts-ignore
     if (dayEvents){
-      dayEvents.forEach(event => {
+      // for (const [index, [name, start, end]] of dayEvents.entries()) {
+      //   const button = document.createElement('button');
+      //   console.log("1");
+      //   button.innerText = start.hour + ':' + start.minute.toString().padStart(2, '0') + ' ' + name;
+      //   button.classList.add('btn', 'btn-primary', 'btn-event', 'btn-sm', 'align-items-center', 'justify-content-center');
+      //   button.style.margin = 'auto';
+      //   console.log("2");
+      //   button.style.top = (1.8 * (index+1)).toString() + 'rem';
+      //   boxes[i].appendChild(button);
+      //   console.log("3");
+      //   // console.log("match");
+      // }
+      console.log(dayEvents);
+      dayEvents.forEach(([name, start, end], index) => {
         const button = document.createElement('button');
-        button.innerText = event;
-        button.classList.add('btn', 'btn-primary', 'btn-sm', 'align-items-center', 'justify-content-center');
+        console.log("1");
+        button.innerText = start.hour + ':' + start.minute.toString().padStart(2, '0') + ' ' + name;
+        button.classList.add('btn', 'btn-primary', 'btn-event', 'btn-sm', 'align-items-center', 'justify-content-center');
         button.style.margin = 'auto';
+        console.log("2");
+        button.style.top = (1.8 * (index+1)).toString() + 'rem';
         boxes[i].appendChild(button);
-        console.log("match");
+        console.log("3");
+        // console.log("match");
       })
     }
     if (day.start.month != dt.month) {
@@ -221,5 +327,7 @@ export function genBackfillMonth(dt: DateTime): Interval {
 
   return Interval.fromDateTimes(prevMonthInterval.start, nextMonthInterval.end);
 }
+
+
 
 

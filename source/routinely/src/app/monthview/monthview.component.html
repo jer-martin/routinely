@@ -8,19 +8,6 @@
       grid-template-rows: repeat(6, 1fr);
       grid-gap: 2px;
     }
-
-    .box {
-      border: 2px solid hsl(198, 0%, 80%);
-      background-color: hsl(198, 0%, 98%);
-      text-align: left;
-      font-size: 30px;
-      width: 100%;
-      height: 100%;
-      padding-top: 10%;
-      padding-left: 10%;
-      font-size: 12pt;
-      aspect-ratio: 1/1;
-    }
   </style>
 </head>
 
@@ -68,18 +55,21 @@
     <div class="card">
 
       <div class="card-header">
-        <div style="display: flex; max-height: 0px;">
-
-          <app-event-modal style="margin-left: auto"></app-event-modal>
-        </div>
-        <div class="month-container">
-          <cds-icon shape="angle" direction="left" class="arrow-button" id="left-arrow"
-            (click)="iterateMonthDown(month!)"></cds-icon>
-          <h3 class="month-string">{{month}} {{year}}</h3>
-          <cds-icon shape="angle" direction="right" class="arrow-button" id="right-arrow"
-            (click)="iterateMonthUp(month!)"></cds-icon>
+        <div class="header-content">
+          <div class="left-section">
+            <cds-icon shape="angle" direction="left" class="arrow-button" id="left-arrow" (click)="iterateMonthDown(month!)"></cds-icon>
+            <div class="month-year-container">
+              <h3 class="month-string">{{month}} {{year}}</h3>
+            </div>
+          </div>
+          <div class="right-section">
+            <cds-icon shape="angle" direction="right" class="arrow-button" id="right-arrow" (click)="iterateMonthUp(month!)"></cds-icon>
+            <app-event-modal (eventAdded)="ngOnInit()"></app-event-modal>
+          </div>
         </div>
       </div>
+
+
 
       <div class="day-container">
         <div class="day">S</div>
@@ -93,48 +83,48 @@
 
 
       <div class="grid">
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
+        <div class="box" (click)="getDay(this.calTime, $event)"></div>
       </div>
     </div>
   </div>

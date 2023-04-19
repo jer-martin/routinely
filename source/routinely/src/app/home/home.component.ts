@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DateTime, Duration, DurationUnit, Interval } from 'luxon';
 import { SharerService } from '../sharer.service';
@@ -7,18 +7,29 @@ import { ViewContainerRef } from '@angular/core';
 import { ComponentFactoryResolver } from '@angular/core';
 import { MonthviewComponent } from '../monthview/monthview.component';
 import { HttpClient} from '@angular/common/http';
+import { TabSwitchService } from '../tab-switch.service';
 import { firstValueFrom } from 'rxjs';
 import { lastValueFrom } from 'rxjs/internal/lastValueFrom';
+import { ClrTabs } from '@clr/angular';
+import { WeekviewComponent } from "../weekview/weekview.component";
+import { DayviewComponent} from "../dayview/dayview.component";
+import { Renderer2, ElementRef } from '@angular/core';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
+  @ViewChild(WeekviewComponent) weekView: WeekviewComponent | undefined;
+  @ViewChild(DayviewComponent) dayView: WeekviewComponent | undefined;
+  @ViewChild(MonthviewComponent) monthView: WeekviewComponent | undefined;
 
+
+  activeTabIndex = 1;
   @ViewChild('cardContainer', { read: ViewContainerRef,static: true }) container!: ViewContainerRef;
-
-  constructor(private router: Router,private httpClient: HttpClient,private sharerService: SharerService, private resolver: ComponentFactoryResolver) { }
+  @ViewChild('tabsComponent') tabsComponent!: ClrTabs;
+  activeTab: string = 'month';
+  constructor(private router: Router,private httpClient: HttpClient,private sharerService: SharerService, private resolver: ComponentFactoryResolver, private tabSwitchService: TabSwitchService, private renderer: Renderer2, private elementRef: ElementRef) { }
   goToLogin() {
     this.router.navigate(['/login']);
   }
@@ -46,6 +57,10 @@ export class HomeComponent {
 
   monthOut() {
     return this.month;
+  }
+
+  setActiveTab(tabIndex: number) {
+    this.tabSwitchService.setActiveTab(tabIndex);
   }
 
 
@@ -124,10 +139,31 @@ export class HomeComponent {
     const factory = this.resolver.resolveComponentFactory(MonthviewComponent);
     const componentRef = factory.create(this.container.injector);
     this.container.insert(componentRef.hostView);
+    this.tabSwitchService.getActiveTab().subscribe((tabIndex) => {
+      this.onSwitchTab(tabIndex);
+    });
   }
 
   sendCalTime() {
     this.sharerService.changeCalTime(this.calTime);
+  }
+
+
+  onSwitchTab(tabIndex: number) {
+    switch (tabIndex) {
+      case 2:
+        this.activeTab = 'week';
+        this.weekView?.ngOnInit();
+        break;
+      case 3:
+        this.activeTab = 'day';
+        this.dayView?.ngOnInit();
+        break;
+      default:
+        this.activeTab = 'month';
+        this.monthView?.ngOnInit();
+        break;
+    }
   }
 }
 

@@ -36,14 +36,15 @@
 
 
 
+
   <div class="card">
     <div class="card-header">
-      <div style="display: flex; max-height: 0px;">
+      <!-- <div style="display: flex; max-height: 0px;">
 
         <app-event-modal style="margin-left: auto"></app-event-modal>
-      </div>
+      </div> -->
 
-      <div class="monthweekcontainer">
+      <!-- <div class="monthweekcontainer">
         <div class="month-container">
           <cds-icon shape="angle" direction="left" class="arrow-button" id="left-arrow"
             (click)="iterateWeekDown()"></cds-icon>
@@ -51,21 +52,46 @@
           <cds-icon shape="angle" direction="right" class="arrow-button" id="right-arrow"
             (click)="iterateWeekUp()"></cds-icon>
         </div>
+      </div> -->
+
+      <div class="header-content">
+        <div class="left-section">
+          <cds-icon shape="angle" direction="left" class="arrow-button" id="left-arrow" (click)="iterateWeekDown()"></cds-icon>
+          <div class="month-year-container">
+            <h3 class="month-string">Week of {{month}}, {{dayWeekStart}} {{year}}</h3>
+          </div>
+        </div>
+        <div class="right-section">
+          <cds-icon shape="angle" direction="right" class="arrow-button" id="right-arrow" (click)="iterateWeekUp()"></cds-icon>
+          <app-event-modal></app-event-modal>
+        </div>
       </div>
 
       <div class="day-container">
-        <div class="day">S</div>
-        <div class="day">M</div>
-        <div class="day">T</div>
-        <div class="day">W</div>
-        <div class="day">T</div>
-        <div class="day">F</div>
-        <div class="day">S</div>
+        <div class="day">S&nbsp;
+          <span class="badge badge-blue">{{dayWeekStart}}</span>
+        </div>
+        <div class="day">M&nbsp;
+          <span class="badge badge-blue">{{dayWeekStartTime.plus(8.64e+7).day}}</span>
+        </div>
+        <div class="day">T&nbsp;
+          <span class="badge badge-blue">{{dayWeekStartTime.plus(2*8.64e+7).day}}</span>
+        </div>
+        <div class="day">W&nbsp;
+          <span class="badge badge-blue">{{dayWeekStartTime.plus(3*8.64e+7).day}}</span>
+        </div>
+        <div class="day">T&nbsp;
+          <span class="badge badge-blue">{{dayWeekStartTime.plus(4*8.64e+7).day}}</span>
+        </div>
+        <div class="day">F&nbsp;
+          <span class="badge badge-blue">{{dayWeekStartTime.plus(5*8.64e+7).day}}</span>
+        </div>
+        <div class="day">S&nbsp;
+          <span class="badge badge-blue">{{dayWeekStartTime.plus(6*8.64e+7).day}}</span>
+        </div>
       </div>
 
       <div class="weekgrid">
-
-
         <div class="weekbox" id="Task1Sunday"></div>
         <div class="weekbox" id="Task1Monday"></div>
         <div class="weekbox" id="Task1Tuesday"></div>

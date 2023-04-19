@@ -3,34 +3,23 @@
     <div class="card">
       <h4 class="card-header">Event Filter</h4>
       <div class="card-block">
+        <br/>
+        <clr-control-helper *ngIf="catList.size != 0" style="font-size: 14px;">Select the categories you wish to filter <b>out.</b></clr-control-helper>
+        <clr-control-helper *ngIf="catList.size === 0" style="font-size: 14px;">You currently have no categories. Click the button below to create one!</clr-control-helper>
         <clr-checkbox-container>
-          <clr-checkbox-wrapper>
-            <input type="checkbox" clrCheckbox value="option1" name="options1" />
-            <label>Classes</label>
+          <clr-checkbox-wrapper *ngFor="let category of catList">
+            <input [indeterminate]="showInput" [disabled]="showInput" type="checkbox" clrCheckbox [value]="category" name="{{category}}" />
+            <label [ngClass]="{'strikethrough': category === hoveredCategory && showInput}" (click)="showInput ? removeCat(category) : $event.stopPropagation()" (mouseenter)="onCheckboxHover(category)" (mouseleave)="onCheckboxHover('')">{{category}}</label>
           </clr-checkbox-wrapper>
-          <clr-checkbox-wrapper>
-            <input type="checkbox" clrCheckbox value="option2" name="options2" />
-            <label>Clubs</label>
-          </clr-checkbox-wrapper>
-          <clr-checkbox-wrapper>
-            <input type="checkbox" clrCheckbox value="option3" name="option3" />
-            <label>Social</label>
-          </clr-checkbox-wrapper>
-          <clr-checkbox-wrapper>
-            <input type="checkbox" clrCheckbox value="option4" name="option4" />
-            <label>Exercise</label>
-          </clr-checkbox-wrapper>
-          <clr-checkbox-wrapper>
-            <input type="checkbox" clrCheckbox value="option5" name="option5" />
-            <label>Other</label>
-          </clr-checkbox-wrapper>
-          <br/>
-          <clr-control-helper>Select the categories you wish to filter <b>out.</b></clr-control-helper>
         </clr-checkbox-container>
       </div>
-      <div class="card-footer">
-        <button class="btn btn-sm btn-link" [ngStyle]="{'color': colorHSL}">Edit Event Categories</button>
+      <div class="add-category">
+        <button type="button" class="btn btn-icon btn-link" title="Edit categories" >
+        <cds-icon shape="pencil" size="24" [ngStyle]="{color: colorHSL}" (click)="toggleInput()"></cds-icon>
+        </button>
+        <input clrInput class="catInput" *ngIf="showInput" [(ngModel)]="newCategory" (keydown.enter)="addCategory()" placeholder="Enter new category" />
       </div>
     </div>
   </div>
 </div>
+

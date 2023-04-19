@@ -18,6 +18,27 @@ export class WeekviewComponent {
   colorHSL: string = this.sharerService.getColorHSL();
   accentHSL = this.sharerService.getAccentHSL();
 
+  times: string[] = [];
+  events: { time: string; title: string }[] = [
+    { time: '09:30', title: 'Meeting with team' },
+    { time: '14:00', title: 'Project deadline' },
+    { time: '16:00', title: 'Call with client' },
+  ];
+
+  generateTimes(): void {
+    for (let k = 0; k < 2; k++) {
+      for (let i = 0; i < 12; i++) {
+        for (let j = 0; j < 60; j += 30) {
+          let hour = i.toString().padStart(2, '0');
+          if (hour == '00') hour = '12';
+          const minute = j.toString().padStart(2, '0');
+          if (k === 0) this.times.push(`${hour}:${minute} AM`);
+          else this.times.push(`${hour}:${minute} PM`);
+        }
+      }
+    }
+  }
+
   calTime = this.sharerService.currentCalTime.getValue();
   ngOnInit() {
     this.sharerService.getCalTimeSource().subscribe(calTime => {
@@ -98,5 +119,11 @@ export class WeekviewComponent {
       console.log("suinday")
     }
   }
+
+  // return div id
+  getDayId(day: number) {
+    return "day" + day;
+  }
+
 }
 
