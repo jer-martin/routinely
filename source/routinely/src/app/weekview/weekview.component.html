@@ -98,14 +98,10 @@
         <div class="time-column">
           <div style="font-size: 14px;" class="time" *ngFor="let time of times">{{time}}</div>
         </div>
-        <div class="weekgrid" style="width: 100%">
-          <div *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48]" class="weekbox" [attr.id]="'Task' + i + 'Sunday'"></div>
-          <div *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48]" class="weekbox" [attr.id]="'Task' + i + 'Monday'"></div>
-          <div *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48]" class="weekbox" [attr.id]="'Task' + i + 'Tuesday'"></div>
-          <div *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48]" class="weekbox" [attr.id]="'Task' + i + 'Wednesday'"></div>
-          <div *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48]" class="weekbox" [attr.id]="'Task' + i + 'Thursday'"></div>
-          <div *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48]" class="weekbox" [attr.id]="'Task' + i + 'Friday'"></div>
-          <div *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48]" class="weekbox" [attr.id]="'Task' + i + 'Saturday'"></div>
+        <div class="weekgrid" style="width: 100%; max-height: 100vw;">
+          <div *ngFor="let i of ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']">
+            <div *ngFor="let j of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48] " class="weekbox" [id]="'Task' + j + i"></div>
+          </div>
 <!--          <div class="weekbox" id="Task1Sunday"></div>-->
 <!--          <div class="weekbox" id="Task1Monday"></div>-->
 <!--          <div class="weekbox" id="Task1Tuesday"></div>-->

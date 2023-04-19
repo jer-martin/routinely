@@ -54,6 +54,7 @@ export class WeekviewComponent {
     this.month = this.dayWeekStartTime.monthLong;
     this.sunday = "Sunday";
     this.sundayCheck();
+    this.populateBoxes();
   }
   year = this.calTime.year;
   dayWeekStartTime = this.calTime.startOf('week').minus({ days: 1 });
@@ -61,12 +62,67 @@ export class WeekviewComponent {
   month = this.dayWeekStartTime.monthLong;
   sunday = "Sunday";
 
+  populateBoxes() {
+    setTimeout(() => {
+      const weekboxes = document.querySelectorAll('.weekbox');
+      for (let i = 0; i < weekboxes.length; i++) {
+        const weekbox = weekboxes[i] as HTMLElement;
+        weekbox.innerHTML = '';
+        weekbox.style.backgroundColor = '';
+      }
+    }, 5);
+
+    console.log("run");
+    const events = this.sharerService.getTimeEvents();
+    let weekEvents : [string, DateTime, DateTime][] | undefined = [];
+    for (let i = 1; i <= 7; i++) {
+      const day = this.dayWeekStartTime.plus(i * 8.64e+7).toISODate();
+      const dayEvents = events.get(day);
+      if (dayEvents) {
+        console.log("run" + i);
+        weekEvents = weekEvents.concat(dayEvents);
+      }
+    }
+    console.log("weekEvents: " + weekEvents);
+    if (weekEvents) {
+      weekEvents.forEach(([name, start, end], index) => {
+        const durationInMinutes = Math.round((end.valueOf() - start.valueOf()) / 1000 / 60);
+        const roundedDurationInMinutes = Math.round(durationInMinutes / 30) * 30;
+        let weekday : string;
+        const hour = start.hour;
+        const min = start.minute;
+        const duration = roundedDurationInMinutes/30;
+        switch (start.weekday) {
+          case 7: weekday = 'Sunday'; break;
+          case 1: weekday = 'Monday'; break;
+          case 2: weekday = 'Tuesday'; break;
+          case 3: weekday = 'Wednesday'; break;
+          case 4: weekday = 'Thursday'; break;
+          case 5: weekday = 'Friday'; break;
+          case 6: weekday = 'Saturday'; break;
+          default: weekday = 'Sunday'; break;
+        }
+        console.log('Task'+(1+hour*2+(min%30))+weekday);
+        setTimeout(() => {
+          let boxId = (min % 60 === 0) ? (1 + hour * 2) : (2 + hour * 2);
+          let startBox = document.querySelector('#Task'+boxId+weekday);
+          console.log(startBox);
+          // @ts-ignore
+          startBox.textContent = name;
+          // @ts-ignore
+          startBox.setAttribute("style", "background-color:"+this.colorHSL);
+          for (let i = duration; i--; i>1) {
+            let newBoxId = boxId+i;
+            let newBox = document.querySelector('#Task'+newBoxId+weekday);
+            // @ts-ignore
+            newBox.setAttribute("style", "background-color:"+this.colorHSL);
+          }
+        }, 10);
+      })
+    }
 
 
-
-
-
-
+  }
 
   iterateWeekUp() {
     document.getElementById('right-arrow')!.attributes.getNamedItem('shape')!.value = 'angle-double';
@@ -77,6 +133,7 @@ export class WeekviewComponent {
     this.dayWeekStartTime = this.calTime.startOf('week').minus({ days: 1 });
     this.dayWeekStart = this.dayWeekStartTime.day;
     this.month = this.dayWeekStartTime.monthLong;
+    this.populateBoxes();
 
 
     // 100 ms timer then change back to angle
@@ -95,6 +152,7 @@ export class WeekviewComponent {
     this.dayWeekStartTime = this.calTime.startOf('week').minus({ days: 1 });
     this.dayWeekStart = this.dayWeekStartTime.day;
     this.month = this.dayWeekStartTime.monthLong;
+    this.populateBoxes();
 
     // 300 ms timer then change back to angle
     setTimeout(() => {
