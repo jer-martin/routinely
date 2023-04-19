@@ -85,7 +85,7 @@ export class EventModalComponent {
         // @ts-ignore
         minute: parseInt(this.endTimeM.toString())
       })
-      this.sharerService.addEvent(DateTime.fromJSDate(this.dt), this.eventName);
+      // this.sharerService.addEvent(DateTime.fromJSDate(this.dt), this.eventName);
       this.sharerService.addTimeEvent(DateTime.fromJSDate(this.dt), this.eventName, this.eventStart, this.eventEnd);
     }
     console.log("Name: " + this.eventName + " Category: " + this.eventCategory + " Date: " + this.eventStart + " to " + this.eventEnd);

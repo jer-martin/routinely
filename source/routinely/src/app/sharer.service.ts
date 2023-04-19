@@ -11,10 +11,9 @@ export class SharerService {
   currentCalTime = this.calTimeSource;
   private catList: Set<string> = new Set<string>();
   private categories: Array<string> = new Array<string>();
-  private todoList: Array<string> = new Array<string>();
   private calTime: DateTime = DateTime.local(); // Provide an initial value to the calTime property
   private color: string = "blue";
-  private eventStorage : Map<string, string[]> = new Map<string, string[]>(); // local storage for events (temp until we get databases working)
+  // private eventStorage : Map<string, string[]> = new Map<string, string[]>(); // local storage for events (temp until we get databases working)
   private newEventStorage : Map<string, [string, DateTime, DateTime][]> = new Map<string, [string, DateTime, DateTime][]>(); // local storage for events (temp until we get databases working)
 
   constructor() {
@@ -29,20 +28,20 @@ export class SharerService {
     this.calTimeSource.next(calTime);
   }
 
-  addEvent(dt: DateTime, name : string) { // only dates and names necessary for now
-    // key is DateTime, val is array of event names (strings)
-    // console.log(dt);
-    // console.log(name);
-    if (this.eventStorage.get(dt.toISO()) != undefined) {
-      // @ts-ignore
-      this.eventStorage.set(dt.toISO(), this.eventStorage.get(dt.toISO()).concat(name));
-    }
-    else {
-      let events: string[] = [name];
-      this.eventStorage.set(dt.toISO(), events);
-    }
-    // console.log(this.eventStorage.get(dt));
-  }
+  // addEvent(dt: DateTime, name : string) { // only dates and names necessary for now
+  //   // key is DateTime, val is array of event names (strings)
+  //   // console.log(dt);
+  //   // console.log(name);
+  //   if (this.eventStorage.get(dt.toISO()) != undefined) {
+  //     // @ts-ignore
+  //     this.eventStorage.set(dt.toISO(), this.eventStorage.get(dt.toISO()).concat(name));
+  //   }
+  //   else {
+  //     let events: string[] = [name];
+  //     this.eventStorage.set(dt.toISO(), events);
+  //   }
+  //   // console.log(this.eventStorage.get(dt));
+  // }
 
   addTimeEvent(dt: DateTime, name: string, start: DateTime, end: DateTime) {
     console.log(dt.toISODate());
@@ -60,21 +59,13 @@ export class SharerService {
     return this.catList;
   }
 
-  getTodo() {
-    return this.newEventStorage.get(this.currentCalTime.getValue().toISO());
-  }
-
   updCategories(newCatList: Set<string>) {
     this.catList = newCatList;
   }
 
-  updTodo(newTodo: Array<string>) {
-    this.todoList = newTodo;
-  }
-
-  getEvents() {
-    return this.eventStorage;
-  }
+  // getEvents() {
+  //   return this.eventStorage;
+  // }
 
   getTimeEvents() {
     return this.newEventStorage;

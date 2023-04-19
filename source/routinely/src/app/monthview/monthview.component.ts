@@ -13,7 +13,7 @@ import { event } from 'jquery';
 export class MonthviewComponent {
   @Output() switchTab = new EventEmitter<number>();
 
-  
+
   constructor(private router: Router,private sharerService: SharerService, private renderer: Renderer2, private tabSwitchService: TabSwitchService) { }
   goToLogin() {
     this.router.navigate(['/login']);
@@ -37,7 +37,7 @@ export class MonthviewComponent {
   month = this.calTime.monthLong;
   year = this.calTime.year;
 
-  
+
   monthOut() {
     return this.month;
   }
@@ -163,7 +163,7 @@ export class MonthviewComponent {
     this.switchToTab(3);
   }
 
-  
+
 
 
   // get number of month from string

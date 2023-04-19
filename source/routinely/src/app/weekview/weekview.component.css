@@ -1,23 +1,63 @@
 .month-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  width: 100%;
 }
 
 .arrow-button {
-    margin-top: 5%;
+  margin-top: 5%;
 }
 
 h3 {
-    user-select: none;
+  user-select: none;
 }
 
-.time-column {
+
+.clr-col-8 {
+  max-height: 45vw;
+  max-width: 70vw !important;
+}
+
+.nav-link {
+  user-select: none;
+}
+
+.box {
+  width: 10%;
+  height: 10%;
   display: flex;
-  flex-direction: column;
+  user-select: none;
+  font-size: 70%;
+  border: 2px solid hsl(198, 0%, 80%);
+  background-color: hsl(198, 0%, 98%);
+  text-align:left;
+  font-size: 30px;
+  width: 100%;
+  height: 100%;
+  padding-top: 10%;
+  padding-left: 10%;
+  font-size:12pt;
+  font-color: hsl(198, 0%, 80%);
+  aspect-ratio: 1/1;
+}
+
+.box:hover {
+  background-color: hsl(198, 0%, 90%);
+}
+
+.box:active {
+  background-color: hsl(198, 0%, 80%);
+}
+
+.day-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
 }
 
 .header-content {
@@ -45,55 +85,14 @@ h3 {
   pointer-events: auto;
 }
 
-
-.nav-link {
-    user-select: none;
-}
-
-.box {
-    width: 10%;
-    height: 10%;
-    display: flex;
-    user-select: none;
-    font-size: 70%;
-    border: 2px solid hsl(198, 0%, 80%);
-    background-color: hsl(198, 0%, 98%);
-    text-align:left;
-    font-size: 30px;
-    width: 100%;
-    height: 100%;
-    padding-top: 10%;
-    padding-left: 10%;
-    font-size:12pt;
-    font-color: hsl(198, 0%, 80%);
-    aspect-ratio: 1/1;
-  }
-
-    .box:hover {
-        background-color: hsl(198, 0%, 90%);
-    }
-
-    .box:active {
-        background-color: hsl(198, 0%, 80%);
-    }
-
-.day-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    width: 100%;
-}
-
 .day {
-    width: 14.2857142857%;
-    height: 10%;
-    display: flex;
-    user-select: none;
-    font-size: 70%;
-    align-items: center;
-    justify-content: center;
+  width: 12.5%;
+  height: 10%;
+  display: flex;
+  user-select: none;
+  font-size: 70%;
+  align-items: center;
+  justify-content: center;
 }
 
 .weekgrid {
@@ -110,29 +109,161 @@ h3 {
   border-top: 1px solid hsl(198, 0%, 95%);
   border-bottom: 1px solid hsl(198, 0%, 95%);
   padding: 10px;
+  height: 50px;
 }
 
 ul.tabs {
-    margin-top: 1vh;
-    padding: 0;
-  }
+  margin-top: 1vh;
+  padding: 0;
+}
 
-  ul.tabs div {
-    display: inline-block;
-    background: hsl(198, 0%, 91%);
-    color: hsl(198, 0%, 40%);
-    cursor: pointer;
-    padding: 5px 25px 5px 15px;
-    -webkit-clip-path: polygon(100% 0, 90% 0, 100% 100%, 0 100%, 0.5% 0);
-    clip-path: polygon(100% 0, 90% 0, 100% 100%, 0 100%, 0.5% 0);
+ul.tabs div {
+  display: inline-block;
+  background: hsl(198, 0%, 91%);
+  color: hsl(198, 0%, 40%);
+  cursor: pointer;
+  padding: 5px 25px 5px 15px;
+  -webkit-clip-path: polygon(100% 0, 90% 0, 100% 100%, 0 100%, 0.5% 0);
+  clip-path: polygon(100% 0, 90% 0, 100% 100%, 0 100%, 0.5% 0);
 
-  }
+}
 
-  ul.tabs div.active {
-    background: hsl(198, 78%, 78%);
-    color: #333;
-  }
+ul.tabs div.active {
+  background: hsl(198, 78%, 78%);
+  color: #333;
+}
 
-  .card {
-    margin-top: 0px;
-  }
+.card {
+  margin-top: 0px;
+}
+
+.day-view {
+  display: flex;
+  width: 100%;
+  margin-top: 2vh;
+}
+
+.time-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.time {
+  padding: 12px 16px 12px 8px; /* Adjusted padding values */
+  border: 1px solid #ccc;
+  width: 60px;
+  font-size: 0.9em;
+}
+
+.events-column {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: calc(100% - 60px);
+}
+
+.event {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 12px;
+  background-color: #f5f5f5;
+}
+
+.event-time {
+  padding-right: 16px;
+  font-weight: bold;
+}
+
+body {
+  overflow-x: hidden;
+  scrollbar-gutter: auto;
+}
+
+.event-title {
+  flex-grow: 1;
+}
+
+.card {
+  width: 100%; /* Make card width equal to the container width */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.clr-col-8 {
+  max-height: 45vw;
+  max-width: 70vw !important;
+  border: none;
+}
+
+.card {
+  border: none;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0; /* Prevent the header from shrinking */
+}
+
+.day-view {
+  max-height: calc(100vh - 200px); /* Set a specific height for the day view, subtracting the header height */
+  overflow-y: auto; /* Enable vertical scrolling within the day view */
+}
+
+
+ul.tabs {
+  margin-top: 1vh;
+  padding: 0;
+}
+
+ul.tabs div {
+  display: inline-block;
+  background: hsl(198, 0%, 91%);
+  color: hsl(198, 0%, 40%);
+  cursor: pointer;
+  padding: 5px 25px 5px 15px;
+  -webkit-clip-path: polygon(100% 0, 90% 0, 100% 100%, 0 100%, 0.5% 0);
+  clip-path: polygon(100% 0, 90% 0, 100% 100%, 0 100%, 0.5% 0);
+
+}
+
+ul.tabs div.active {
+  background: hsl(198, 78%, 78%);
+  color: #333;
+}
+
+.card {
+  border: none;
+  margin-top: -1px;
+  padding: 10px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-section,
+.right-section {
+  display: flex;
+  align-items: center;
+}
+
+.month-year-container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.month-string {
+  pointer-events: auto;
+}

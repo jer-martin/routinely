@@ -186,6 +186,7 @@ ul.tabs {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    border: none;
   }
 
   .card-header {
@@ -198,3 +199,40 @@ ul.tabs {
     max-height: calc(100vh - 200px); /* Set a specific height for the day view, subtracting the header height */
     overflow-y: auto; /* Enable vertical scrolling within the day view */
   }
+
+.card {
+  border: none;
+  margin-top: -1px;
+  padding: 10px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-section,
+.right-section {
+  display: flex;
+  align-items: center;
+}
+
+.month-year-container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.month-string {
+  pointer-events: auto;
+}
+
+body {
+  overflow-x: hidden;
+  scrollbar-gutter: auto;
+}
+
