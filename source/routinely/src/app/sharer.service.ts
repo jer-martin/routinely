@@ -108,11 +108,8 @@ export class SharerService {
     else if (this.color === "purple") {
       return "hsl(282, 44%, 62%)";
     }
-    else if (this.color === "slate") {
-      return "hsl(198, 0%, 30%)";
-    }
-    else {
-      return "hsl(0, 0%, 0%)";
+    else  {
+      return "hsl(198, 0%, 50%)";
     }
   }
 
@@ -123,12 +120,10 @@ export class SharerService {
     else if (this.color === "purple") {
       return "hsl(282, 44%, 52%)";
     }
-    else if (this.color === "slate") {
-      return "hsl(198, 0%, 20%)";
-    }
     else {
-      return "hsl(0, 0%, 0%)";
+      return "hsl(198, 0%, 30%)";
     }
+    
   }
 
 

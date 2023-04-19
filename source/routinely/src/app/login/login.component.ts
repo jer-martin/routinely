@@ -19,6 +19,10 @@ export class LoginComponent {
   form = {id: 0, username: '', password: '', rememberMe: false};
   hasError = false;
   userRegex = new RegExp(/^[a-zA-Z0-9]+$|^$/);
+
+  routeSignin() {
+    this.router.navigate(['signin']);
+  }
   
 
   constructor(private httpClient:HttpClient,private sharerService:SharerService, private router: Router) { }

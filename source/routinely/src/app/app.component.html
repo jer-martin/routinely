@@ -21,18 +21,14 @@
         <!--if we want nav links they go here-->
     </div>
     <div class="header-actions">
-        <a  class="nav-link nav-icon user" aria-label="settings" routerLink="/settings" routerLinkActive="true">
+        <a  class="nav-link nav-icon user" aria-label="settings" routerLink="/login" routerLinkActive="true">
           <cds-icon class="user" shape="user"></cds-icon>
         </a>
         <clr-dropdown style:hover="color: rgb(120,120,120);">
-            <button class="nav-icon cog" clrDropdownTrigger aria-label="toggle settings menu">
+            <button class="nav-icon cog" (click)="toSettings()" clrDropdownTrigger aria-label="toggle settings menu">
                 <cds-icon shape="cog"></cds-icon>
-                <cds-icon shape="angle" direction="down"></cds-icon>
             </button>
-            <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-                <button clrDropdownItem (click)="goToSettings()" class="settings-option">Preferences</button> 
-                <button clrDropdownItem (click)="goToLogin()" class="settings-option">Log in</button>
-            </clr-dropdown-menu>
+            
         </clr-dropdown>
     </div>
 </header>

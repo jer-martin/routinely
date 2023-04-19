@@ -356,6 +356,11 @@ function logButtonHover(): void {
   function attachListenersToButton(button: HTMLButtonElement): void {
     button.addEventListener('mouseover', handleMouseOver);
     button.addEventListener('mouseout', handleMouseOut);
+    //attach click listener to remove button
+    button.addEventListener('click', function() {
+      console.log("clicked");
+      this.parentElement!.removeChild(this);
+    });
   }
 
   // Attach event listeners to existing buttons with the 'btn-event' class

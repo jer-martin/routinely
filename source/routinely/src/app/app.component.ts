@@ -96,6 +96,10 @@ export class AppComponent {
     addIcon();
   }
 
+  toSettings(){
+    this.router.navigate(['/preferences']);
+  }
+
 }
 
 

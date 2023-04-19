@@ -1,36 +1,6 @@
-<div class="clr-row">
-    <div class="clr-col-4" style="padding-left:10vw">
-      <div class="card">
-        <div class="card-block">
-          <div class="card-text">
-            <div class="tabs-vertical">
-              <ul id="demoTabs" class="nav" role="tablist">
-                <li role="presentation" class="nav-item">
-                  <button id="tab1" class="btn btn-link nav-link" aria-controls="panel1"
-                          aria-selected="false" type="button" routerLink="/settings" routerLinkActive="true">Account</button>
-                </li>
-                <li role="presentation" class="nav-item">
-                  <button id="tab2" class="btn btn-link nav-link" aria-controls="panel2"
-                          aria-selected="false" type="button" routerLink="/calendarsettings" routerLinkActive="true">Calendar</button>
-                </li>
-                <li role="presentation" class="nav-item">
-                  <button id="tab3" class="btn btn-link nav-link active" aria-controls="panel3"
-                          aria-selected="true" type="button" routerLink="/preferences" routerLinkActive="true">Preferences</button>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="card-footer">
-            <button type="button" class="btn btn-icon btn-outline bug" aria-label="settings" routerLink="/bugreport" routerLinkActive="true">
-            <cds-icon shape="exclamation-triangle"></cds-icon>
-            Report A Bug
-          </button>
-        </div>
-      </div>
-    </div>
 
-    <div class="clr-col-8" style="padding-right:10vw">
+
+    
         <div class="card">
             <div class="card-header">
                 <h2 style="padding-left: 3vw;">Preferences</h2>
@@ -46,29 +16,16 @@
                     <div aria-label="purple" clrDropdownItem (click)="changeHeaderColor('purple')">Purple</div>
                     <div aria-label="Dropdown header Action 2"  clrDropdownItem (click)="changeHeaderColor('blue')">Blue</div>
                     <div aria-label="Dropdown header Action 3"  clrDropdownItem (click)="changeHeaderColor('slate')">Slate</div>
-                    <div aria-label="Dropdown header Action 4"  clrDropdownItem (click)="changeHeaderColor('green')">Green</div>
                 </clr-dropdown-menu>
               </clr-dropdown>
 
-              <clr-dropdown [clrCloseMenuOnItemClick]="false">
-                <button clrDropdownTrigger aria-label="Dropdown demo button">
-                    <span>Theme Color</span> 
-                    <cds-icon shape="angle" direction="down"></cds-icon>
-                </button>
-                <clr-dropdown-menu *clrIfOpen>
-                    <div aria-label="purple" clrDropdownItem (click)="themeDark()">Dark</div>
-                    <div aria-label="purple" clrDropdownItem (click)="themeLight()">Light</div>
-
-                </clr-dropdown-menu>
-              </clr-dropdown>
+             
 
 
             </div>
             </div>
-            <div class="card-footer" style="text-align: right;">
-                <button type="button" class="btn btn-success">Save</button>
-            </div>
+            
     </div>
 
-  </div>
+
 

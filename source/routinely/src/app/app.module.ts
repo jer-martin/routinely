@@ -25,6 +25,7 @@ import { WeekviewComponent } from './weekview/weekview.component';
 import { DayModalComponent } from './day-modal/day-modal.component';
 import { DayviewComponent } from './dayview/dayview.component';
 import { MonthviewComponent } from './monthview/monthview.component';
+import { SigninComponent } from './signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { MonthviewComponent } from './monthview/monthview.component';
     DayModalComponent,
     DayviewComponent,
     MonthviewComponent,
+    SigninComponent,
   ],
 
   imports: [

@@ -13,6 +13,7 @@ import { PreferencesComponent } from './preferences/preferences.component';
 import { WeekviewComponent } from './weekview/weekview.component';
 import { DayviewComponent } from './dayview/dayview.component';
 import { MonthviewComponent } from './monthview/monthview.component';
+import { SigninComponent } from './signin/signin.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'weekview', component: WeekviewComponent },
   { path: 'dayview', component: DayviewComponent },
   { path: 'monthview', component: MonthviewComponent },
+  { path: 'signin', component: SigninComponent},
 
 
   // otherwise redirect to Routinely
