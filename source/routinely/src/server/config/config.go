@@ -2,6 +2,7 @@ package config
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -31,6 +32,7 @@ func InitializePostgress() {
 		log.Println("failed to to initialize MySql with err: ", err.Error())
 		return
 	}
+	fmt.Println("Connected to db")
 
 	AppConfig.SQL = connect
 }

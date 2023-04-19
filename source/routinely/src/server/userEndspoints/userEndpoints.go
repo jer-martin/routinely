@@ -2,10 +2,10 @@ package userEndpoints
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"log"
 	"net/http"
-	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -16,8 +16,6 @@ import (
 
 	"github.com/jer-martin/routinely/src/server/structs"
 )
-
-var secretkey = "super-secret-key"
 
 func SetUpRouter() *gin.Engine {
 
@@ -34,6 +32,7 @@ func SetUpRouter() *gin.Engine {
 		api.GET("/userList", getAllUsers)
 		api.POST("/addEvent", eventsendpoints.AddEvent)
 		api.GET("/viewEvents", eventsendpoints.GetEvents)
+		api.POST("/refresh-token", RefreshToken)
 		api.DELETE("/deleteEvent", DeleteEvent)
 	}
 
@@ -76,16 +75,12 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	validToken, err := GenerateJWT(auth.Username)
+	err = GenerateJWT(c, auth.Username)
 	if err != nil {
 		c.String(http.StatusInternalServerError, "unable to generate JWT")
 		return
 	}
-	var id = getUserIDByUsername(user.Username)
-	var userInfo structs.UserInfo
-	userInfo.ID = id
-	userInfo.TOKEN = validToken
-	c.JSON(http.StatusOK, gin.H{"message": "login successfully", "Token": validToken, "userID": id})
+	c.JSON(http.StatusOK, gin.H{"message": "login successfully"})
 
 }
 
@@ -155,21 +150,14 @@ func getAllUsers(c *gin.Context) {
 }
 
 func DeleteEvent(c *gin.Context) {
-	//todo
-	//add token and user id
-	eventID := c.Query("eventID")
-	if eventID == "" {
-		c.String(http.StatusBadRequest, "missing ID of the event in request parameters")
-		return
-	}
-
-	id, err := strconv.Atoi(eventID)
+	var event structs.EventDeleteBody
+	err := json.NewDecoder(c.Request.Body).Decode(&event)
 	if err != nil {
-		c.String(http.StatusInternalServerError, "Error in conversion string to int")
+		c.String(http.StatusBadRequest, "Invalid request body")
 		return
 	}
 
-	exist, err := CheckEventExistByID(id)
+	exist, err := CheckEventExistByID(event.EventID)
 	if err != nil {
 		c.String(http.StatusInternalServerError, "Error in validating event")
 		return
@@ -180,7 +168,7 @@ func DeleteEvent(c *gin.Context) {
 	}
 
 	// Insert new event into the events table
-	_, err = config.AppConfig.SQL.Exec("DELETE from events where id = ?", id)
+	_, err = config.AppConfig.SQL.Exec("DELETE from events where id = ?", event.EventID)
 	if err != nil {
 		c.String(http.StatusInternalServerError, "Failed to delete event from database")
 		return
@@ -233,23 +221,100 @@ func CheckEventExistByID(eventID int) (bool, error) {
 	return exist, nil
 }
 
-func GenerateJWT(userName string) (string, error) {
-	var mySigningKey = []byte(secretkey)
-	token := jwt.New(jwt.SigningMethodHS256)
-	claims := token.Claims.(jwt.MapClaims)
+// func GenerateJWT(userName string) (string, error) {
+// 	var mySigningKey = []byte(secretkey)
+// 	token := jwt.New(jwt.SigningMethodHS256)
+// 	claims := token.Claims.(jwt.MapClaims)
 
-	claims["isAuthorized"] = true
-	claims["username"] = userName
-	claims["role"] = "user"
-	claims["exp"] = time.Now().Add(time.Hour * 24).Unix()
+// 	claims["isAuthorized"] = true
+// 	claims["username"] = userName
+// 	claims["role"] = "user"
+// 	claims["exp"] = time.Now().Add(time.Hour * 24).Unix()
 
-	tokenString, err := token.SignedString(mySigningKey)
+// 	tokenString, err := token.SignedString(mySigningKey)
+
+// 	if err != nil {
+// 		fmt.Errorf("Something Went Wrong: %s", err.Error())
+// 		return "", err
+// 	}
+// 	return tokenString, nil
+// }
+
+func GenerateJWT(c *gin.Context, userName string) error {
+
+	expirationTime := time.Now().Add(15 * time.Minute)
+
+	claims := &structs.Claims{
+		UserName: userName,
+		StandardClaims: jwt.StandardClaims{
+			ExpiresAt: expirationTime.Unix(),
+		},
+	}
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+
+	tokenString, err := token.SignedString(structs.Secretkey)
+	if err != nil {
+		return err
+	}
+
+	http.SetCookie(c.Writer, &http.Cookie{
+		Name:    "token",
+		Value:   tokenString,
+		Expires: expirationTime,
+	})
+	return nil
+}
+
+func RefreshToken(c *gin.Context) {
+	Cookie, err := c.Request.Cookie("token")
+	if err != nil {
+		if err == http.ErrNoCookie {
+			c.String(http.StatusUnauthorized, err.Error())
+			return
+		}
+		c.String(http.StatusBadRequest, err.Error())
+		return
+	}
+	tokenString := Cookie.Value
+
+	claims := &structs.Claims{}
+
+	tkn, err := jwt.ParseWithClaims(tokenString, claims, func(t *jwt.Token) (interface{}, error) {
+		return structs.Secretkey, nil
+	})
 
 	if err != nil {
-		fmt.Errorf("Something Went Wrong: %s", err.Error())
-		return "", err
+		if err == jwt.ErrSignatureInvalid {
+			c.String(http.StatusBadRequest, err.Error())
+			return
+		}
+		c.String(http.StatusBadRequest, err.Error())
+		return
 	}
-	return tokenString, nil
+	if !tkn.Valid {
+		err = errors.New("invalid Token")
+		c.String(http.StatusUnauthorized, err.Error())
+		return
+	}
+
+	expirationTime := time.Now().Add(15 * time.Minute)
+	claims.ExpiresAt = expirationTime.Unix()
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+
+	tokenStr, err := token.SignedString(structs.Secretkey)
+	if err != nil {
+		c.String(http.StatusInternalServerError, err.Error())
+		return
+	}
+
+	http.SetCookie(c.Writer, &http.Cookie{
+		Name:    "token",
+		Value:   tokenStr,
+		Expires: expirationTime,
+	})
+
 }
 
 func IsUserExist(username string) (bool, error) {

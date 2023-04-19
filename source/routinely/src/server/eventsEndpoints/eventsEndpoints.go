@@ -1,6 +1,7 @@
 package eventsendpoints
 
 import (
+	"database/sql"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -22,7 +23,7 @@ func AddEvent(c *gin.Context) {
 	}
 
 	// Insert new event into the events table
-	result, err := config.AppConfig.SQL.Exec("INSERT INTO events (userid, name, category, eventdate) VALUES (?, ?, ?,?)", event.UserID, event.EventName, event.EventCategory, event.EventDate)
+	result, err := config.AppConfig.SQL.Exec("INSERT INTO events (userid, name, category,startEventDate,endEventDate) VALUES (?, ?, ?, ?, ?)", event.UserID, event.EventName, event.EventCategory, event.StartEventDate, event.EndEventDate)
 	if err != nil {
 		c.String(http.StatusInternalServerError, "Failed to insert user into the database")
 		return
@@ -69,25 +70,28 @@ func GetEvents(c *gin.Context) {
 		return
 	}
 
-	rows, err := config.AppConfig.SQL.Query(`select userid,name,category,eventdate from events where userid = ?`, id)
+	rows, err := config.AppConfig.SQL.Query(`select id, userid,name,category,startEventDate,endEventDate from events where userid = ?`, id)
 	if err != nil {
 		c.String(http.StatusInternalServerError, "Failed to get events from database")
 		return
 	}
 	defer rows.Close()
 	for rows.Next() {
-		var userID int
-		var eventName, category, eventDate string
-		err := rows.Scan(&userID, &eventName, &category, &eventDate)
+		var userID, eventID int
+		var eventName, category string
+		var endEventDate, startEventDate sql.NullString
+		err := rows.Scan(&eventID, &userID, &eventName, &category, &startEventDate, &endEventDate)
 		if err != nil {
 			c.String(http.StatusInternalServerError, "Failed to get users from database")
 			return
 		}
 		events = append(events, structs.Event{
-			UserID:        userID,
-			EventName:     eventName,
-			EventCategory: category,
-			EventDate:     eventDate,
+			ID:             eventID,
+			UserID:         userID,
+			EventName:      eventName,
+			EventCategory:  category,
+			StartEventDate: startEventDate.String,
+			EndEventDate:   endEventDate.String,
 		})
 	}
 	c.JSON(http.StatusOK, events)

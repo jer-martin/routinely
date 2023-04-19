@@ -1,9 +1,8 @@
 package structs
 
-type UserInfo struct {
-	ID    int
-	TOKEN string
-}
+import "github.com/golang-jwt/jwt"
+
+var Secretkey = []byte("super-secret-key")
 
 type User struct {
 	ID       int    `json:"id"`
@@ -12,15 +11,26 @@ type User struct {
 }
 
 type Event struct {
-	UserID        int    `json:"userID"` // id of the user
-	EventName     string `json:"eventName"`
-	EventCategory string `json:"eventCategory"`
-	EventDate     string `json:"eventDate"`
+	ID             int    `json:"id"`
+	UserID         int    `json:"userID"`
+	EventName      string `json:"eventName"`
+	EventCategory  string `json:"eventCategory"`
+	StartEventDate string `json:"startEventDate"`
+	EndEventDate   string `json:"endEventDate"`
+}
+
+type EventDeleteBody struct {
+	EventID int `json:"id"`
 }
 
 type Authentication struct {
 	Username string `json:"username"`
 	Password string `json:"password"`
+}
+
+type Claims struct {
+	UserName string `json:"username"`
+	jwt.StandardClaims
 }
 
 var Users = []User{
