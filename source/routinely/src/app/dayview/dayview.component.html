@@ -2,6 +2,8 @@
 
 <body>
 
+<div class="clr-col-8">
+
   <div class="card">
     <div class="card-header">
 <!--      <div style="display: flex; max-height: 0px;">-->
@@ -28,28 +30,33 @@
           </div>
           <div class="right-section">
             <cds-icon shape="angle" direction="right" class="arrow-button" id="right-arrow" (click)="iterateDayUp()"></cds-icon>
-            <app-event-modal></app-event-modal>
+            <app-event-modal (eventAdded)="ngOnInit()"></app-event-modal>
           </div>
         </div>
+    </div>
+
+    <div class="day-container">
+      <div class="day">&nbsp;
+      </div>
+    </div>
 
 
-      <div class="day-view">
+      <div style="display: flex">
         <div class="time-column">
           <div style="font-size: 14px;" class="time" *ngFor="let time of times">{{time}}</div>
         </div>
 
         <div class="events-column">
-          <div class="event" *ngFor="let event of events" [style.top.px]="getPos(event)" [style.height.px]="50*event.duration">
-            <div class="event-time">{{event.duration}}</div>
+          <div class="event" *ngFor="let event of events" [style.top.px]="getPos(event)" [style.height.px]="50*event.duration" [style.background-color]="colorHSL">
+<!--            <div class="event-time">{{event.duration}}</div>-->
             <div class="event-title">{{event.title}}</div>
           </div>
         </div>
       </div>
 
-    </div>
 
   </div>
-
+</div>
 </body>
 
 </html>

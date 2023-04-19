@@ -11,7 +11,9 @@ export class WeekviewComponent {
 
 
 
-  constructor(private sharerService: SharerService) { }
+  constructor(private sharerService: SharerService) {
+    this.generateTimes();
+  }
 
   color: string = this.sharerService.getColor();
   textcolor: string = this.sharerService.getTextColor();
@@ -19,6 +21,7 @@ export class WeekviewComponent {
   accentHSL = this.sharerService.getAccentHSL();
 
   times: string[] = [];
+
   events: { time: string; title: string }[] = [
     { time: '09:30', title: 'Meeting with team' },
     { time: '14:00', title: 'Project deadline' },
@@ -26,15 +29,11 @@ export class WeekviewComponent {
   ];
 
   generateTimes(): void {
-    for (let k = 0; k < 2; k++) {
-      for (let i = 0; i < 12; i++) {
-        for (let j = 0; j < 60; j += 30) {
-          let hour = i.toString().padStart(2, '0');
-          if (hour == '00') hour = '12';
-          const minute = j.toString().padStart(2, '0');
-          if (k === 0) this.times.push(`${hour}:${minute} AM`);
-          else this.times.push(`${hour}:${minute} PM`);
-        }
+    for (let i = 0; i < 24; i++) {
+      for (let j = 0; j < 60; j += 30) {
+        const hour = i.toString().padStart(2, '0');
+        const minute = j.toString().padStart(2, '0');
+        this.times.push(`${hour}:${minute}`);
       }
     }
   }
