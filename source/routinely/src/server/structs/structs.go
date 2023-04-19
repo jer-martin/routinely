@@ -2,7 +2,7 @@ package structs
 
 type UserInfo struct {
 	ID    int
-	token string
+	TOKEN string
 }
 
 type User struct {

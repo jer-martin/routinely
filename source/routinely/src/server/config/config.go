@@ -21,7 +21,7 @@ func init() {
 
 func InitializePostgress() {
 
-	connect, err := sql.Open("mysql", "root:password@tcp(127.0.0.1:3306)/test")
+	connect, err := sql.Open("mysql", "uojygbr7zyjudks0:yN2IY5BYZ6Wi7HoxmH4J@tcp(bii0fawltglwiz2qnyky-mysql.services.clever-cloud.com:3306)/bii0fawltglwiz2qnyky")
 	if err != nil {
 		log.Println(err)
 		return
