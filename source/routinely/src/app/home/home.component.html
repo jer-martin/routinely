@@ -29,6 +29,7 @@
   <div class="clr-row">
     <div class="clr-col-4" style="padding-left:3%">
       <app-filter></app-filter>
+      <app-todo></app-todo>
     </div>
     <!--        <div class="clr-col-4" style="padding-left:5vw">-->
     <!--          <div class="card">-->
@@ -93,7 +94,7 @@
         </clr-tab>
       </clr-tabs> -->
 
-        
+
       <ul class="tabs">
         <li><a (click)="activeTab = 'month'" [class.active]="activeTab === 'month'" [ngStyle]="{'background-color': activeTab === 'month' ? colorHSL : '', 'color': activeTab === 'month' ? textColor : ''}">Month</a></li>
         <li><a (click)="activeTab = 'week'" [class.active]="activeTab === 'week'" [ngStyle]="{'background-color': activeTab === 'week' ? colorHSL : '', 'color': activeTab === 'week' ? textColor : ''}">Week</a></li>
@@ -102,7 +103,7 @@
         <div class="tab-content">
           <div *ngIf="activeTab === 'month'">
             <div class="card" #cardContainer>
-              
+
               <app-monthview (switchTab)="onSwitchTab($event)"></app-monthview>
 
             </div>
@@ -117,7 +118,7 @@
               <app-dayview></app-dayview>
           </div>
         </div>
-      
+
 
     </div>
   </div>

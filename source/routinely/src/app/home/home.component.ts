@@ -11,6 +11,8 @@ import { TabSwitchService } from '../tab-switch.service';
 import { firstValueFrom } from 'rxjs';
 import { lastValueFrom } from 'rxjs/internal/lastValueFrom';
 import { ClrTabs } from '@clr/angular';
+import { WeekviewComponent } from "../weekview/weekview.component";
+import { DayviewComponent} from "../dayview/dayview.component";
 import { Renderer2, ElementRef } from '@angular/core';
 @Component({
   selector: 'app-home',
@@ -18,6 +20,11 @@ import { Renderer2, ElementRef } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit{
+  @ViewChild(WeekviewComponent) weekView: WeekviewComponent | undefined;
+  @ViewChild(DayviewComponent) dayView: WeekviewComponent | undefined;
+  @ViewChild(MonthviewComponent) monthView: WeekviewComponent | undefined;
+
+
   activeTabIndex = 1;
   @ViewChild('cardContainer', { read: ViewContainerRef,static: true }) container!: ViewContainerRef;
   @ViewChild('tabsComponent') tabsComponent!: ClrTabs;
@@ -141,17 +148,20 @@ export class HomeComponent implements OnInit{
     this.sharerService.changeCalTime(this.calTime);
   }
 
-  
+
   onSwitchTab(tabIndex: number) {
     switch (tabIndex) {
       case 2:
         this.activeTab = 'week';
+        this.weekView?.ngOnInit();
         break;
       case 3:
         this.activeTab = 'day';
+        this.dayView?.ngOnInit();
         break;
       default:
         this.activeTab = 'month';
+        this.monthView?.ngOnInit();
         break;
     }
   }

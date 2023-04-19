@@ -1,0 +1,20 @@
+<div class="clr-row">
+  <div class="clr-col-12">
+    <div class="card">
+      <h4 class="card-header">To-Do List</h4>
+      <div class="card-block">
+        <br/>
+        <button (click)="ngOnInit()" type="button" class="btn btn-icon btn-link" aria-label="home" style="float: right">
+          <cds-icon (click)="ngOnInit()" shape="refresh"></cds-icon>
+        </button>
+        <clr-control-helper *ngIf="toDoList.length != 0 && toDoList.length != completed" style="font-size: 14px;">Here's a list of things you have to do today.</clr-control-helper>
+        <clr-control-helper *ngIf="toDoList.length === completed" style="font-size: 14px;">You're all caught up!</clr-control-helper>
+        <br/>
+        <div style="display: flex; align-items: center;" *ngFor="let item of toDoList; let i = index">
+          <span class="badge badge-blue">{{i+1}}</span><label  (click)="toggleStrikeThrough($event)" style="font-size: 16px;">{{item[0]}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

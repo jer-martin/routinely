@@ -90,7 +90,7 @@ export class MonthviewComponent {
 
   // populate boxes with numbers up to the day count
   populateBoxes(month: string) {
-    CalendarMonth(this.calTime, this.sharerService.getEvents());
+    CalendarMonth(this.calTime, this.sharerService.getTimeEvents());
   }
 
   switchToTab(tabIndex: number) {
@@ -208,7 +208,7 @@ export class MonthviewComponent {
 }
 
 
-function CalendarMonth(dt: DateTime, events: Map<string, string[]>) {
+function CalendarMonth(dt: DateTime, events: Map<string, [string, DateTime, DateTime][]>) {
   const days = updView(dt, 'month');
   const boxes = document.getElementsByClassName('box');
   for (let i = 0; i < boxes.length; i++) {
@@ -218,21 +218,36 @@ function CalendarMonth(dt: DateTime, events: Map<string, string[]>) {
   days.map((day, i) => {
     // console.log(events);
     // console.log(day.start.toISO());
-    const dayEvents = events.get(day.start.toISO());
+    const dayEvents = events.get(day.start.toISODate());
     // console.log(dayEvents);
     const label = document.createElement('label');
     label.style.display = 'flex';
     label.innerText = day.start.day.toString();
     boxes[i].appendChild(label);
     if (dayEvents){
-      dayEvents.forEach((event, index) => {
+      // for (const [index, [name, start, end]] of dayEvents.entries()) {
+      //   const button = document.createElement('button');
+      //   console.log("1");
+      //   button.innerText = start.hour + ':' + start.minute.toString().padStart(2, '0') + ' ' + name;
+      //   button.classList.add('btn', 'btn-primary', 'btn-event', 'btn-sm', 'align-items-center', 'justify-content-center');
+      //   button.style.margin = 'auto';
+      //   console.log("2");
+      //   button.style.top = (1.8 * (index+1)).toString() + 'rem';
+      //   boxes[i].appendChild(button);
+      //   console.log("3");
+      //   // console.log("match");
+      // }
+      console.log(dayEvents);
+      dayEvents.forEach(([name, start, end], index) => {
         const button = document.createElement('button');
-        button.innerText = event;
+        console.log("1");
+        button.innerText = start.hour + ':' + start.minute.toString().padStart(2, '0') + ' ' + name;
         button.classList.add('btn', 'btn-primary', 'btn-event', 'btn-sm', 'align-items-center', 'justify-content-center');
         button.style.margin = 'auto';
+        console.log("2");
         button.style.top = (1.8 * (index+1)).toString() + 'rem';
-        // button.style.top = event.inde
         boxes[i].appendChild(button);
+        console.log("3");
         // console.log("match");
       })
     }

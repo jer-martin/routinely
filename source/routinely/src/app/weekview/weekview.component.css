@@ -15,6 +15,11 @@ h3 {
     user-select: none;
 }
 
+.time-column {
+  display: flex;
+  flex-direction: column;
+}
+
 .header-content {
   display: flex;
   justify-content: space-between;
@@ -82,7 +87,7 @@ h3 {
 }
 
 .day {
-    width: 10%;
+    width: 14.2857142857%;
     height: 10%;
     display: flex;
     user-select: none;
@@ -111,7 +116,7 @@ ul.tabs {
     margin-top: 1vh;
     padding: 0;
   }
-  
+
   ul.tabs div {
     display: inline-block;
     background: hsl(198, 0%, 91%);
@@ -122,12 +127,12 @@ ul.tabs {
     clip-path: polygon(100% 0, 90% 0, 100% 100%, 0 100%, 0.5% 0);
 
   }
-  
+
   ul.tabs div.active {
     background: hsl(198, 78%, 78%);
     color: #333;
   }
-  
+
   .card {
     margin-top: 0px;
   }

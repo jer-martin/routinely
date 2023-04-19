@@ -36,34 +36,35 @@
         </clr-date-container>
         <clr-input-container style="display: inline-block;">
           <label>Start Time</label>
-          <input class="input-time" [(ngModel)]="startTimeH" min="1" max="12" clrInput type="number" placeholder="H" name="sh"/>
-          <input class="input-time" [(ngModel)]="startTimeM" min="0" max="59" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" clrInput type="number" placeholder="M" name="sm"/>
+          <input class="input-time" [(ngModel)]="startTimeH" min="0" max="24" onchange="this.value=this.value.toString().padStart(2, '0');" clrInput type="number" placeholder="H" name="sh"/>
+          <input class="input-time" [(ngModel)]="startTimeM" min="0" max="59"step="30"  onchange="this.value=this.value.toString().padStart(2, '0');" clrInput type="number" placeholder="M" name="sm"/>
         </clr-input-container>
-        <clr-radio-container clrInline style="display: inline-block;">
-          <clr-radio-wrapper>
-            <input type="radio" clrRadio name="options" value="option1" />
-            <label>AM</label>
-          </clr-radio-wrapper>
-          <clr-radio-wrapper>
-            <input type="radio" clrRadio name="options" value="option2" />
-            <label>PM</label>
-          </clr-radio-wrapper>
-        </clr-radio-container>
+<!--        <clr-radio-container clrInline style="display: inline-block;">-->
+<!--          <clr-radio-wrapper>-->
+<!--            <input type="radio" clrRadio name="options" value="option1" />-->
+<!--            <label>AM</label>-->
+<!--          </clr-radio-wrapper>-->
+<!--          <clr-radio-wrapper>-->
+<!--            <input type="radio" clrRadio name="options" value="option2" />-->
+<!--            <label>PM</label>-->
+<!--          </clr-radio-wrapper>-->
+<!--        </clr-radio-container>-->
+        &nbsp;
         <clr-input-container style="display: inline-block;">
           <label>End Time</label>
-          <input class="input-time" [(ngModel)]="endTimeH" min="1" max="12" clrInput type="number" placeholder="H" name="eh"/>
-          <input class="input-time" [(ngModel)]="endTimeM" min="0" max="59" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;"  clrInput type="number" placeholder="M" name="em"/>
+          <input class="input-time" [(ngModel)]="endTimeH" min="0" max="24" onchange="this.value=this.value.toString().padStart(2, '0');" clrInput type="number" placeholder="H" name="eh"/>
+          <input class="input-time" [(ngModel)]="endTimeM" min="0" max="59" step="30" onchange="this.value=this.value.toString().padStart(2, '0');"  clrInput type="number" placeholder="M" name="em"/>
         </clr-input-container>
-        <clr-radio-container style="display: inline-block;" clrInline>
-          <clr-radio-wrapper>
-            <input type="radio" clrRadio name="options2" value="option1" />
-            <label>AM</label>
-          </clr-radio-wrapper>
-          <clr-radio-wrapper>
-            <input type="radio" clrRadio name="options2" value="option2" />
-            <label>PM</label>
-          </clr-radio-wrapper>
-        </clr-radio-container>
+<!--        <clr-radio-container style="display: inline-block;" clrInline>-->
+<!--          <clr-radio-wrapper>-->
+<!--            <input type="radio" clrRadio name="options2" value="option1" />-->
+<!--            <label>AM</label>-->
+<!--          </clr-radio-wrapper>-->
+<!--          <clr-radio-wrapper>-->
+<!--            <input type="radio" clrRadio name="options2" value="option2" />-->
+<!--            <label>PM</label>-->
+<!--          </clr-radio-wrapper>-->
+<!--        </clr-radio-container>-->
       </div>
         <div class="clr-col-6" style="float: right">
       <clr-date-container style="float: right">

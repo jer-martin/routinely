@@ -4,9 +4,9 @@
 
   <div class="card">
     <div class="card-header">
-      <div style="display: flex; max-height: 0px;">
-        <app-event-modal style="margin-left: auto"></app-event-modal>
-      </div>
+<!--      <div style="display: flex; max-height: 0px;">-->
+<!--        <app-event-modal style="margin-left: auto"></app-event-modal>-->
+<!--      </div>-->
 
       <!-- <div class="monthweekcontainer">
         <div class="month-container">
@@ -18,7 +18,7 @@
         </div>
       </div> -->
 
-      
+
         <div class="header-content">
           <div class="left-section">
             <cds-icon shape="angle" direction="left" class="arrow-button" id="left-arrow" (click)="iterateDayDown()"></cds-icon>
@@ -31,16 +31,16 @@
             <app-event-modal></app-event-modal>
           </div>
         </div>
-      
+
 
       <div class="day-view">
         <div class="time-column">
-          <div class="time" *ngFor="let time of times">{{time}}</div>
+          <div style="font-size: 14px;" class="time" *ngFor="let time of times">{{time}}</div>
         </div>
 
         <div class="events-column">
-          <div class="event" *ngFor="let event of events">
-            <div class="event-time">{{event.time}}</div>
+          <div class="event" *ngFor="let event of events" [style.top.px]="getPos(event)" [style.height.px]="50*event.duration">
+            <div class="event-time">{{event.duration}}</div>
             <div class="event-title">{{event.title}}</div>
           </div>
         </div>

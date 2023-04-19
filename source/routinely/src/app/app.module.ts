@@ -17,7 +17,7 @@ import { ScheduleComponent } from './schedule/schedule.component';
 import { FilterComponent } from './filter/filter.component';
 import { SettingsComponent } from './settings/settings.component';
 import { EventModalComponent } from "./eventModal/event-modal.component";
-
+import { TodoComponent } from "./todo/todo.component";
 import { CalendarSettingsComponent } from './calendar-settings/calendar-settings.component';
 import { PreferencesComponent } from './preferences/preferences.component';
 import { BugReportComponent } from './bug-report/bug-report.component';
@@ -37,6 +37,7 @@ import { MonthviewComponent } from './monthview/monthview.component';
     SettingsComponent,
     EventModalComponent,
     CalendarSettingsComponent,
+    TodoComponent,
     PreferencesComponent,
     BugReportComponent,
     WeekviewComponent,

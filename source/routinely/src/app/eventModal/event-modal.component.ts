@@ -37,8 +37,8 @@ export class EventModalComponent {
   selectedDays = [false, false, false, false, false, false, false];
 
   // FORMATTED VARS
-  eventStart : Date | undefined; // individual event start/end - this is what goes in the post request
-  eventEnd : Date | undefined;
+  eventStart : DateTime | undefined; // individual event start/end - this is what goes in the post request
+  eventEnd : DateTime | undefined;
 
   public eventList: IeventList[] =[]
   catList: Set<string> = this.sharerService.getCategories();
@@ -55,6 +55,10 @@ export class EventModalComponent {
     this.startRecDate = undefined;
     this.endRecDate = undefined;
     this.recurringEvent = false;
+    this.startTimeH = undefined;
+    this.startTimeM = undefined;
+    this.endTimeH = undefined;
+    this.endTimeM = undefined;
     // this.immutableEvent = false;
     // add code to reset button group
     // this.selectedDays[0] = false;
@@ -63,9 +67,28 @@ export class EventModalComponent {
 
   async addEvent(){
     if (this.dt) {
+      this.eventStart = DateTime.fromObject({
+        year: this.dt.getFullYear(),
+        month: this.dt.getMonth() + 1,
+        day: this.dt.getDate(),
+        // @ts-ignore
+        hour: parseInt(this.startTimeH.toString()),
+        // @ts-ignore
+        minute: parseInt(this.startTimeM.toString())
+      })
+      this.eventEnd = DateTime.fromObject({
+        year: this.dt.getFullYear(),
+        month: this.dt.getMonth() + 1,
+        day: this.dt.getDate(),
+        // @ts-ignore
+        hour: parseInt(this.endTimeH.toString()),
+        // @ts-ignore
+        minute: parseInt(this.endTimeM.toString())
+      })
       this.sharerService.addEvent(DateTime.fromJSDate(this.dt), this.eventName);
+      this.sharerService.addTimeEvent(DateTime.fromJSDate(this.dt), this.eventName, this.eventStart, this.eventEnd);
     }
-    // console.log("Name: " + this.eventName + " Category: " + this.eventCategory + " Date: " + this.eventStart);
+    console.log("Name: " + this.eventName + " Category: " + this.eventCategory + " Date: " + this.eventStart + " to " + this.eventEnd);
     firstValueFrom(this.httpClient.post('/api/addEvent',{
       eventName: this.eventName,
       eventCategory: this.eventCategory
@@ -83,17 +106,20 @@ export class EventModalComponent {
 
   constructor(private httpClient:HttpClient,private sharerService:SharerService) { }
 
-  // validate() {
-  //   // non-recurring
-  //   if (!this.recurringEvent && this.eventName != '' && this.dt != undefined) {
-  //     return true;
-  //   }
-  //   // recurring
-  //   else if (this.recurringEvent && this.eventName != '' && this.startRecDate != undefined && this.endRecDate != undefined) {
-  //     return true;
-  //   }
-  //   return false;
-  // }
+  validate() {
+    if (!this.startTimeH || !this.startTimeM || !this.endTimeH || !this.endTimeM) {
+      return false;
+    }
+    // non-recurring
+    if (!this.recurringEvent && this.eventName != '' && this.dt != undefined) {
+      return true;
+    }
+    // recurring
+    else if (this.recurringEvent && this.eventName != '' && this.startRecDate != undefined && this.endRecDate != undefined) {
+      return true;
+    }
+    return false;
+  }
 
   // eventNames: string = '';
   //eventCategory: string = '';
