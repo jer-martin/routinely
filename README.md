@@ -19,6 +19,8 @@ Open another terminal and navigate to source/routinely/src/server
 
 Type "make"
 
+**mySQL is not needed - database is on the cloud, but maximum of 5 connections at a time**
+
 
 ## FOR TA
 [User Stories](docs/user_stories.md)   
