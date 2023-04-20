@@ -21,11 +21,100 @@ Front-end video | Back-end video
 
 ## Testing
 ### Frontend
-#### Test 1:
+#### Test 1 (Cypress):
+```
+describe('modal', () => {
+  it('passes', () => {
+    cy.visit('http://localhost:4200')
+    cy.get('.addEvent').click()
+    cy.get('.startdate').eq(8).should('be.disabled')
+    cy.get('.enddate').eq(8).should('be.disabled')
+    cy.get('.startdate').eq(8).should('not.be.disabled')
+    cy.contains('Recurring').click()
+    cy.get('.startdate').eq(8).should('not.be.disabled')
+    cy.get('.enddate').eq(8).should('not.be.disabled')
+    cy.get('.startdate').eq(8).should('be.disabled')
+  })
+
+})
+```
+
+#### Test 2:
+```
+describe('validateRecurringInterval()', () => {
+  it('should say that the dates are invalid', () => {
+    const startDate = DateTime.fromObject({year:2023, month: 1, day: 31});
+    const endDate = DateTime.fromObject({year:2022, month: 3, day: 28});
+    expect(validateRecurringInterval(startDate, endDate)).toBe(false);
+  })
+})
+```
+
+#### Test 3:
+```
+describe('validateRecurringInterval()', () => {
+  it('should say that the dates are valid', () => {
+    const startDate = DateTime.fromObject({year:2021, month: 3, day: 30});
+    const endDate = DateTime.fromObject({year:2026, month: 1, day: 28});
+    expect(validateRecurringInterval(startDate, endDate)).toBe(true);
+  })
+})
+```
 
 ### Backend
 The tests can be found in the "main_test.go" file located in the "backend" folder.
 #### Test 1:
+```
+func TestViewEvents(t *testing.T) {
+	events := ("[{\"eventName\":\"CEN3031\",\"eventCategory\":\"Classes\"}]")
+
+	router := setUpRouter()
+	w := httptest.NewRecorder()
+	req, _ := http.NewRequest("GET", "/api/viewEvents", nil)
+	router.ServeHTTP(w, req)
+
+	assert.Equal(t, 200, w.Code)
+	assert.Equal(t, events, w.Body.String())
+}
+```
+
+#### Test 2:
+```
+func TestAddEvent(t *testing.T) {
+	message := "\"Successfuly created event\""
+	type Event struct {
+		EventName     string `json:"eventName"`
+		EventCategory string `json:"eventCategory"`
+	}
+	eventToAdd := Event{
+		EventName:     `COP4600`,
+		EventCategory: "Classes",
+	}
+	jsonValue, _ := json.Marshal(eventToAdd)
+	router := setUpRouter()
+	w := httptest.NewRecorder()
+	req, _ := http.NewRequest("POST", "/api/addEvent", bytes.NewBuffer(jsonValue))
+	router.ServeHTTP(w, req)
+
+	assert.Equal(t, 200, w.Code)
+	assert.Equal(t, message, w.Body.String())
+}
+```
+
+#### Test 3:
+```
+func TestAddEventFAILURE(t *testing.T) {
+	events := ("[{\"eventName\":\"CEN3031\",\"eventCategory\":\"Classes\"}]")
+
+	router := setUpRouter()
+	w := httptest.NewRecorder()
+	req, _ := http.NewRequest("GET", "/api/addEvent", nil)
+	router.ServeHTTP(w, req)
+
+	assert.Equal(t, 200, w.Code)
+	assert.Equal(t, events, w.Body.String())
+}
+```
 
 ## Backend Documentation
 
