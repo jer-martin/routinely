@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import { DateTime } from 'luxon';
+import {ClrIconModule} from "@clr/angular";
 import { SharerService } from '../sharer.service';
 
 @Component({
