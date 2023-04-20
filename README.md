@@ -8,6 +8,12 @@ Routinely will be able to automatically prioritize and schedule events for the u
 
 Built by Bryan Esquivias, Jeremy Martin, Anand Mathi, and Madhav Sagi.
 
+## HOW TO RUN
+Navigate to source/routinely
+Type "npm i --legacy-peer-deps"
+Type "npm start"
+Open another terminal and navigate to source/routinely/src/server
+Type "make"
 
 ## FOR TA
 [User Stories](docs/user_stories.md)   
