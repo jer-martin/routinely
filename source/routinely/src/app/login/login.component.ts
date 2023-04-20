@@ -23,7 +23,6 @@ export class LoginComponent {
   routeSignin() {
     this.router.navigate(['signin']);
   }
-  
 
   constructor(private httpClient:HttpClient,private sharerService:SharerService, private router: Router) { }
   goToHome() {
@@ -48,7 +47,6 @@ export class LoginComponent {
     } else {
         errorElement?.classList.remove('active');
     }
-
   }
 
   async loginRequest(){

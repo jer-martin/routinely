@@ -14,6 +14,7 @@ import { ClrTabs } from '@clr/angular';
 import { WeekviewComponent } from "../weekview/weekview.component";
 import { DayviewComponent} from "../dayview/dayview.component";
 import { Renderer2, ElementRef } from '@angular/core';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
