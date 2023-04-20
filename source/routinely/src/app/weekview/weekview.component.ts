@@ -74,7 +74,7 @@ export class WeekviewComponent {
 
     console.log("run");
     const events = this.sharerService.getTimeEvents();
-    let weekEvents : [string, DateTime, DateTime][] | undefined = [];
+    let weekEvents : [string, DateTime, DateTime, number][] | undefined = [];
     for (let i = 1; i <= 7; i++) {
       const day = this.dayWeekStartTime.plus(i * 8.64e+7).toISODate();
       const dayEvents = events.get(day);

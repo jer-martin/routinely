@@ -41,7 +41,7 @@ export class DayviewComponent {
 
     color: string = this.sharerService.getColor();
     textcolor: string = this.sharerService.getTextColor();
-    eventList: [string, DateTime, DateTime][] | undefined;
+    eventList: [string, DateTime, DateTime, number][] | undefined;
     colorHSL: string = "";
 
     calTime = this.sharerService.currentCalTime.getValue();

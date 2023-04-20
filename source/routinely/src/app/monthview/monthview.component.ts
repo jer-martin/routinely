@@ -90,7 +90,7 @@ export class MonthviewComponent {
 
   // populate boxes with numbers up to the day count
   populateBoxes(month: string) {
-    CalendarMonth(this.calTime, this.sharerService.getTimeEvents());
+    CalendarMonth(this.sharerService, this.calTime, this.sharerService.getTimeEvents());
   }
 
   switchToTab(tabIndex: number) {
@@ -212,7 +212,7 @@ export class MonthviewComponent {
 }
 
 
-function CalendarMonth(dt: DateTime, events: Map<string, [string, DateTime, DateTime][]>) {
+function CalendarMonth(sharerService : SharerService, dt: DateTime, events: Map<string, [string, DateTime, DateTime, number][]>) {
   const days = updView(dt, 'month');
   const boxes = document.getElementsByClassName('box');
   for (let i = 0; i < boxes.length; i++) {
@@ -242,16 +242,18 @@ function CalendarMonth(dt: DateTime, events: Map<string, [string, DateTime, Date
       //   // console.log("match");
       // }
       console.log(dayEvents);
-      dayEvents.forEach(([name, start, end], index) => {
+      dayEvents.forEach(([name, start, end, id], index) => {
         const button = document.createElement('button');
-        console.log("1");
         button.innerText = start.hour + ':' + start.minute.toString().padStart(2, '0') + ' ' + name;
         button.classList.add('btn', 'btn-primary', 'btn-event', 'btn-sm', 'align-items-center', 'justify-content-center');
         button.style.margin = 'auto';
-        console.log("2");
         button.style.top = (1.8 * (index+1)).toString() + 'rem';
         boxes[i].appendChild(button);
-        console.log("3");
+        button.addEventListener('click', () => {
+          // delete event http
+
+          sharerService.deleteEvent(dt, id);
+        })
         // console.log("match");
       })
     }

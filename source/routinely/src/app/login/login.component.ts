@@ -51,12 +51,15 @@ export class LoginComponent {
 
   async loginRequest(){
     console.log( "Name: " + this.form.username + " Password: " + this.form.password);
-    await firstValueFrom(this.httpClient.post('http://localhost:4200/login',{
-      
+    const resp = await firstValueFrom(this.httpClient.post('http://localhost:4200/login',{
+
       username: this.form.username,
       password: this.form.password
       //description: this.description
     }))
+    if (resp) {
+      this.router.navigate(['']);
+    }
     this.reset();
   }
   reset() {
