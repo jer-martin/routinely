@@ -16,7 +16,7 @@ import { ClrModal } from '@clr/angular';
 })
 export class LoginComponent {
   title = 'routinely';
-  form = {id: 0, username: '', password: '', rememberMe: false};
+  form = {username: '', password: '', rememberMe: false};
   hasError = false;
   userRegex = new RegExp(/^[a-zA-Z0-9]+$|^$/);
 
@@ -50,9 +50,9 @@ export class LoginComponent {
   }
 
   async loginRequest(){
-    console.log("ID: " + this.form.id + " Name: " + this.form.username + " Password: " + this.form.password);
-    firstValueFrom(this.httpClient.post('/login',{
-      id: this.form.id,
+    console.log( "Name: " + this.form.username + " Password: " + this.form.password);
+    await firstValueFrom(this.httpClient.post('http://localhost:4200/login',{
+      
       username: this.form.username,
       password: this.form.password
       //description: this.description
@@ -60,7 +60,7 @@ export class LoginComponent {
     this.reset();
   }
   reset() {
-    this.form = {id: 0, username: '', password: '', rememberMe: false};
+    this.form = { username: '', password: '', rememberMe: false};
   }
 }
 

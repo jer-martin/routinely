@@ -1,36 +1,42 @@
 {
   "/api": {
-    "target": "http://127.0.0.1:3000",
+    "target": "http://127.0.0.1:4200",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": false
   },
   "/api/userList": {
-    "target": "http://127.0.0.1:3000",
+    "target": "http://127.0.0.1:4200",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": false
   },
   "/api/addEvent": {
-    "target": "http://127.0.0.1:3000",
+    "target": "http://127.0.0.1:4200",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": false
   },
   "/api/viewEvents": {
-    "target": "http://127.0.0.1:3000",
+    "target": "http://127.0.0.1:4200",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": false
   },
   "/api/refresh-token": {
-    "target": "http://127.0.0.1:3000",
+    "target": "http://127.0.0.1:4200",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": false
   },
   "/api/deleteEvent": {
-    "target": "http://127.0.0.1:3000",
+    "target": "http://127.0.0.1:4200",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": false
+  },
+  "/login": {
+    "target": "http://127.0.0.1:4200",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": false

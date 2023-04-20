@@ -32,7 +32,7 @@ import (
 
 func main() {
 	r := userEndpoints.SetUpRouter()
-	r.Run("localhost:3000")
+	r.Run("localhost:4200")
 }
 
 // func setUpRouter() *gin.Engine {
