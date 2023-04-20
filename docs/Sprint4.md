@@ -61,6 +61,86 @@ describe('validateRecurringInterval()', () => {
 })
 ```
 
+#### Test 4 (Cypress):
+```
+import { PreferencesComponent } from "src/app/preferences/preferences.component"
+// this is an end to end test
+describe('template spec', () => {
+  it('passes', () => {
+    // click cog
+    cy.visit('http://localhost:4200')
+    // click cog
+    cy.get('.cog').click()
+    cy.contains('Preferences').click()
+    // click clr-dropdown
+    cy.contains('Header Color').click()
+    // check for purple
+    cy.contains('Purple').click()
+    // check for blue
+    cy.contains('Blue').click()
+    // check for slate
+    cy.contains('Slate').click()
+    // click account
+    cy.contains('Account').click()
+    // click logo
+    cy.contains('Routinely').click()
+    // click cog
+    cy.get('.cog').click()
+    // check login
+    cy.contains('Log in').click()
+    // check clock link works
+    cy.get('.clock').click()
+    // check sidebar link works
+    cy.get('.bug-report').click()
+  })
+  
+})
+```
+
+#### Test 5:
+```
+describe('genMonth()', () => {
+  it('should give the interval (1, 28)', () => {
+    const month = genMonth(DateTime.fromObject({year: 2023, month: 2, day: 6}));
+    expect(month.start.day).toBe(1);
+    expect(month.end.day).toBe(28);
+  });
+  it('should give the interval (1, 29)', () => {
+    const month = genMonth(DateTime.fromObject({year: 2024, month: 2, day: 1}));
+    expect(month.start.day).toBe(1);
+    expect(month.end.day).toBe(29);
+  });
+  it('should give the interval (1, 31)', () => {
+    const month = genMonth(DateTime.fromObject({year: 2023, month: 1, day: 31}));
+    expect(month.start.day).toBe(1);
+    expect(month.end.day).toBe(31);
+  })
+});
+```
+
+#### Test 6:
+```
+describe('genBackfillMonth()', () => {
+  it('should give the interval (29, 11) and months january and march', () => {
+    const month = genBackfillMonth(DateTime.fromObject({year: 2023, month: 2, day: 6}));
+    expect(month.start.day).toBe(29);
+    expect(month.end.day).toBe(11);
+    expect(month.start.month).toBe(1);
+    expect(month.end.month).toBe(3);
+  });
+});
+```
+#### Test 7:
+```
+describe('genDay()', () => {
+  it('should give the interval (1, 31)', () => {
+    const day = genMonth(DateTime.fromObject({year: 2023, month: 1, day: 31}));
+    expect(day.start.day).toBe(31);
+    expect(day.end.day).toBe(31);
+  })
+});
+```
+
 ### Backend
 The tests can be found in the "main_test.go" file located in the "backend" folder.
 #### Test 1:
