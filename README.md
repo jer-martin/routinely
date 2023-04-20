@@ -14,6 +14,7 @@ Built by Bryan Esquivias, Jeremy Martin, Anand Mathi, and Madhav Sagi.
 [Sprint 1](docs/Sprint1.md)   
 [Sprint 2](docs/Sprint2.md)   
 [Sprint 3](docs/Sprint3.md)   
+[Sprint 4](docs/Sprint4.md)
 
 
 ## FOR DEVS 
