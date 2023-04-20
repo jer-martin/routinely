@@ -17,13 +17,15 @@
  - Fully integrated frontend and backend
 
 ### Backend
+#### To see full list of commits from backend team, check "madhav" branch.
  - Created functions that createUser, Login, getEvents, addEvents, deleteEvents.
+ - Implemented error handling for all functions
  - getEvent,addEvents,deleteEvents all require authentication tokens, cant do anything unless user is logged in and authenticated.
  - Function to get events is specific to user, so no user will ever see another users events. 
  - Created JWT Authentication
  - Stores tokens as cookies
  - Created a refreshToken function since cookies expire every 15 min.
- - Created a cloud database(maximum 5 users at a time) which will store all the users and event information. Users and events are persistent across all instances and exist until deleted. 
+ - Created a cloud database in MySQL(maximum 5 users at a time) which will store all the users and event information. Users and events are persistent across all instances and exist until deleted. 
 ## Testing
 ### Frontend
 #### Test 1 (Cypress):
