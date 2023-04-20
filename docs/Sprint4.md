@@ -203,7 +203,10 @@ func TestAddEventFAILURE(t *testing.T) {
 
 ## Backend Documentation
 
-The prupose of this API is to retrieve and create User data. This includes user Login / creation as well as retreiving the users calender and customization settings. The APi is written in Golang with the GIN framework and is still in development. Currently you can get a list of users, create users and find users. The api is reached at the ednpoint: "/api". 
+The prupose of this API is to retrieve and create User data. This includes user Login / Creation as well as retreiving the users saved events. The APi is written in Golang with the GIN framework using a MySQL database. Currently you can get a list of users, create users and find users. Event creation is also complete and functions include createEvent,getEvents, and deleteEvents. Events are specific to user. The api is reached at the ednpoint: "/api".
+
+The database is in MySQL and is hosted on the cloud to make usage and testing easier.It is hosted on a free service called "CleverCloud" and will allow a maximum of 5 users at one time to access the database. Any instance of the app running will count as a user so maximum 5 users can use the app at a time with the possibility of scaling up if neccessary. The reason we chose to host on the cloud is to make it so you only need the base code to run everything , as setting up your own mock database to get functionality is too difficult. No work is required on the users end as simply running the code will connect to the database automatically.
+
 Here is a list of a few completed endpoints:
 
 ```
