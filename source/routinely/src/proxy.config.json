@@ -40,5 +40,11 @@
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": false
+  },
+  "/createUser": {
+    "target": "http://127.0.0.1:4200",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": false
   }
 }
