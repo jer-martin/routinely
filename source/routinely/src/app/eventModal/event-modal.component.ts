@@ -6,10 +6,9 @@ import { HttpClient } from "@angular/common/http";
 import { ClrModal } from '@clr/angular';
 
 
-interface IeventList{
-  eventName: string
-  eventCategory: string
-  //description: string
+interface AddEventResponse{
+  message: string;
+  event_id: number;
 }
 
 // this whole thing can be optimized way better if we use the built-in form stuff, i didn't realize it was a thing until now but will fix later
@@ -40,7 +39,6 @@ export class EventModalComponent {
   eventStart : DateTime | undefined; // individual event start/end - this is what goes in the post request
   eventEnd : DateTime | undefined;
 
-  public eventList: IeventList[] =[]
   catList: Set<string> = this.sharerService.getCategories();
 
   @Output() eventAdded: EventEmitter<void> = new EventEmitter<void>();
@@ -86,23 +84,22 @@ export class EventModalComponent {
         minute: parseInt(this.endTimeM.toString())
       })
       // this.sharerService.addEvent(DateTime.fromJSDate(this.dt), this.eventName);
-      this.sharerService.addTimeEvent(DateTime.fromJSDate(this.dt), this.eventName, this.eventStart, this.eventEnd);
-    }
-    console.log("Name: " + this.eventName + " Category: " + this.eventCategory + " Date: " + this.eventStart + " to " + this.eventEnd);
-    firstValueFrom(this.httpClient.post('/api/addEvent',{
-      eventName: this.eventName,
-      eventCategory: this.eventCategory
-      //description: this.description
-    }))
-    this.eventAdded.emit();
-    this.reset();
-  }
-  async loadEvents(){
-    const userList = await this.httpClient
-    .get<IeventList[]>('/api/viewEvents')
-    this.eventList = await lastValueFrom(userList)
+      console.log("Name: " + this.eventName + " Category: " + this.eventCategory + " Date: " + this.eventStart?.toISO({suppressMilliseconds: true, includeOffset: false}) + " to " + this.eventEnd?.toISO({suppressMilliseconds: true, includeOffset: false}));
+      const response = await firstValueFrom(this.httpClient.post<AddEventResponse>('/api/addEvent', {
+        userId: this.sharerService.getUserId(),
+        eventCategory: this.eventCategory,
+        eventName: this.eventName,
+        endEventDate: this.eventEnd?.toISO({suppressMilliseconds: true, includeOffset: false}),
+        startEventDate: this.eventStart?.toISO({suppressMilliseconds: true, includeOffset: false})
+        //description: this.description
 
-   }
+      }))
+      const id = response.event_id;
+      this.sharerService.addTimeEvent(DateTime.fromJSDate(this.dt), this.eventName, this.eventStart, this.eventEnd, id);
+      this.eventAdded.emit();
+      this.reset();
+    }
+  }
 
   constructor(private httpClient:HttpClient,private sharerService:SharerService) { }
 

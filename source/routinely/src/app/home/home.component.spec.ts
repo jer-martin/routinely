@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HomeComponent, genMonth, genBackfillMonth, genWeek, genDay, validateRecurringInterval } from './home.component';
+import { HomeComponent, genMonth, genBackfillMonth, genWeek, genDay, generateTimes, validateRecurringInterval } from './home.component';
 import {DateTime} from "luxon";
 
 // describe('HomeComponent', () => {
@@ -23,8 +23,6 @@ import {DateTime} from "luxon";
 // });
 
 // ng test --include='src/app/home/**/*.spec.ts'
-
-// Sprint 2 Tests
 
 describe('genMonth()', () => {
   it('should give the interval (1, 28)', () => {
@@ -63,7 +61,6 @@ describe('genDay()', () => {
 });
 
 
-// Sprint 3
 describe('validateRecurringInterval()', () => {
   it('should say that the dates are invalid', () => {
     const startDate = DateTime.fromObject({year:2023, month: 1, day: 31});
@@ -77,5 +74,15 @@ describe('validateRecurringInterval()', () => {
     const startDate = DateTime.fromObject({year:2021, month: 3, day: 30});
     const endDate = DateTime.fromObject({year:2026, month: 1, day: 28});
     expect(validateRecurringInterval(startDate, endDate)).toBe(true);
+  })
+})
+
+describe('generateTime()', () => {
+  it('should show correct times', () => {
+    const times = generateTimes();
+    expect(times[0]).toBe('00:00');
+    expect(times[5]).toBe('02:30');
+    expect(times[10]).toBe('05:00');
+    expect(times[47]).toBe('23:30');
   })
 })

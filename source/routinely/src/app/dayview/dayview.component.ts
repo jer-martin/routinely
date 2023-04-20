@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import { DateTime } from 'luxon';
+import {ClrIconModule} from "@clr/angular";
 import { SharerService } from '../sharer.service';
 
 @Component({
@@ -40,7 +41,7 @@ export class DayviewComponent {
 
     color: string = this.sharerService.getColor();
     textcolor: string = this.sharerService.getTextColor();
-    eventList: [string, DateTime, DateTime][] | undefined;
+    eventList: [string, DateTime, DateTime, number][] | undefined;
     colorHSL: string = "";
 
     calTime = this.sharerService.currentCalTime.getValue();

@@ -18,18 +18,15 @@
                 <label>Remember me</label>
                 <input type="checkbox" name="rememberMe" clrCheckbox [(ngModel)]="form.rememberMe"/>
             </clr-checkbox-wrapper>
-
             <div class="signup-link">
                 Dont have an account? <a (click)="routeSignin()">Sign up here!</a>
             </div>
-
-
             <div class="error">
                 <span class="error-text">Invalid user name or password</span>
             </div>
             <button type="submit" class="btn btn-primary" (click)="loginRequest()">SUBMIT</button>
-            
+
         </div>
     </form>
   </div>
-  
+

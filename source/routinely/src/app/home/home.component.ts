@@ -14,6 +14,7 @@ import { ClrTabs } from '@clr/angular';
 import { WeekviewComponent } from "../weekview/weekview.component";
 import { DayviewComponent} from "../dayview/dayview.component";
 import { Renderer2, ElementRef } from '@angular/core';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -275,4 +276,16 @@ export function genBackfillMonth(dt: DateTime): Interval {
 
 export function validateRecurringInterval(start: DateTime, end: DateTime) {
   return start.startOf("day") < end.startOf("day");
+}
+
+export function generateTimes(): string[] {
+  const times = [];
+  for (let i = 0; i < 24; i++) {
+    for (let j = 0; j < 60; j += 30) {
+      const hour = i.toString().padStart(2, '0');
+      const minute = j.toString().padStart(2, '0');
+      times.push(`${hour}:${minute}`);
+    }
+  }
+  return times;
 }
