@@ -300,3 +300,46 @@ func setUpRouter() *gin.Engine {
 }
 ```
 
+```
+func AuthMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+
+		Cookie, err := c.Request.Cookie("token")
+		if err != nil {
+			if err == http.ErrNoCookie {
+				c.String(http.StatusUnauthorized, err.Error())
+				c.Abort()
+				return
+			}
+			c.String(http.StatusBadRequest, err.Error())
+			c.Abort()
+			return
+		}
+		tokenString := Cookie.Value
+
+		claims := &structs.Claims{}
+
+		tkn, err := jwt.ParseWithClaims(tokenString, claims, func(t *jwt.Token) (interface{}, error) {
+			return structs.Secretkey, nil
+		})
+
+		if err != nil {
+			if err == jwt.ErrSignatureInvalid {
+				c.String(http.StatusUnauthorized, err.Error())
+				c.Abort()
+				return
+			}
+			c.String(http.StatusBadRequest, err.Error())
+			c.Abort()
+			return
+		}
+		if !tkn.Valid {
+			err = errors.New("invalid Token")
+			c.String(http.StatusUnauthorized, err.Error())
+			c.Abort()
+			return
+		}
+
+	}
+}
+```
