@@ -8,6 +8,10 @@ Routinely will be able to automatically prioritize and schedule events for the u
 
 Built by Bryan Esquivias, Jeremy Martin, Anand Mathi, and Madhav Sagi.
 
+https://user-images.githubusercontent.com/80993505/233442660-ebc8ecd5-53e9-46e6-8617-be6f2a22683e.mp4
+
+
+
 ## HOW TO RUN
 Navigate to source/routinely
 
