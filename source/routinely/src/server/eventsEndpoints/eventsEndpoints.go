@@ -70,7 +70,7 @@ func GetEvents(c *gin.Context) {
 		return
 	}
 
-	rows, err := config.AppConfig.SQL.Query(`select id, userid,name,category,startEventDate,endEventDate from events where userid = ?`, id)
+	rows, err := config.AppConfig.SQL.Query(`SELECT id, userid, name, category, startEventDate, endEventDate FROM events WHERE userid = ? ORDER BY startEventDate ASC`, id)
 	if err != nil {
 		c.String(http.StatusInternalServerError, "Failed to get events from database")
 		return
