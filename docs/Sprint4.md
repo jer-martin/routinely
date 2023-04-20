@@ -17,8 +17,10 @@ Front-end video | Back-end video
  - Fully integrated frontend and backend
 
 ### Backend
- - 
-
+ - Created functions that createUser, Login, getEvents, addEvents, deleteEvents.
+ - Created JWT Authentication
+ - Stores tokens as cookies
+ - Created a refreshToken function since cookies expire every 15 min.
 ## Testing
 ### Frontend
 #### Test 1 (Cypress):
